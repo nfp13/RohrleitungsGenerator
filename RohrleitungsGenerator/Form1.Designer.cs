@@ -33,60 +33,60 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            pictureBox3 = new PictureBox();
-            pictureBox1 = new PictureBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
+            pctb_z = new PictureBox();
+            pctb_y = new PictureBox();
+            txtb_groesse = new TextBox();
+            txtb_datei = new TextBox();
             label18 = new Label();
-            button1 = new Button();
-            picScreenBoard = new PictureBox();
+            btn_datei = new Button();
+            pctb_x = new PictureBox();
             label15 = new Label();
             lblueberschrift1 = new Label();
             label1 = new Label();
             pnlleiste = new Panel();
             label16 = new Label();
-            progressBar1 = new ProgressBar();
+            progb_inventor = new ProgressBar();
             btn_changemode = new Button();
             btn_weiter = new Button();
             btn_zurueck = new Button();
             panel3 = new Panel();
             label19 = new Label();
-            picScreenOben = new PictureBox();
-            btnzip = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            picScreenUnten = new PictureBox();
+            pctb_rohrleitungx = new PictureBox();
+            btn_zip = new Button();
+            btn_exportieren = new Button();
+            btn_speicherort = new Button();
+            pctb_rohrleitungy = new PictureBox();
             label17 = new Label();
             label22 = new Label();
             label23 = new Label();
             label33 = new Label();
             panel2 = new Panel();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
+            btn_verbindungentf = new Button();
+            btn_verbindunghinzu = new Button();
+            btn_anwendung = new Button();
+            btn_supports = new Button();
             label24 = new Label();
-            textBox4 = new TextBox();
+            txtb_druck = new TextBox();
             label14 = new Label();
-            comboBox3 = new ComboBox();
+            combb_fluid = new ComboBox();
             label13 = new Label();
-            textBox2 = new TextBox();
-            comboBox4 = new ComboBox();
+            txtb_temperatur = new TextBox();
+            combb_material = new ComboBox();
             label12 = new Label();
             label8 = new Label();
-            comboBox1 = new ComboBox();
+            combb_gefaelle = new ComboBox();
             label7 = new Label();
-            textBox7 = new TextBox();
-            textBox1 = new TextBox();
+            txtb_biegeradius = new TextBox();
+            txtb_wandstaerke = new TextBox();
             label28 = new Label();
             label27 = new Label();
-            textBox3 = new TextBox();
+            txtb_rohrdurchmesser = new TextBox();
             label6 = new Label();
-            comboBox10 = new ComboBox();
-            comboBox9 = new ComboBox();
-            comboBox8 = new ComboBox();
-            comboBox7 = new ComboBox();
-            comboBox2 = new ComboBox();
+            combb_flansch2 = new ComboBox();
+            combb_flansch1 = new ComboBox();
+            combb_verbindung = new ComboBox();
+            combb_normrohr = new ComboBox();
+            combb_eigenschaften = new ComboBox();
             label2 = new Label();
             label9 = new Label();
             label10 = new Label();
@@ -94,13 +94,13 @@
             label32 = new Label();
             label11 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picScreenBoard).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_z).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_y).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_x).BeginInit();
             pnlleiste.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picScreenOben).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picScreenUnten).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_rohrleitungx).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_rohrleitungy).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -109,13 +109,13 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(textBox5);
+            panel1.Controls.Add(pctb_z);
+            panel1.Controls.Add(pctb_y);
+            panel1.Controls.Add(txtb_groesse);
+            panel1.Controls.Add(txtb_datei);
             panel1.Controls.Add(label18);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(picScreenBoard);
+            panel1.Controls.Add(btn_datei);
+            panel1.Controls.Add(pctb_x);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(lblueberschrift1);
             panel1.Controls.Add(label1);
@@ -155,46 +155,46 @@
             label3.TabIndex = 33;
             label3.Text = "Halle Ansicht X";
             // 
-            // pictureBox3
+            // pctb_z
             // 
-            pictureBox3.ImageLocation = "";
-            pictureBox3.Location = new Point(595, 138);
-            pictureBox3.Margin = new Padding(4, 3, 4, 3);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(187, 185);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 32;
-            pictureBox3.TabStop = false;
+            pctb_z.ImageLocation = "";
+            pctb_z.Location = new Point(595, 138);
+            pctb_z.Margin = new Padding(4, 3, 4, 3);
+            pctb_z.Name = "pctb_z";
+            pctb_z.Size = new Size(187, 185);
+            pctb_z.SizeMode = PictureBoxSizeMode.Zoom;
+            pctb_z.TabIndex = 32;
+            pctb_z.TabStop = false;
             // 
-            // pictureBox1
+            // pctb_y
             // 
-            pictureBox1.ImageLocation = "";
-            pictureBox1.Location = new Point(321, 138);
-            pictureBox1.Margin = new Padding(4, 3, 4, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(187, 185);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 31;
-            pictureBox1.TabStop = false;
+            pctb_y.ImageLocation = "";
+            pctb_y.Location = new Point(321, 138);
+            pctb_y.Margin = new Padding(4, 3, 4, 3);
+            pctb_y.Name = "pctb_y";
+            pctb_y.Size = new Size(187, 185);
+            pctb_y.SizeMode = PictureBoxSizeMode.Zoom;
+            pctb_y.TabIndex = 31;
+            pctb_y.TabStop = false;
             // 
-            // textBox6
+            // txtb_groesse
             // 
-            textBox6.BackColor = SystemColors.Control;
-            textBox6.Location = new Point(688, 81);
-            textBox6.Margin = new Padding(4, 3, 4, 3);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(93, 23);
-            textBox6.TabIndex = 30;
+            txtb_groesse.BackColor = SystemColors.Control;
+            txtb_groesse.Location = new Point(688, 81);
+            txtb_groesse.Margin = new Padding(4, 3, 4, 3);
+            txtb_groesse.Name = "txtb_groesse";
+            txtb_groesse.Size = new Size(93, 23);
+            txtb_groesse.TabIndex = 30;
             // 
-            // textBox5
+            // txtb_datei
             // 
-            textBox5.BackColor = SystemColors.Control;
-            textBox5.Location = new Point(391, 81);
-            textBox5.Margin = new Padding(4, 3, 4, 3);
-            textBox5.Name = "textBox5";
-            textBox5.ReadOnly = true;
-            textBox5.Size = new Size(93, 23);
-            textBox5.TabIndex = 28;
+            txtb_datei.BackColor = SystemColors.Control;
+            txtb_datei.Location = new Point(391, 81);
+            txtb_datei.Margin = new Padding(4, 3, 4, 3);
+            txtb_datei.Name = "txtb_datei";
+            txtb_datei.ReadOnly = true;
+            txtb_datei.Size = new Size(93, 23);
+            txtb_datei.TabIndex = 28;
             // 
             // label18
             // 
@@ -206,28 +206,28 @@
             label18.TabIndex = 27;
             label18.Text = "Datei:";
             // 
-            // button1
+            // btn_datei
             // 
-            button1.AutoSize = true;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(187, 81);
-            button1.Margin = new Padding(4, 3, 4, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(31, 31);
-            button1.TabIndex = 16;
-            button1.Text = "+";
-            button1.UseVisualStyleBackColor = true;
+            btn_datei.AutoSize = true;
+            btn_datei.FlatStyle = FlatStyle.Flat;
+            btn_datei.Location = new Point(187, 81);
+            btn_datei.Margin = new Padding(4, 3, 4, 3);
+            btn_datei.Name = "btn_datei";
+            btn_datei.Size = new Size(31, 31);
+            btn_datei.TabIndex = 16;
+            btn_datei.Text = "+";
+            btn_datei.UseVisualStyleBackColor = true;
             // 
-            // picScreenBoard
+            // pctb_x
             // 
-            picScreenBoard.ImageLocation = "";
-            picScreenBoard.Location = new Point(35, 138);
-            picScreenBoard.Margin = new Padding(4, 3, 4, 3);
-            picScreenBoard.Name = "picScreenBoard";
-            picScreenBoard.Size = new Size(187, 185);
-            picScreenBoard.SizeMode = PictureBoxSizeMode.Zoom;
-            picScreenBoard.TabIndex = 15;
-            picScreenBoard.TabStop = false;
+            pctb_x.ImageLocation = "";
+            pctb_x.Location = new Point(35, 138);
+            pctb_x.Margin = new Padding(4, 3, 4, 3);
+            pctb_x.Name = "pctb_x";
+            pctb_x.Size = new Size(187, 185);
+            pctb_x.SizeMode = PictureBoxSizeMode.Zoom;
+            pctb_x.TabIndex = 15;
+            pctb_x.TabStop = false;
             // 
             // label15
             // 
@@ -264,7 +264,7 @@
             // 
             pnlleiste.BackColor = SystemColors.Control;
             pnlleiste.Controls.Add(label16);
-            pnlleiste.Controls.Add(progressBar1);
+            pnlleiste.Controls.Add(progb_inventor);
             pnlleiste.Controls.Add(btn_changemode);
             pnlleiste.Controls.Add(btn_weiter);
             pnlleiste.Controls.Add(btn_zurueck);
@@ -284,13 +284,13 @@
             label16.TabIndex = 25;
             label16.Text = "Inventor";
             // 
-            // progressBar1
+            // progb_inventor
             // 
-            progressBar1.Location = new Point(35, 12);
-            progressBar1.Margin = new Padding(4, 3, 4, 3);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(117, 23);
-            progressBar1.TabIndex = 16;
+            progb_inventor.Location = new Point(35, 12);
+            progb_inventor.Margin = new Padding(4, 3, 4, 3);
+            progb_inventor.Name = "progb_inventor";
+            progb_inventor.Size = new Size(117, 23);
+            progb_inventor.TabIndex = 16;
             // 
             // btn_changemode
             // 
@@ -332,11 +332,11 @@
             // panel3
             // 
             panel3.Controls.Add(label19);
-            panel3.Controls.Add(picScreenOben);
-            panel3.Controls.Add(btnzip);
-            panel3.Controls.Add(button3);
-            panel3.Controls.Add(button2);
-            panel3.Controls.Add(picScreenUnten);
+            panel3.Controls.Add(pctb_rohrleitungx);
+            panel3.Controls.Add(btn_zip);
+            panel3.Controls.Add(btn_exportieren);
+            panel3.Controls.Add(btn_speicherort);
+            panel3.Controls.Add(pctb_rohrleitungy);
             panel3.Controls.Add(label17);
             panel3.Controls.Add(label22);
             panel3.Controls.Add(label23);
@@ -357,62 +357,62 @@
             label19.TabIndex = 29;
             label19.Text = "Rohrleitung X";
             // 
-            // picScreenOben
+            // pctb_rohrleitungx
             // 
-            picScreenOben.Location = new Point(397, 87);
-            picScreenOben.Margin = new Padding(4, 3, 4, 3);
-            picScreenOben.Name = "picScreenOben";
-            picScreenOben.Size = new Size(187, 185);
-            picScreenOben.SizeMode = PictureBoxSizeMode.Zoom;
-            picScreenOben.TabIndex = 28;
-            picScreenOben.TabStop = false;
+            pctb_rohrleitungx.Location = new Point(397, 87);
+            pctb_rohrleitungx.Margin = new Padding(4, 3, 4, 3);
+            pctb_rohrleitungx.Name = "pctb_rohrleitungx";
+            pctb_rohrleitungx.Size = new Size(187, 185);
+            pctb_rohrleitungx.SizeMode = PictureBoxSizeMode.Zoom;
+            pctb_rohrleitungx.TabIndex = 28;
+            pctb_rohrleitungx.TabStop = false;
             // 
-            // btnzip
+            // btn_zip
             // 
-            btnzip.AutoSize = true;
-            btnzip.FlatStyle = FlatStyle.Flat;
-            btnzip.Location = new Point(187, 138);
-            btnzip.Margin = new Padding(4, 3, 4, 3);
-            btnzip.Name = "btnzip";
-            btnzip.Size = new Size(29, 29);
-            btnzip.TabIndex = 27;
-            btnzip.UseVisualStyleBackColor = true;
+            btn_zip.AutoSize = true;
+            btn_zip.FlatStyle = FlatStyle.Flat;
+            btn_zip.Location = new Point(187, 138);
+            btn_zip.Margin = new Padding(4, 3, 4, 3);
+            btn_zip.Name = "btn_zip";
+            btn_zip.Size = new Size(29, 29);
+            btn_zip.TabIndex = 27;
+            btn_zip.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn_exportieren
             // 
-            button3.AutoSize = true;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(70, 242);
-            button3.Margin = new Padding(4, 3, 4, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(146, 31);
-            button3.TabIndex = 24;
-            button3.Text = "Exportieren";
-            button3.UseVisualStyleBackColor = true;
+            btn_exportieren.AutoSize = true;
+            btn_exportieren.FlatStyle = FlatStyle.Flat;
+            btn_exportieren.Location = new Point(70, 242);
+            btn_exportieren.Margin = new Padding(4, 3, 4, 3);
+            btn_exportieren.Name = "btn_exportieren";
+            btn_exportieren.Size = new Size(146, 31);
+            btn_exportieren.TabIndex = 24;
+            btn_exportieren.Text = "Exportieren";
+            btn_exportieren.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_speicherort
             // 
-            button2.AutoSize = true;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.TopLeft;
-            button2.Location = new Point(187, 81);
-            button2.Margin = new Padding(4, 3, 4, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(31, 31);
-            button2.TabIndex = 16;
-            button2.Text = "+";
-            button2.UseVisualStyleBackColor = true;
+            btn_speicherort.AutoSize = true;
+            btn_speicherort.FlatStyle = FlatStyle.Flat;
+            btn_speicherort.Image = (Image)resources.GetObject("btn_speicherort.Image");
+            btn_speicherort.ImageAlign = ContentAlignment.TopLeft;
+            btn_speicherort.Location = new Point(187, 81);
+            btn_speicherort.Margin = new Padding(4, 3, 4, 3);
+            btn_speicherort.Name = "btn_speicherort";
+            btn_speicherort.Size = new Size(31, 31);
+            btn_speicherort.TabIndex = 16;
+            btn_speicherort.Text = "+";
+            btn_speicherort.UseVisualStyleBackColor = true;
             // 
-            // picScreenUnten
+            // pctb_rohrleitungy
             // 
-            picScreenUnten.Location = new Point(595, 87);
-            picScreenUnten.Margin = new Padding(4, 3, 4, 3);
-            picScreenUnten.Name = "picScreenUnten";
-            picScreenUnten.Size = new Size(187, 185);
-            picScreenUnten.SizeMode = PictureBoxSizeMode.Zoom;
-            picScreenUnten.TabIndex = 15;
-            picScreenUnten.TabStop = false;
+            pctb_rohrleitungy.Location = new Point(595, 87);
+            pctb_rohrleitungy.Margin = new Padding(4, 3, 4, 3);
+            pctb_rohrleitungy.Name = "pctb_rohrleitungy";
+            pctb_rohrleitungy.Size = new Size(187, 185);
+            pctb_rohrleitungy.SizeMode = PictureBoxSizeMode.Zoom;
+            pctb_rohrleitungy.TabIndex = 15;
+            pctb_rohrleitungy.TabStop = false;
             // 
             // label17
             // 
@@ -457,32 +457,32 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(button7);
-            panel2.Controls.Add(button6);
-            panel2.Controls.Add(button5);
-            panel2.Controls.Add(button4);
+            panel2.Controls.Add(btn_verbindungentf);
+            panel2.Controls.Add(btn_verbindunghinzu);
+            panel2.Controls.Add(btn_anwendung);
+            panel2.Controls.Add(btn_supports);
             panel2.Controls.Add(label24);
-            panel2.Controls.Add(textBox4);
+            panel2.Controls.Add(txtb_druck);
             panel2.Controls.Add(label14);
-            panel2.Controls.Add(comboBox3);
+            panel2.Controls.Add(combb_fluid);
             panel2.Controls.Add(label13);
-            panel2.Controls.Add(textBox2);
-            panel2.Controls.Add(comboBox4);
+            panel2.Controls.Add(txtb_temperatur);
+            panel2.Controls.Add(combb_material);
             panel2.Controls.Add(label12);
             panel2.Controls.Add(label8);
-            panel2.Controls.Add(comboBox1);
+            panel2.Controls.Add(combb_gefaelle);
             panel2.Controls.Add(label7);
-            panel2.Controls.Add(textBox7);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(txtb_biegeradius);
+            panel2.Controls.Add(txtb_wandstaerke);
             panel2.Controls.Add(label28);
             panel2.Controls.Add(label27);
-            panel2.Controls.Add(textBox3);
+            panel2.Controls.Add(txtb_rohrdurchmesser);
             panel2.Controls.Add(label6);
-            panel2.Controls.Add(comboBox10);
-            panel2.Controls.Add(comboBox9);
-            panel2.Controls.Add(comboBox8);
-            panel2.Controls.Add(comboBox7);
-            panel2.Controls.Add(comboBox2);
+            panel2.Controls.Add(combb_flansch2);
+            panel2.Controls.Add(combb_flansch1);
+            panel2.Controls.Add(combb_verbindung);
+            panel2.Controls.Add(combb_normrohr);
+            panel2.Controls.Add(combb_eigenschaften);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label9);
             panel2.Controls.Add(label10);
@@ -495,52 +495,52 @@
             panel2.Size = new Size(817, 415);
             panel2.TabIndex = 27;
             // 
-            // button7
+            // btn_verbindungentf
             // 
-            button7.AutoSize = true;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(217, 71);
-            button7.Margin = new Padding(4, 3, 4, 3);
-            button7.Name = "button7";
-            button7.Size = new Size(156, 31);
-            button7.TabIndex = 55;
-            button7.Text = "Verbindung entfernen";
-            button7.UseVisualStyleBackColor = true;
+            btn_verbindungentf.AutoSize = true;
+            btn_verbindungentf.FlatStyle = FlatStyle.Flat;
+            btn_verbindungentf.Location = new Point(217, 71);
+            btn_verbindungentf.Margin = new Padding(4, 3, 4, 3);
+            btn_verbindungentf.Name = "btn_verbindungentf";
+            btn_verbindungentf.Size = new Size(156, 31);
+            btn_verbindungentf.TabIndex = 55;
+            btn_verbindungentf.Text = "Verbindung entfernen";
+            btn_verbindungentf.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btn_verbindunghinzu
             // 
-            button6.AutoSize = true;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Location = new Point(38, 73);
-            button6.Margin = new Padding(4, 3, 4, 3);
-            button6.Name = "button6";
-            button6.Size = new Size(167, 31);
-            button6.TabIndex = 54;
-            button6.Text = "Verbindung hinzufügen";
-            button6.UseVisualStyleBackColor = true;
+            btn_verbindunghinzu.AutoSize = true;
+            btn_verbindunghinzu.FlatStyle = FlatStyle.Flat;
+            btn_verbindunghinzu.Location = new Point(38, 73);
+            btn_verbindunghinzu.Margin = new Padding(4, 3, 4, 3);
+            btn_verbindunghinzu.Name = "btn_verbindunghinzu";
+            btn_verbindunghinzu.Size = new Size(167, 31);
+            btn_verbindunghinzu.TabIndex = 54;
+            btn_verbindunghinzu.Text = "Verbindung hinzufügen";
+            btn_verbindunghinzu.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btn_anwendung
             // 
-            button5.AutoSize = true;
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Location = new Point(76, 293);
-            button5.Margin = new Padding(4, 3, 4, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(146, 31);
-            button5.TabIndex = 53;
-            button5.Text = "Anwendung";
-            button5.UseVisualStyleBackColor = true;
+            btn_anwendung.AutoSize = true;
+            btn_anwendung.FlatStyle = FlatStyle.Flat;
+            btn_anwendung.Location = new Point(76, 293);
+            btn_anwendung.Margin = new Padding(4, 3, 4, 3);
+            btn_anwendung.Name = "btn_anwendung";
+            btn_anwendung.Size = new Size(146, 31);
+            btn_anwendung.TabIndex = 53;
+            btn_anwendung.Text = "Anwendung";
+            btn_anwendung.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btn_supports
             // 
-            button4.AutoSize = true;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(192, 257);
-            button4.Margin = new Padding(4, 3, 4, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(29, 29);
-            button4.TabIndex = 52;
-            button4.UseVisualStyleBackColor = true;
+            btn_supports.AutoSize = true;
+            btn_supports.FlatStyle = FlatStyle.Flat;
+            btn_supports.Location = new Point(192, 257);
+            btn_supports.Margin = new Padding(4, 3, 4, 3);
+            btn_supports.Name = "btn_supports";
+            btn_supports.Size = new Size(29, 29);
+            btn_supports.TabIndex = 52;
+            btn_supports.UseVisualStyleBackColor = true;
             // 
             // label24
             // 
@@ -552,14 +552,14 @@
             label24.TabIndex = 51;
             label24.Text = "Supports einfügen:";
             // 
-            // textBox4
+            // txtb_druck
             // 
-            textBox4.BackColor = SystemColors.Control;
-            textBox4.Location = new Point(679, 269);
-            textBox4.Margin = new Padding(4, 3, 4, 3);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(116, 23);
-            textBox4.TabIndex = 50;
+            txtb_druck.BackColor = SystemColors.Control;
+            txtb_druck.Location = new Point(679, 269);
+            txtb_druck.Margin = new Padding(4, 3, 4, 3);
+            txtb_druck.Name = "txtb_druck";
+            txtb_druck.Size = new Size(116, 23);
+            txtb_druck.TabIndex = 50;
             // 
             // label14
             // 
@@ -571,16 +571,16 @@
             label14.TabIndex = 49;
             label14.Text = "Druck:";
             // 
-            // comboBox3
+            // combb_fluid
             // 
-            comboBox3.BackColor = SystemColors.Control;
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Items.AddRange(new object[] { "Gas", "Wasser", "Öl" });
-            comboBox3.Location = new Point(679, 197);
-            comboBox3.Margin = new Padding(4, 3, 4, 3);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(116, 23);
-            comboBox3.TabIndex = 48;
+            combb_fluid.BackColor = SystemColors.Control;
+            combb_fluid.FormattingEnabled = true;
+            combb_fluid.Items.AddRange(new object[] { "Gas", "Wasser", "Öl" });
+            combb_fluid.Location = new Point(679, 197);
+            combb_fluid.Margin = new Padding(4, 3, 4, 3);
+            combb_fluid.Name = "combb_fluid";
+            combb_fluid.Size = new Size(116, 23);
+            combb_fluid.TabIndex = 48;
             // 
             // label13
             // 
@@ -592,25 +592,25 @@
             label13.TabIndex = 47;
             label13.Text = "Fluid:";
             // 
-            // textBox2
+            // txtb_temperatur
             // 
-            textBox2.BackColor = SystemColors.Control;
-            textBox2.Location = new Point(679, 299);
-            textBox2.Margin = new Padding(4, 3, 4, 3);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(116, 23);
-            textBox2.TabIndex = 46;
+            txtb_temperatur.BackColor = SystemColors.Control;
+            txtb_temperatur.Location = new Point(679, 299);
+            txtb_temperatur.Margin = new Padding(4, 3, 4, 3);
+            txtb_temperatur.Name = "txtb_temperatur";
+            txtb_temperatur.Size = new Size(116, 23);
+            txtb_temperatur.TabIndex = 46;
             // 
-            // comboBox4
+            // combb_material
             // 
-            comboBox4.BackColor = SystemColors.Control;
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Items.AddRange(new object[] { "Stahllegierung", "Polycarbonat" });
-            comboBox4.Location = new Point(679, 159);
-            comboBox4.Margin = new Padding(4, 3, 4, 3);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(116, 23);
-            comboBox4.TabIndex = 45;
+            combb_material.BackColor = SystemColors.Control;
+            combb_material.FormattingEnabled = true;
+            combb_material.Items.AddRange(new object[] { "Stahllegierung", "Polycarbonat" });
+            combb_material.Location = new Point(679, 159);
+            combb_material.Margin = new Padding(4, 3, 4, 3);
+            combb_material.Name = "combb_material";
+            combb_material.Size = new Size(116, 23);
+            combb_material.TabIndex = 45;
             // 
             // label12
             // 
@@ -632,16 +632,16 @@
             label8.TabIndex = 42;
             label8.Text = "Temperatur differenz:";
             // 
-            // comboBox1
+            // combb_gefaelle
             // 
-            comboBox1.BackColor = SystemColors.Control;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Egal", "1%", "3%", "5%" });
-            comboBox1.Location = new Point(679, 233);
-            comboBox1.Margin = new Padding(4, 3, 4, 3);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(116, 23);
-            comboBox1.TabIndex = 41;
+            combb_gefaelle.BackColor = SystemColors.Control;
+            combb_gefaelle.FormattingEnabled = true;
+            combb_gefaelle.Items.AddRange(new object[] { "Egal", "1%", "3%", "5%" });
+            combb_gefaelle.Location = new Point(679, 233);
+            combb_gefaelle.Margin = new Padding(4, 3, 4, 3);
+            combb_gefaelle.Name = "combb_gefaelle";
+            combb_gefaelle.Size = new Size(116, 23);
+            combb_gefaelle.TabIndex = 41;
             // 
             // label7
             // 
@@ -653,23 +653,23 @@
             label7.TabIndex = 40;
             label7.Text = "Gefälle:";
             // 
-            // textBox7
+            // txtb_biegeradius
             // 
-            textBox7.BackColor = SystemColors.Control;
-            textBox7.Location = new Point(419, 300);
-            textBox7.Margin = new Padding(4, 3, 4, 3);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(116, 23);
-            textBox7.TabIndex = 39;
+            txtb_biegeradius.BackColor = SystemColors.Control;
+            txtb_biegeradius.Location = new Point(419, 300);
+            txtb_biegeradius.Margin = new Padding(4, 3, 4, 3);
+            txtb_biegeradius.Name = "txtb_biegeradius";
+            txtb_biegeradius.Size = new Size(116, 23);
+            txtb_biegeradius.TabIndex = 39;
             // 
-            // textBox1
+            // txtb_wandstaerke
             // 
-            textBox1.BackColor = SystemColors.Control;
-            textBox1.Location = new Point(419, 265);
-            textBox1.Margin = new Padding(4, 3, 4, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(116, 23);
-            textBox1.TabIndex = 38;
+            txtb_wandstaerke.BackColor = SystemColors.Control;
+            txtb_wandstaerke.Location = new Point(419, 265);
+            txtb_wandstaerke.Margin = new Padding(4, 3, 4, 3);
+            txtb_wandstaerke.Name = "txtb_wandstaerke";
+            txtb_wandstaerke.Size = new Size(116, 23);
+            txtb_wandstaerke.TabIndex = 38;
             // 
             // label28
             // 
@@ -691,14 +691,14 @@
             label27.TabIndex = 36;
             label27.Text = "Wandstärke:";
             // 
-            // textBox3
+            // txtb_rohrdurchmesser
             // 
-            textBox3.BackColor = SystemColors.Control;
-            textBox3.Location = new Point(419, 235);
-            textBox3.Margin = new Padding(4, 3, 4, 3);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(116, 23);
-            textBox3.TabIndex = 35;
+            txtb_rohrdurchmesser.BackColor = SystemColors.Control;
+            txtb_rohrdurchmesser.Location = new Point(419, 235);
+            txtb_rohrdurchmesser.Margin = new Padding(4, 3, 4, 3);
+            txtb_rohrdurchmesser.Name = "txtb_rohrdurchmesser";
+            txtb_rohrdurchmesser.Size = new Size(116, 23);
+            txtb_rohrdurchmesser.TabIndex = 35;
             // 
             // label6
             // 
@@ -710,60 +710,60 @@
             label6.TabIndex = 34;
             label6.Text = "Rohrdurchmesser:";
             // 
-            // comboBox10
+            // combb_flansch2
             // 
-            comboBox10.BackColor = SystemColors.Control;
-            comboBox10.FormattingEnabled = true;
-            comboBox10.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
-            comboBox10.Location = new Point(105, 203);
-            comboBox10.Margin = new Padding(4, 3, 4, 3);
-            comboBox10.Name = "comboBox10";
-            comboBox10.Size = new Size(116, 23);
-            comboBox10.TabIndex = 33;
+            combb_flansch2.BackColor = SystemColors.Control;
+            combb_flansch2.FormattingEnabled = true;
+            combb_flansch2.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
+            combb_flansch2.Location = new Point(105, 203);
+            combb_flansch2.Margin = new Padding(4, 3, 4, 3);
+            combb_flansch2.Name = "combb_flansch2";
+            combb_flansch2.Size = new Size(116, 23);
+            combb_flansch2.TabIndex = 33;
             // 
-            // comboBox9
+            // combb_flansch1
             // 
-            comboBox9.BackColor = SystemColors.Control;
-            comboBox9.FormattingEnabled = true;
-            comboBox9.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
-            comboBox9.Location = new Point(105, 156);
-            comboBox9.Margin = new Padding(4, 3, 4, 3);
-            comboBox9.Name = "comboBox9";
-            comboBox9.Size = new Size(116, 23);
-            comboBox9.TabIndex = 32;
+            combb_flansch1.BackColor = SystemColors.Control;
+            combb_flansch1.FormattingEnabled = true;
+            combb_flansch1.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
+            combb_flansch1.Location = new Point(105, 156);
+            combb_flansch1.Margin = new Padding(4, 3, 4, 3);
+            combb_flansch1.Name = "combb_flansch1";
+            combb_flansch1.Size = new Size(116, 23);
+            combb_flansch1.TabIndex = 32;
             // 
-            // comboBox8
+            // combb_verbindung
             // 
-            comboBox8.BackColor = SystemColors.Control;
-            comboBox8.FormattingEnabled = true;
-            comboBox8.Items.AddRange(new object[] { "Verbindung 1", "Verbindung 2", "Verbindung 3" });
-            comboBox8.Location = new Point(105, 114);
-            comboBox8.Margin = new Padding(4, 3, 4, 3);
-            comboBox8.Name = "comboBox8";
-            comboBox8.Size = new Size(116, 23);
-            comboBox8.TabIndex = 31;
+            combb_verbindung.BackColor = SystemColors.Control;
+            combb_verbindung.FormattingEnabled = true;
+            combb_verbindung.Items.AddRange(new object[] { "Verbindung 1", "Verbindung 2", "Verbindung 3" });
+            combb_verbindung.Location = new Point(105, 114);
+            combb_verbindung.Margin = new Padding(4, 3, 4, 3);
+            combb_verbindung.Name = "combb_verbindung";
+            combb_verbindung.Size = new Size(116, 23);
+            combb_verbindung.TabIndex = 31;
             // 
-            // comboBox7
+            // combb_normrohr
             // 
-            comboBox7.BackColor = SystemColors.Control;
-            comboBox7.FormattingEnabled = true;
-            comboBox7.Items.AddRange(new object[] { "Normrohr 1", "Normrohr 2" });
-            comboBox7.Location = new Point(419, 197);
-            comboBox7.Margin = new Padding(4, 3, 4, 3);
-            comboBox7.Name = "comboBox7";
-            comboBox7.Size = new Size(116, 23);
-            comboBox7.TabIndex = 30;
+            combb_normrohr.BackColor = SystemColors.Control;
+            combb_normrohr.FormattingEnabled = true;
+            combb_normrohr.Items.AddRange(new object[] { "Normrohr 1", "Normrohr 2" });
+            combb_normrohr.Location = new Point(419, 197);
+            combb_normrohr.Margin = new Padding(4, 3, 4, 3);
+            combb_normrohr.Name = "combb_normrohr";
+            combb_normrohr.Size = new Size(116, 23);
+            combb_normrohr.TabIndex = 30;
             // 
-            // comboBox2
+            // combb_eigenschaften
             // 
-            comboBox2.BackColor = SystemColors.Control;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Normbögen", "Biegeradius" });
-            comboBox2.Location = new Point(419, 159);
-            comboBox2.Margin = new Padding(4, 3, 4, 3);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(116, 23);
-            comboBox2.TabIndex = 29;
+            combb_eigenschaften.BackColor = SystemColors.Control;
+            combb_eigenschaften.FormattingEnabled = true;
+            combb_eigenschaften.Items.AddRange(new object[] { "Normbögen", "Biegeradius" });
+            combb_eigenschaften.Location = new Point(419, 159);
+            combb_eigenschaften.Margin = new Padding(4, 3, 4, 3);
+            combb_eigenschaften.Name = "combb_eigenschaften";
+            combb_eigenschaften.Size = new Size(116, 23);
+            combb_eigenschaften.TabIndex = 29;
             // 
             // label2
             // 
@@ -840,15 +840,15 @@
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picScreenBoard).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_z).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_y).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_x).EndInit();
             pnlleiste.ResumeLayout(false);
             pnlleiste.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picScreenOben).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picScreenUnten).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_rohrleitungx).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctb_rohrleitungy).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);
@@ -857,69 +857,69 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtb_groesse;
+        private System.Windows.Forms.TextBox txtb_datei;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox picScreenBoard;
+        private System.Windows.Forms.Button btn_datei;
+        private System.Windows.Forms.PictureBox pctb_x;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblueberschrift1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlleiste;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar progb_inventor;
         private System.Windows.Forms.Button btn_changemode;
         private System.Windows.Forms.Button btn_weiter;
         private System.Windows.Forms.Button btn_zurueck;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.PictureBox picScreenOben;
-        private System.Windows.Forms.Button btnzip;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.PictureBox picScreenUnten;
+        private System.Windows.Forms.PictureBox pctb_rohrleitungx;
+        private System.Windows.Forms.Button btn_zip;
+        private System.Windows.Forms.Button btn_exportieren;
+        private System.Windows.Forms.Button btn_speicherort;
+        private System.Windows.Forms.PictureBox pctb_rohrleitungy;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox10;
-        private System.Windows.Forms.ComboBox comboBox9;
-        private System.Windows.Forms.ComboBox comboBox8;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox combb_flansch2;
+        private System.Windows.Forms.ComboBox combb_flansch1;
+        private System.Windows.Forms.ComboBox combb_verbindung;
+        private System.Windows.Forms.ComboBox combb_normrohr;
+        private System.Windows.Forms.ComboBox combb_eigenschaften;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pctb_z;
+        private System.Windows.Forms.PictureBox pctb_y;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtb_biegeradius;
+        private System.Windows.Forms.TextBox txtb_wandstaerke;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtb_rohrdurchmesser;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox combb_gefaelle;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtb_druck;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox combb_fluid;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.TextBox txtb_temperatur;
+        private System.Windows.Forms.ComboBox combb_material;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_anwendung;
+        private System.Windows.Forms.Button btn_supports;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btn_verbindunghinzu;
+        private System.Windows.Forms.Button btn_verbindungentf;
     }
 }
 
