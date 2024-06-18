@@ -218,6 +218,7 @@
             btn_datei.TabIndex = 16;
             btn_datei.Text = "+";
             btn_datei.UseVisualStyleBackColor = true;
+            btn_datei.Click += btn_datei_Click;
             // 
             // pctb_x
             // 
