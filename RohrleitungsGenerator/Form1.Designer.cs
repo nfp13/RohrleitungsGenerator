@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            txtb_groesse = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             pctb_z = new PictureBox();
             pctb_y = new PictureBox();
-            txtb_groesse = new TextBox();
             txtb_datei = new TextBox();
             label18 = new Label();
             btn_datei = new Button();
@@ -106,12 +106,12 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(txtb_groesse);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(pctb_z);
             panel1.Controls.Add(pctb_y);
-            panel1.Controls.Add(txtb_groesse);
             panel1.Controls.Add(txtb_datei);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(btn_datei);
@@ -124,6 +124,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(817, 415);
             panel1.TabIndex = 12;
+            // 
+            // txtb_groesse
+            // 
+            txtb_groesse.BackColor = SystemColors.Control;
+            txtb_groesse.Location = new Point(689, 81);
+            txtb_groesse.Margin = new Padding(4, 3, 4, 3);
+            txtb_groesse.Name = "txtb_groesse";
+            txtb_groesse.ReadOnly = true;
+            txtb_groesse.Size = new Size(93, 23);
+            txtb_groesse.TabIndex = 36;
             // 
             // label5
             // 
@@ -176,15 +186,6 @@
             pctb_y.SizeMode = PictureBoxSizeMode.Zoom;
             pctb_y.TabIndex = 31;
             pctb_y.TabStop = false;
-            // 
-            // txtb_groesse
-            // 
-            txtb_groesse.BackColor = SystemColors.Control;
-            txtb_groesse.Location = new Point(688, 81);
-            txtb_groesse.Margin = new Padding(4, 3, 4, 3);
-            txtb_groesse.Name = "txtb_groesse";
-            txtb_groesse.Size = new Size(93, 23);
-            txtb_groesse.TabIndex = 30;
             // 
             // txtb_datei
             // 
@@ -377,6 +378,7 @@
             btn_zip.Size = new Size(29, 29);
             btn_zip.TabIndex = 27;
             btn_zip.UseVisualStyleBackColor = true;
+            btn_zip.Click += btn_zip_Click;
             // 
             // btn_exportieren
             // 
@@ -857,7 +859,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtb_groesse;
         private System.Windows.Forms.TextBox txtb_datei;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btn_datei;
@@ -920,6 +921,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btn_verbindunghinzu;
         private System.Windows.Forms.Button btn_verbindungentf;
+        private TextBox txtb_groesse;
     }
 }
 

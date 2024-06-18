@@ -30,7 +30,7 @@ namespace ROhr2
 
         public Form1()
         {
-     
+
 
             InitializeComponent();
             InitializeUI("UIMode");
@@ -69,5 +69,16 @@ namespace ROhr2
             InitializeUI("UIMode");
         }
 
+        private void btn_zip_Click(object sender, EventArgs e)
+        {
+            if (btn_zip.Text == "")
+            {
+                btn_zip.Text = "X";
+            }
+            else
+            {
+                btn_zip.Text = "";
+            }
+        }
     }
 }
