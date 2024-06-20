@@ -62,7 +62,6 @@ namespace ROhr2
 
             foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
             {
-                //Finding Board Assembly and calculating size, coordinates of centerpoint, holediameter and radius of corner
 
                 if (componentOccurrence.Name == hallOccurrenceName)
                 {
