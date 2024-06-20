@@ -170,6 +170,9 @@ namespace ROhr2
 
                 analyze.SavePictureAs(speichern.getPathScreenZ(), "Z");
                 pctb_z.Image = Image.FromFile(speichern.getPathScreenZ());
+
+                analyze.Hall(analyze.Parts.ElementAt(0));
+                txtb_groesse.Text = (analyze.HallW * 10).ToString() + "/" + (analyze.HallL * 10).ToString() + "/" + (analyze.HallH * 10).ToString();
             }
         }
 

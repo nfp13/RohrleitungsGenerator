@@ -1,7 +1,8 @@
-﻿//using Microsoft.Office.Interop.Excel;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Inventor;
-using System.Drawing.Drawing2D;
-using System.Numerics;
+using System;
 
 namespace ROhr2
 {
@@ -52,79 +53,41 @@ namespace ROhr2
 
         }
 
-        /*
+        
 
-        public void AnalyzeBoard(string boardOccurrenceName)
+        public void Hall(string hallOccurrenceName)
         {
-            _status.Name = "Analyzing Board";
+            _status.Name = "Analyzing";
             _status.OnProgess();
 
             foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
             {
                 //Finding Board Assembly and calculating size, coordinates of centerpoint, holediameter and radius of corner
 
-                if (componentOccurrence.Name == boardOccurrenceName)
+                if (componentOccurrence.Name == hallOccurrenceName)
                 {
                     Box box = componentOccurrence.Definition.RangeBox;
 
-                    _MinPointBoard = box.MinPoint;
-                    _MaxPointBoard = box.MaxPoint;
+                    _MinPointHall = box.MinPoint;
+                    _MaxPointHall = box.MaxPoint;
 
-                    BoardW = (box.MaxPoint.X - box.MinPoint.X);
-                    BoardL = (box.MaxPoint.Y - box.MinPoint.Y);
-                    BoardH = (box.MaxPoint.Z - box.MinPoint.Z);
+                    HallW = (box.MaxPoint.X - box.MinPoint.X);
+                    HallL = (box.MaxPoint.Y - box.MinPoint.Y);
+                    HallH = (box.MaxPoint.Z - box.MinPoint.Z);
 
-                    _XOM = box.MinPoint.X + (BoardW / 2);
-                    _YOM = box.MinPoint.Y + (BoardL / 2);
-                    _ZOM = box.MinPoint.Z + (BoardH / 2);
-
-                    AssemblyDocument boardAssemblyDocument;
-                    boardAssemblyDocument = componentOccurrence.Definition.Document;
-
-                    AssemblyComponentDefinition boardAssemblyComponentDefinition;
-                    boardAssemblyComponentDefinition = boardAssemblyDocument.ComponentDefinition;
-
-                    foreach (ComponentOccurrence componentOccurrence1 in boardAssemblyComponentDefinition.Occurrences)
-                    {
-                        if (componentOccurrence1.Name.Contains("STEP"))
-                        {
-                            PartDocument boardPartDocument;
-                            boardPartDocument = componentOccurrence1.Definition.Document;
-
-                            _status.Progress = 60;
-                            _status.OnProgess();
-
-                            foreach (HoleFeature holeFeature in boardPartDocument.ComponentDefinition.Features.HoleFeatures)
-                            {
-                                HoleDia = holeFeature.HoleDiameter.Value;
-
-                                Inventor.Point minPointHole = holeFeature.RangeBox.MinPoint;
-
-                                if (_MinPointBoard.VectorTo(minPointHole).X + HoleDia / 2 < CornerRadius || CornerRadius == 0)
-                                {
-                                    CornerRadius = _MinPointBoard.VectorTo(minPointHole).X + HoleDia / 2;
-                                }
-                            }
-                        }
-                    }
                 }
                 _status.Progress = 100;
                 _status.Name = "Done";
                 _status.OnProgess();
             }
 
-            //Calculating component height for bottom and top of PCB
-
-            _MaxPointGes = _assemblyComponentDefinition.RangeBox.MaxPoint;
-            _MinPointGes = _assemblyComponentDefinition.RangeBox.MinPoint;
-
-            CompHeightBottom = _MinPointGes.VectorTo(_MinPointBoard).Z;
-            CompHeightTop = _MaxPointBoard.VectorTo(_MaxPointGes).Z;
 
             _status.Name = "Done";
             _status.OnProgess();
 
         }
+
+        /*
 
         public Matrix GetTransformationMatrix()
         {
@@ -272,15 +235,15 @@ namespace ROhr2
             {
 
                 case "X":
-                    camera.ViewOrientationType = ViewOrientationTypeEnum.kRightViewOrientation;
+                    camera.ViewOrientationType = ViewOrientationTypeEnum.kIsoTopLeftViewOrientation;
                     break;
 
                 case "Y":
-                    camera.ViewOrientationType = ViewOrientationTypeEnum.kTopViewOrientation;
+                    camera.ViewOrientationType = ViewOrientationTypeEnum.kIsoTopRightViewOrientation;
                     break;
 
-                case "ZY":
-                    camera.ViewOrientationType = ViewOrientationTypeEnum.kFrontViewOrientation;
+                case "Z":
+                    camera.ViewOrientationType = ViewOrientationTypeEnum.kTopViewOrientation;
                     break;
 
                 default:
@@ -305,13 +268,13 @@ namespace ROhr2
 
         public List<string> Parts = new List<string>();
 
-        public double BoardW, BoardL, BoardH;                       //Grundmaße der Platine
+        public double HallW, HallL, HallH;                       //Grundmaße der Platine
         public double CompHeightTop, CompHeightBottom;              //Höhe der Komponenten auf der Platine
         public double HoleDia, CornerRadius = 0;                    //Durchmesser der Bohrungslöcher und Rundungsradius der Platine
         private double _XOM, _YOM, _ZOM;                            //Coordinates of centerpoint of Board
 
-        private Inventor.Point _MinPointBoard;
-        private Inventor.Point _MaxPointBoard;
+        private Inventor.Point _MinPointHall;
+        private Inventor.Point _MaxPointHall;
         private Inventor.Point _MinPointGes;
         private Inventor.Point _MaxPointGes;
 
