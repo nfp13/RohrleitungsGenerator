@@ -30,6 +30,7 @@ namespace ROhr2
         Analyze analyze;
         Status status;
         Speichern speichern;
+        Data data;
 
         Inventor.Application inventorApp;
 
@@ -41,6 +42,7 @@ namespace ROhr2
         public Form1()
         {
             status = new Status();
+            data = new Data();
             //status.Progressed += new EventHandler(UpdateStatus);
 
             InitializeComponent();
@@ -155,7 +157,7 @@ namespace ROhr2
             else
             {
                 //Open assembly and analyze, set comboboxes to Parts list
-                analyze = new Analyze(inventorApp, FilePath, status);
+                analyze = new Analyze(inventorApp, FilePath, status, data);
                 analyze.List();
                 combb_flansch1.DataSource = analyze.Parts;
                 combb_flansch2.DataSource = analyze.Parts;
@@ -178,7 +180,11 @@ namespace ROhr2
 
         private void btn_weiter_Click(object sender, EventArgs e)
         {
-
+            analyze.GenerateCuboids();
+            foreach (Cuboid cube in data.Cuboids)
+            {
+                MessageBox.Show(cube.ToString());
+            }
         }
     }
 

@@ -3,13 +3,14 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Inventor;
 using System;
+using System.Numerics;
 
 namespace ROhr2
 {
     public class Analyze
     {
 
-        public Analyze(Inventor.Application inventorApp, string filePath, Status status)
+        public Analyze(Inventor.Application inventorApp, string filePath, Status status, Data data)
         {
             //Setting private variables
 
@@ -24,6 +25,8 @@ namespace ROhr2
 
             _assemblyDocument = _inventorApp.Documents.Open(_filePath, true) as AssemblyDocument;
             _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
+
+            _data = data;
 
             _status.Name = "Done";
             _status.OnProgess();
@@ -51,6 +54,8 @@ namespace ROhr2
             _status.Name = "Done";
             _status.OnProgess();
 
+            _hindernisse.AddRange(Parts);
+
         }
 
         
@@ -60,25 +65,11 @@ namespace ROhr2
             _status.Name = "Analyzing";
             _status.OnProgess();
 
-            foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
-            {
+            Box box = _assemblyComponentDefinition.RangeBox;
 
-                if (componentOccurrence.Name == hallOccurrenceName)
-                {
-                    Box box = componentOccurrence.Definition.RangeBox;
-
-                    _MinPointHall = box.MinPoint;
-                    _MaxPointHall = box.MaxPoint;
-
-                    HallW = (box.MaxPoint.X - box.MinPoint.X);
-                    HallL = (box.MaxPoint.Y - box.MinPoint.Y);
-                    HallH = (box.MaxPoint.Z - box.MinPoint.Z);
-
-                }
-                _status.Progress = 100;
-                _status.Name = "Done";
-                _status.OnProgess();
-            }
+            HallW = (box.MaxPoint.X - box.MinPoint.X);
+            HallL = (box.MaxPoint.Y - box.MinPoint.Y);
+            HallH = (box.MaxPoint.Z - box.MinPoint.Z);
 
 
             _status.Name = "Done";
@@ -86,130 +77,6 @@ namespace ROhr2
 
         }
 
-        /*
-
-        public Matrix GetTransformationMatrix()
-        {
-            //Creating transformation Matrix for placing the PCB-centerpoint in the origin of an assembly document
-
-            Vector MinMaxVector = _MinPointBoard.VectorTo(_MaxPointBoard);
-            MinMaxVector.ScaleBy(0.5);
-            Inventor.Point MiddlePointPlatine = _MinPointBoard;
-            MiddlePointPlatine.TranslateBy(MinMaxVector);
-            Vector NewVector = MiddlePointPlatine.VectorTo(_inventorApp.TransientGeometry.CreatePoint(0, 0, 0));
-            Inventor.Point NewOrigin = _inventorApp.TransientGeometry.CreatePoint(0, 0, 0);
-            NewOrigin.TranslateBy(NewVector);
-            Matrix OriginConversion = _inventorApp.TransientGeometry.CreateMatrix();
-            OriginConversion.SetCoordinateSystem(NewOrigin, _inventorApp.TransientGeometry.CreateVector(1, 0, 0), _inventorApp.TransientGeometry.CreateVector(0, 1, 0), _inventorApp.TransientGeometry.CreateVector(0, 0, 1));
-            return OriginConversion;
-        }
-
-        public void AddConnectorToCutOuts(string CutOutOccurrenceName)
-        {
-            //Adding Connector to CutOuts list and getting all nessesary variables
-
-            foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
-            {
-                //Finding specific occurence
-
-                if (componentOccurrence.Name == CutOutOccurrenceName)
-                {
-                    Box box = componentOccurrence.Definition.RangeBox;
-
-                    Vector Top = box.MaxPoint.VectorTo(_MaxPointBoard);
-                    Vector Bottom = box.MinPoint.VectorTo(_MinPointBoard);
-
-                    CutOut _CutOut = new CutOut();
-
-                    _CutOut.Connector = true;
-
-                    //Calculating size of the connector in x, y and z direction
-
-                    _CutOut.XS = box.MaxPoint.X - box.MinPoint.X;
-                    _CutOut.YS = box.MaxPoint.Y - box.MinPoint.Y;
-                    _CutOut.ZS = box.MaxPoint.Z - box.MinPoint.Z;
-
-                    //Calculating location of connector-centerpoint relative to board-centerpoint in x, y and z direction
-
-                    _CutOut.XP = box.MinPoint.X + (_CutOut.XS / 2) - _XOM;
-                    _CutOut.YP = box.MinPoint.Y + (_CutOut.YS / 2) - _YOM;
-                    _CutOut.ZP = box.MinPoint.Z + (_CutOut.ZS / 2) - _ZOM;
-
-                    //Checking if connector is located on the top or the bottom of the PCB
-
-                    if (Top.Z <= 0.0)
-                    {
-                        _CutOut.Top = true;
-                    }
-                    else if (Bottom.Z >= 0.0)
-                    {
-                        _CutOut.Top = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Fehler");
-                    }
-
-                    _CutOut.Name = componentOccurrence.Name;
-                    CutOuts.Add(_CutOut);
-                }
-            }
-        }
-
-        public void AddLEDToCutOuts(string CutOutOccurrenceName)
-        {
-            //Adding LED/Display to CutOuts list and getting all nessesary variables
-
-            foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
-            {
-                //Finding specific occurence
-
-                if (componentOccurrence.Name == CutOutOccurrenceName)
-                {
-                    Box box = componentOccurrence.Definition.RangeBox;
-
-                    CutOut _CutOut = new CutOut();
-
-                    Vector Top = box.MaxPoint.VectorTo(_MaxPointBoard);
-                    Vector Bottom = box.MinPoint.VectorTo(_MinPointBoard);
-
-                    _CutOut.Connector = false;
-
-                    //Calculating size of the connector in x, y and z direction
-
-                    _CutOut.XS = box.MaxPoint.X - box.MinPoint.X;
-                    _CutOut.YS = box.MaxPoint.Y - box.MinPoint.Y;
-                    _CutOut.ZS = box.MaxPoint.Z - box.MinPoint.Z;
-
-                    //Calculating location of connector-centerpoint relative to board-centerpoint in x, y and z direction
-
-                    _CutOut.XP = box.MinPoint.X + (_CutOut.XS / 2) - _XOM;
-                    _CutOut.YP = box.MinPoint.Y + (_CutOut.YS / 2) - _YOM;
-                    _CutOut.ZP = box.MinPoint.Z + (_CutOut.ZS / 2) - _ZOM;
-
-                    //Checking if connector is located on the top or the bottom of the PCB
-
-                    if (Top.Z <= 0.0)
-                    {
-                        _CutOut.Top = true;
-                    }
-                    else if (Bottom.Z >= 0.0)
-                    {
-                        _CutOut.Top = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Fehler");
-                    }
-
-                    _CutOut.Name = componentOccurrence.Name;
-                    CutOuts.Add(_CutOut);
-                }
-            }
-        }
-
-
-        ggg*/
 
         public void SavePictureAs(string Path, string ViewXYZ)
         {
@@ -259,6 +126,22 @@ namespace ROhr2
             _status.OnProgess();
         }
 
+        public void GenerateCuboids()
+        {
+            foreach(ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
+            {
+                if (_hindernisse.Contains(occ.Name))
+                {
+                    Inventor.Point minI = occ.RangeBox.MinPoint;
+                    Inventor.Point maxI = occ.RangeBox.MaxPoint;
+                    Vector3 min = new Vector3((float)minI.X/100, (float)minI.Y / 100, (float)minI.Z / 100);
+                    Vector3 max = new Vector3((float)maxI.X / 100, (float)maxI.Y / 100, (float)maxI.Z / 100);
+                    Cuboid Cube = new Cuboid(min, max);
+                    _data.Cuboids.Add(Cube);
+                }
+            }
+        }
+
         private Inventor.Application _inventorApp;
         private string _filePath;
         private AssemblyDocument _assemblyDocument;
@@ -266,6 +149,7 @@ namespace ROhr2
         private AssemblyDocument _boardAssemblyDocument;
 
         public List<string> Parts = new List<string>();
+        private List<string> _hindernisse = new List<string>();
 
         public double HallW, HallL, HallH;                       //Grundmaße der Platine
         public double CompHeightTop, CompHeightBottom;              //Höhe der Komponenten auf der Platine
@@ -280,5 +164,6 @@ namespace ROhr2
         //public List<CutOut> CutOuts = new List<CutOut>();
 
         private Status _status;
+        private Data _data;
     }
 }

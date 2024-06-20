@@ -207,6 +207,11 @@ namespace ROhr2
         {
             return (point.X <= Max.X && point.X >= Min.X) && (point.Y <= Max.Y && point.Y >= Min.Y) && (point.Z <= Max.Z && point.Z >= Min.Z);
         }
+
+        public string ToString()
+        {
+            return _Center.ToString();
+        }
     }
     public class Connection
     {
