@@ -15,26 +15,76 @@ using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Net.NetworkInformation;
 //using Microsoft.Office.Interop.Excel;
-//using Inventor;
+using Inventor;
+using System.Numerics;
 
 namespace ROhr2
 {
+
     public partial class Form1 : Form
     {
 
         string FilePath = null;
 
+        Analyze analyze;
+        Status status;
+        Speichern speichern;
+
+        Inventor.Application inventorApp;
 
 
+        //Für Seiten wechseln
         List<Panel> listPanel = new List<Panel>();
         int index;
 
         public Form1()
         {
-
+            status = new Status();
+            //status.Progressed += new EventHandler(UpdateStatus);
 
             InitializeComponent();
             InitializeUI("UIMode");
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            status.Name = "Inventor starting";
+            status.OnProgess();
+
+            //Start Inventor
+
+            Type inventorAppType = System.Type.GetTypeFromProgID("Inventor.Application");
+            inventorApp = System.Activator.CreateInstance(inventorAppType) as Inventor.Application;
+            inventorApp.Visible = false;
+
+            status.Name = "Done";
+            status.OnProgess();
+
+            //normteile = new Normteile();
+
+            speichern = new Speichern(status);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                dynamic result = MessageBox.Show("Soll das Program beendet werden?", "Test Prog", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    inventorApp.Quit();
+                    //normteile.CloseExcel();
+                    System.Windows.Forms.Application.Exit();
+
+                    //löschen
+                    //speichern = new Speichern(status);
+                    //speichern.deleteFiles();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void InitializeUI(string key)
@@ -45,17 +95,17 @@ namespace ROhr2
                 if (uiMode == "light")
                 {
                     btn_changemode.Text = "Dark Mode";
-                    this.ForeColor = Color.FromArgb(47, 54, 64);
-                    this.BackColor = Color.FromArgb(245, 246, 250);
-                    pnlleiste.BackColor = Color.FromArgb(231, 231, 231);
+                    this.ForeColor = System.Drawing.Color.FromArgb(47, 54, 64);
+                    this.BackColor = System.Drawing.Color.FromArgb(245, 246, 250);
+                    pnlleiste.BackColor = System.Drawing.Color.FromArgb(231, 231, 231);
                     ConfigurationManager.AppSettings[key] = "dark";
                 }
                 else
                 {
                     btn_changemode.Text = "Light Mode";
-                    this.ForeColor = Color.FromArgb(245, 246, 250);
-                    this.BackColor = Color.FromArgb(29, 29, 29);
-                    pnlleiste.BackColor = Color.FromArgb(49, 49, 49);
+                    this.ForeColor = System.Drawing.Color.FromArgb(245, 246, 250);
+                    this.BackColor = System.Drawing.Color.FromArgb(29, 29, 29);
+                    pnlleiste.BackColor = System.Drawing.Color.FromArgb(49, 49, 49);
                     ConfigurationManager.AppSettings[key] = "light";
                 }
             }
@@ -84,106 +134,48 @@ namespace ROhr2
 
         private void btn_datei_Click(object sender, EventArgs e)
         {
-            /*
-            //kommt alles in unterprogramm
+            //Get FilePath of assembly
 
-            public void Analyze()
+            speichern = new Speichern(status);
+            string FileName = null;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Bitte Halle auswählen...";
+            openFileDialog.Filter = "Inventor Assembly (*.iam) | *.iam";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //Creating list containing all component occurence names
-
-                Parts.Clear();
-                int NumberOfOccurrences = _assemblyComponentDefinition.Occurrences.Count;
-                int CurrentOccurrence = 1;
-                _status.Name = "Finding Parts";
-                _status.Progress = 0;
-                _status.OnProgess();
-                foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
-                {
-                    Parts.Add(componentOccurrence.Name);
-                    _status.Progress = Convert.ToInt16((CurrentOccurrence * 1.0) / (NumberOfOccurrences * 1.0) * 100);
-                    CurrentOccurrence++;
-                    _status.OnProgess();
-                }
-
-                _status.Name = "Done";
-                _status.OnProgess();
-
+                FilePath = openFileDialog.FileName;
+                FileName = openFileDialog.SafeFileName;
             }
 
-            public void AnalyzeBoard(string boardOccurrenceName)
+            if (FilePath == null)
             {
-                _status.Name = "Analyzing Board";
-                _status.OnProgess();
-
-                foreach (ComponentOccurrence componentOccurrence in _assemblyComponentDefinition.Occurrences)
-                {
-                    //Finding Board Assembly and calculating size, coordinates of centerpoint, holediameter and radius of corner
-
-                    if (componentOccurrence.Name == boardOccurrenceName)
-                    {
-                        Box box = componentOccurrence.Definition.RangeBox;
-
-                        _MinPointBoard = box.MinPoint;
-                        _MaxPointBoard = box.MaxPoint;
-
-                        BoardW = (box.MaxPoint.X - box.MinPoint.X);
-                        BoardL = (box.MaxPoint.Y - box.MinPoint.Y);
-                        BoardH = (box.MaxPoint.Z - box.MinPoint.Z);
-
-                        _XOM = box.MinPoint.X + (BoardW / 2);
-                        _YOM = box.MinPoint.Y + (BoardL / 2);
-                        _ZOM = box.MinPoint.Z + (BoardH / 2);
-
-                        AssemblyDocument boardAssemblyDocument;
-                        boardAssemblyDocument = componentOccurrence.Definition.Document;
-
-                        AssemblyComponentDefinition boardAssemblyComponentDefinition;
-                        boardAssemblyComponentDefinition = boardAssemblyDocument.ComponentDefinition;
-
-                        foreach (ComponentOccurrence componentOccurrence1 in boardAssemblyComponentDefinition.Occurrences)
-                        {
-                            if (componentOccurrence1.Name.Contains("STEP"))
-                            {
-                                PartDocument boardPartDocument;
-                                boardPartDocument = componentOccurrence1.Definition.Document;
-
-                                _status.Progress = 60;
-                                _status.OnProgess();
-
-                                foreach (HoleFeature holeFeature in boardPartDocument.ComponentDefinition.Features.HoleFeatures)
-                                {
-                                    HoleDia = holeFeature.HoleDiameter.Value;
-
-                                    Inventor.Point minPointHole = holeFeature.RangeBox.MinPoint;
-
-                                    if (_MinPointBoard.VectorTo(minPointHole).X + HoleDia / 2 < CornerRadius || CornerRadius == 0)
-                                    {
-                                        CornerRadius = _MinPointBoard.VectorTo(minPointHole).X + HoleDia / 2;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    _status.Progress = 100;
-                    _status.Name = "Done";
-                    _status.OnProgess();
-                }
-
-                //Calculating component height for bottom and top of PCB
-
-                _MaxPointGes = _assemblyComponentDefinition.RangeBox.MaxPoint;
-                _MinPointGes = _assemblyComponentDefinition.RangeBox.MinPoint;
-
-                CompHeightBottom = _MinPointGes.VectorTo(_MinPointBoard).Z;
-                CompHeightTop = _MaxPointBoard.VectorTo(_MaxPointGes).Z;
-
-                _status.Name = "Done";
-                _status.OnProgess();
-
+                MessageBox.Show("No File Selected!");
             }
+            else
+            {
+                //Open assembly and analyze, set comboboxes to Parts list
+                analyze = new Analyze(inventorApp, FilePath, status);
+                analyze.List();
+                combb_flansch1.DataSource = analyze.Parts;
+                combb_flansch2.DataSource = analyze.Parts;
 
-            */
+                txtb_datei.Text = FileName;
+
+                analyze.SavePictureAs(speichern.getPathScreenX(), "X");
+                pctb_x.Image = Image.FromFile(speichern.getPathScreenX());
+
+                analyze.SavePictureAs(speichern.getPathScreenY(), "Y");
+                pctb_y.Image = Image.FromFile(speichern.getPathScreenY());
+
+                analyze.SavePictureAs(speichern.getPathScreenZ(), "Z");
+                pctb_z.Image = Image.FromFile(speichern.getPathScreenZ());
+            }
+        }
+
+        private void btn_weiter_Click(object sender, EventArgs e)
+        {
 
         }
     }
+
 }

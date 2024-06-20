@@ -318,6 +318,7 @@
             btn_weiter.TabIndex = 15;
             btn_weiter.Text = "weiter";
             btn_weiter.UseVisualStyleBackColor = true;
+            btn_weiter.Click += btn_weiter_Click;
             // 
             // btn_zurueck
             // 
@@ -841,6 +842,8 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            Shown += new System.EventHandler(this.Form1_Shown);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pctb_z).EndInit();
