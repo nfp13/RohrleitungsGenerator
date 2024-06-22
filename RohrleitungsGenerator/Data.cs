@@ -1,6 +1,10 @@
 ﻿//using Microsoft.Office.Interop.Excel;
 
+using Inventor;
 using System.Numerics;
+using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ROhr2
 {
@@ -215,6 +219,7 @@ namespace ROhr2
     }
     public class Connection
     {
+
         public Connection()
         {
             _Flange1 = new Flange(new Vector3(0, 0, 0), new Vector3(1, 0, 0));
@@ -224,6 +229,7 @@ namespace ROhr2
             float _minDistFlange = (float)0.5;
             StartPoint = Vector3.Add(_Flange1.Point, Vector3.Multiply(Vector3.Normalize(_Flange1.Direction), _minDistFlange));
             EndPoint = Vector3.Add(_Flange2.Point, Vector3.Multiply(Vector3.Normalize(_Flange2.Direction), _minDistFlange));
+
         }
         public Connection(Flange flange1, Flange flange2, double BendingRadius)
         {
@@ -235,6 +241,9 @@ namespace ROhr2
             float _minDistFlange = (float)(Math.Sin(Math.PI / 4) * BendingRadius);
             StartPoint = Vector3.Add(_Flange1.Point, Vector3.Multiply(Vector3.Normalize(_Flange1.Direction), _minDistFlange));
             EndPoint = Vector3.Add(_Flange2.Point, Vector3.Multiply(Vector3.Normalize(_Flange2.Direction), _minDistFlange));
+
+            //analyze.UpdateList(flange1);
+            //analyze.UpdateList(flange2);
         }
         private Flange _Flange1, _Flange2;
 

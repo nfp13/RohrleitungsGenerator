@@ -4,6 +4,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Inventor;
 using System;
 using System.Numerics;
+using System.Security.Policy;
 
 namespace ROhr2
 {
@@ -55,11 +56,11 @@ namespace ROhr2
             _status.Name = "Done";
             _status.OnProgess();
 
-            _hindernisse.AddRange(Parts);
+            Hindernisse.AddRange(Parts);
 
         }
 
-        
+
 
         public void Hall(string hallOccurrenceName)
         {
@@ -129,13 +130,13 @@ namespace ROhr2
 
         public void GenerateCuboids()
         {
-            foreach(ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
+            foreach (ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
             {
-                if (_hindernisse.Contains(occ.Name))
+                if (Hindernisse.Contains(occ.Name))
                 {
                     Inventor.Point minI = occ.RangeBox.MinPoint;
                     Inventor.Point maxI = occ.RangeBox.MaxPoint;
-                    Vector3 min = new Vector3((float)minI.X/100, (float)minI.Y / 100, (float)minI.Z / 100);
+                    Vector3 min = new Vector3((float)minI.X / 100, (float)minI.Y / 100, (float)minI.Z / 100);
                     Vector3 max = new Vector3((float)maxI.X / 100, (float)maxI.Y / 100, (float)maxI.Z / 100);
                     Cuboid Cube = new Cuboid(min, max);
                     _data.Cuboids.Add(Cube);
@@ -143,14 +144,44 @@ namespace ROhr2
             }
         }
 
+        public void UpdateList(string FlangeName)
+        {
+            foreach (ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
+            {
+                if (Hindernisse.Contains(FlangeName))
+                {
+                    Hindernisse.Remove(occ.Name);
+                    Flange.Add(occ.Name);
+                }
+            }
+        }
+
+
+        public void FlangePart()
+        {
+            foreach (ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
+            {
+                if (Flange.Contains(occ.Name))
+                {
+                    foreach (WorkPoint wPoint in _assemblyComponentDefinition.WorkPoints)
+                    {
+                        MessageBox.Show(wPoint.Point.X.ToString() + wPoint.Point.Y.ToString() + wPoint.Point.Z.ToString());
+                    }
+                }
+            }
+        }
+
+
         private Inventor.Application _inventorApp;
         private string _filePath;
         private AssemblyDocument _assemblyDocument;
         private AssemblyComponentDefinition _assemblyComponentDefinition;
         private AssemblyDocument _boardAssemblyDocument;
+        private Faces _faces;
 
         public List<string> Parts = new List<string>();
-        private List<string> _hindernisse = new List<string>();
+        public List<string> Hindernisse = new List<string>();
+        public List<string> Flange = new List<string>();
 
         public double HallW, HallL, HallH;                       //Grundmaße der Platine
         public double CompHeightTop, CompHeightBottom;              //Höhe der Komponenten auf der Platine
