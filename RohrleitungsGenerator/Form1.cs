@@ -16,11 +16,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Net.NetworkInformation;
 //using Microsoft.Office.Interop.Excel;
 using Inventor;
-using System.Numerics;
 
 namespace ROhr2
 {
-
     public partial class Form1 : Form
     {
 
