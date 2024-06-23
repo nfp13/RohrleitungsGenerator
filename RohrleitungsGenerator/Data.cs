@@ -211,86 +211,69 @@ namespace ROhr2
         {
             return (point.X <= Max.X && point.X >= Min.X) && (point.Y <= Max.Y && point.Y >= Min.Y) && (point.Z <= Max.Z && point.Z >= Min.Z);
         }
+    }
 
-        public string ToString()
+    public class Zylinder
+    {
+        public Zylinder(Vector3 start, Vector3 end, double r)
         {
-            return _Center.ToString();
+            _Position = start;
+            _End = end;
+            _Direction = Vector3.Normalize(Vector3.Subtract(end, start));
+            _Radius = (float)r;
         }
+
+        public bool Collision(Vector3 point, float radius)
+        {
+            float l = Vector3.Dot(point, _Direction) - Vector3.Dot(_Position, _Direction);
+            Vector3 s = Vector3.Add(_Position, Vector3.Multiply(_Direction, l));
+            float d = Vector3.Distance(s, point);
+            if (d < 1 * (radius + _Radius))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool _PointBetweenMinMax(Vector3 point, Vector3 Max, Vector3 Min)
+        {
+            return (point.X <= Max.X && point.X >= Min.X) && (point.Y <= Max.Y && point.Y >= Min.Y) && (point.Z <= Max.Z && point.Z >= Min.Z);
+        }
+
+        private Vector3 _Position, _End, _Direction;
+        float _Radius;
     }
     public class Connection
     {
-
         public Connection()
         {
             _Flange1 = new Flange(new Vector3(0, 0, 0), new Vector3(1, 0, 0));
             _Flange2 = new Flange(new Vector3((float)6.2, (float)0.3, 0), new Vector3(-1, 0, 0));
-            Radius = (float)1;
+
+            pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 1, 235000000, 0.1, 0.05, 0.5, 0);
 
             float _minDistFlange = (float)0.5;
             StartPoint = Vector3.Add(_Flange1.Point, Vector3.Multiply(Vector3.Normalize(_Flange1.Direction), _minDistFlange));
             EndPoint = Vector3.Add(_Flange2.Point, Vector3.Multiply(Vector3.Normalize(_Flange2.Direction), _minDistFlange));
-
         }
-        public Connection(Flange flange1, Flange flange2, double BendingRadius)
+        public Connection(Flange flange1, Flange flange2, Pipe _pipe)
         {
             _Flange1 = flange1;
             _Flange2 = flange2;
+            pipe = _pipe;
 
-            Radius = (float)0.8;
-
-            float _minDistFlange = (float)(Math.Sin(Math.PI / 4) * BendingRadius);
+            float _minDistFlange = (float)(Math.Sin(Math.PI / 4) * pipe.B);
             StartPoint = Vector3.Add(_Flange1.Point, Vector3.Multiply(Vector3.Normalize(_Flange1.Direction), _minDistFlange));
             EndPoint = Vector3.Add(_Flange2.Point, Vector3.Multiply(Vector3.Normalize(_Flange2.Direction), _minDistFlange));
-
-            //analyze.UpdateList(flange1);
-            //analyze.UpdateList(flange2);
         }
-        private Flange _Flange1, _Flange2;
-
-        public double Wallthickness;
-        public bool StandardizedParts = false;
-        public float Radius;
+        public Flange _Flange1, _Flange2;
 
         public List<Vector3> Path = new List<Vector3>();
+        public List<string> Details = new List<string>();
+
         public Vector3 StartPoint;
         public Vector3 EndPoint;
-        public List<Element> Elements = new List<Element>();
         public Pipe pipe;
-
-
-        public class Element
-        {
-            public Element() { }
-
-            public Vector3 Start, End;
-            public double Radius;
-            public Func<double, Vector3> Function;
-            public double lMax;         //Maximum der Laufvariable der Function
-        }
-        public class Pipe : Element
-        {
-            public Pipe(Vector3 start, Vector3 end, double outerDiameter, double wallThickness)
-            {
-                Start = start;
-                End = end;
-                Radius = outerDiameter * 0.5;
-
-                Vector3 _Dir = Vector3.Normalize(Vector3.Subtract(End, Start));
-                Function = (l) => { return Vector3.Add(Start, Vector3.Multiply(_Dir, (float)l)); };
-                lMax = Vector3.Distance(Start, End);
-
-                _OuterDiameter = outerDiameter;
-                _WallThickness = wallThickness;
-            }
-            private double _OuterDiameter, _WallThickness;
-        }
-        public class Bend : Element
-        {
-            public Bend(Vector3 start, Vector3 end, double outerDiameter, double wallThickness)
-            {
-
-            }
-        }
 
         public class Flange
         {
@@ -305,19 +288,28 @@ namespace ROhr2
 
     public class Pipe
     {
-        public Pipe(double _E, double _at, double _Ib, double _It, double _A, double _dT, double _G, double _q)
+        public Pipe(double _E, double _at, double _Ib, double _It, double _A, double _dT, double _G, double _q, double _Rm, double _R, double _W, double _B, double _S)
         {
             E = _E;         //E-Modul
             at = _at;       //Wärmeausdehnungskoeffizient
+            G = _G;         //Schubmodul
+            Rm = _Rm;       //Zugfestigkeit
+
+            R = _R;         //Rohraußenradius
+            W = _W;         //Wandstärke
+            B = _B;         //Biegeradius
+
             Ib = _Ib;       //Biegewiderstandsmoment
             It = _It;       //Torsionswiderstandsmoment
             A = _A;         //Querschnittsfläche
+
             dT = _dT;       //Temperaturdelta
-            G = _G;         //Schubmodul
             q = _q;         //Flächenlast aufgrund von Fluid und Rohrgewicht
+
+            S = _S;         //Steigung
         }
 
-        public double E, at, Ib, It, A, dT, G, q;
+        public double E, at, Ib, It, A, dT, G, q, Rm, R, W, B, S;
     }
 
     public class Data
@@ -363,6 +355,7 @@ namespace ROhr2
         public double MinSize = 0;
         public Data() { }
         public List<Cuboid> Cuboids = new List<Cuboid>();
+        public List<Zylinder> Zylinders = new List<Zylinder>();
         public List<Connection> Connections = new List<Connection>();
     }
 
