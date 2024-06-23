@@ -16,6 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Net.NetworkInformation;
 //using Microsoft.Office.Interop.Excel;
 using Inventor;
+using System.Numerics;
 
 namespace ROhr2
 {
@@ -45,6 +46,30 @@ namespace ROhr2
 
             InitializeComponent();
             InitializeUI("UIMode");
+            TestPipeGen();
+        }
+
+        private void TestPipeGen()
+        {
+            Cuboid Cube = new Cuboid(new Vector3(2, -2, -1), new Vector3(4, -1, 1));
+            data.Cuboids.Add(Cube);
+            data.SetMinSize();
+
+            Pipe pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.5, 0.05, 0.5, 0);
+
+            Connection.Flange flange1 = new Connection.Flange(new Vector3(0, 0, 0), new Vector3(1, 0, 0));
+            Connection.Flange flange2 = new Connection.Flange(new Vector3(60, 0, 0), new Vector3(-1, 0, 0));
+
+            Connection.Flange flange3 = new Connection.Flange(new Vector3(30, 0, 30), new Vector3(0, 0, -1));
+            Connection.Flange flange4 = new Connection.Flange(new Vector3(30, 0, -30), new Vector3(0, 0, 1));
+
+
+            Connection connection1 = new Connection(flange1, flange2, pipe);
+            Connection connection2 = new Connection(flange3, flange4, pipe);
+            data.Connections.Add(connection1);
+            data.Connections.Add(connection2);
+
+            GeneratePipeSystem solver = new GeneratePipeSystem(data);
         }
 
         private void Form1_Shown(object sender, EventArgs e)
