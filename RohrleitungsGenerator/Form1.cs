@@ -32,6 +32,8 @@ namespace ROhr2
         Speichern speichern;
         Data data;
         GeneratePipeSystem solver;
+        Sweep sweep;
+
 
         Inventor.Application inventorApp;
 
@@ -55,30 +57,33 @@ namespace ROhr2
 
         private void TestPipeGen()
         {
-            Cuboid Cube = new Cuboid(new Vector3(2, -2, -1), new Vector3(4, -1, 1));
+            Cuboid Cube = new Cuboid(new Vector3(2, -2, -1), new Vector3(4, 2, 1));
             data.Cuboids.Add(Cube);
             data.SetMinSize();
 
-            Pipe pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.5, 0.05, 0.5, 0);
+            Pipe pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, 0.5, 0);
 
             Connection.Flange flange1 = new Connection.Flange(new Vector3(0, 0, 0), new Vector3(1, 0, 0));
-            Connection.Flange flange2 = new Connection.Flange(new Vector3(60, 0, 0), new Vector3(-1, 0, 0));
+            Connection.Flange flange2 = new Connection.Flange(new Vector3(6, 0, 0), new Vector3(-1, 0, 0));
 
-            Connection.Flange flange3 = new Connection.Flange(new Vector3(30, 0, 30), new Vector3(0, 0, -1));
-            Connection.Flange flange4 = new Connection.Flange(new Vector3(30, 0, -30), new Vector3(0, 0, 1));
+            Connection.Flange flange3 = new Connection.Flange(new Vector3(3, 0, 3), new Vector3(0, 0, -1));
+            Connection.Flange flange4 = new Connection.Flange(new Vector3(3, 0, -3), new Vector3(0, 0, 1));
 
 
             Connection connection1 = new Connection(flange1, flange2, pipe);
-            Connection connection2 = new Connection(flange3, flange4, pipe);
+            //Connection connection2 = new Connection(flange3, flange4, pipe);
             data.Connections.Add(connection1);
-            data.Connections.Add(connection2);
+            //data.Connections.Add(connection2);
 
             solver.Solve();
         }
 
         private void PipesGenerated(object sender, EventArgs e)     //will be triggert when the PipeSystem is generated
         {
-            MessageBox.Show("Event Working!");
+            
+            
+            //MessageBox.Show("Event Working!");
+
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -90,7 +95,7 @@ namespace ROhr2
 
             Type inventorAppType = System.Type.GetTypeFromProgID("Inventor.Application");
             inventorApp = System.Activator.CreateInstance(inventorAppType) as Inventor.Application;
-            inventorApp.Visible = false;
+            inventorApp.Visible = true;
 
             status.Name = "Done";
             status.OnProgess();
@@ -222,7 +227,18 @@ namespace ROhr2
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
+            foreach (Connection con in solver.Finished)
+            {
+                sweep = new Sweep(inventorApp, FilePath, status, con);
+                sweep.sketch3d();
+                sweep.sketch2d();
+                sweep.feature();
+            }
 
+            //Object selectedItem = combb_flansch1.SelectedItem;
+            //string selected = selectedItem.ToString();
+            //analyze.UpdateList(selected);
+            //analyze.FlangePart();
         }
     }
 

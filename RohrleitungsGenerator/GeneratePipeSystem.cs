@@ -25,9 +25,9 @@ namespace ROhr2
 
         public void Stop()
         {
-            _managementThread.Abort();
+            //_managementThread.Abort();
 
-            foreach (Thread t in _threads) t.Abort();
+            //foreach (Thread t in _threads) t.Abort();
         }
 
         private void _ManageThreads()
@@ -81,7 +81,7 @@ namespace ROhr2
 
             foreach (Connection c in _data.Connections)
             {
-                _PathMessageBox(c.Path);
+                //_PathMessageBox(c.Path);
             }
 
             EventHandler handler = Done;

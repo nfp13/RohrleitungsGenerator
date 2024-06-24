@@ -1,5 +1,6 @@
 ﻿//using Microsoft.Office.Interop.Excel;
 using Inventor;
+using System.Numerics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -7,18 +8,17 @@ namespace ROhr2
 {
     public class Sweep
     {
-        public Sweep(Inventor.Application inventorApp, string filePath, Status status)
+        public Sweep(Inventor.Application inventorApp, string filePath, Status status, Connection con)
         {
             _status = status;
             _inventorApp = inventorApp;
+            _con = con;
 
             _status.Name = "Opening Assembly";
             _status.OnProgess();
 
-            //Opening the PCB assembly Document
-
-            _assemblyDocument = _inventorApp.Documents.Open(_filePath, true) as AssemblyDocument;
-            _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
+            _partDocument = _inventorApp.Documents.Add(DocumentTypeEnum.kPartDocumentObject, _inventorApp.GetTemplateFile(DocumentTypeEnum.kPartDocumentObject)) as PartDocument;
+            _partComponentDefinition = _partDocument.ComponentDefinition ;
             _transientGeometry = inventorApp.TransientGeometry;
 
             _status.Name = "Done";
@@ -27,46 +27,65 @@ namespace ROhr2
 
         public void sketch3d()
         {
-            _workPoint[0] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(0, 0, 0));
-            _workPoint[1] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 0, 0));
-            _workPoint[2] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 0));
-            _workPoint[3] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 2));
-            _workPoint[4] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(6, 4, 2));
-            
-            //_sketch3D = _assemblyComponentDefinition.Sketches3D.Add;
+            //_workPoint[0] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(0, 0, 0));
+            //_workPoint[1] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 0, 0));
+            //_workPoint[2] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 0));
+            //_workPoint[3] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 2));
+            //_workPoint[4] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(6, 4, 2));
 
-            _3DLine = _sketch3D.SketchLines3D.AddByTwoPoints(_workPoint[0], _workPoint[1], true, 1);
+            Vector3 p = _con.Path[0];
+            _wp = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p.X, p.Y, p.Z));
 
-            for (int i = 1; i < 5; i++)
+            Vector3 p1 = _con.Path[1];
+            WorkPoint wp1 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p1.X, p1.Y, p1.Z));
+
+            _sketch3D = _partComponentDefinition.Sketches3D.Add();
+
+            _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_wp, wp1, true, _con.pipe.B));
+
+            for (int i = 2; i < _con.Path.Count; i++)
             {
-                _3DLine = _sketch3D.SketchLines3D.AddByTwoPoints(_3DLine.EndPoint, _workPoint[i], true, 1);
+                Vector3 p2 = _con.Path[i];
+                WorkPoint wp2 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p2.X, p2.Y, p2.Z));
+                _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_lines[i-2].EndPoint, wp2, true, _con.pipe.B));
             }
         }
 
         public void sketch2d()
         {
-            _sketch2D = _assemblyComponentDefinition.Sketches.Add(_workPlane);
+            _workPlane = _partComponentDefinition.WorkPlanes.AddByNormalToCurve(_lines[0], _wp);
+            _sketch2D = _partComponentDefinition.Sketches.Add(_workPlane);
             _origin = _sketch2D.ModelToSketchSpace(_transientGeometry.CreatePoint(0, 0, 0));
-            _sketch2D.SketchCircles.AddByCenterRadius(_sketch2D.ModelToSketchSpace(_modelPoint), 0.375);
+            _sketch2D.OriginPoint = _wp;
+            SketchCircle circ1 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0,0), _con.pipe.R);
+            SketchCircle circ2 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0, 0), _con.pipe.R - _con.pipe.W);
             _profile = _sketch2D.Profiles.AddForSolid();
+            foreach (ProfilePath pp in _profile)
+            {
+                if (pp[1].SketchEntity == circ2)
+                {
+                    pp.AddsMaterial = false;
+                }
+            }
 
         }
 
         public void feature()
         {
-            _path = _assemblyComponentDefinition.Features.CreatePath(_3DLine);
-            _sweep = _assemblyComponentDefinition.Features.SweepFeatures.AddUsingPath(_profile, _path, Inventor.PartFeatureOperationEnum.kJoinOperation);
+            _path = _partComponentDefinition.Features.CreatePath(_lines[0]);
+            _sweep = _partComponentDefinition.Features.SweepFeatures.AddUsingPath(_profile, _path, Inventor.PartFeatureOperationEnum.kJoinOperation);
 
         }
 
         private Inventor.Application _inventorApp;
         private string _filePath;
-        private AssemblyDocument _assemblyDocument;
-        private AssemblyComponentDefinition _assemblyComponentDefinition;
+        private PartDocument _partDocument;
+        private PartComponentDefinition _partComponentDefinition;
         private TransientGeometry _transientGeometry;
         private WorkPoint[] _workPoint = new WorkPoint[5];
         private Sketch3D _sketch3D;
         private SketchLine3D _3DLine;
+        private List<SketchLine3D> _lines = new List <SketchLine3D>();
         private PlanarSketch _sketch2D;
         private WorkPlane _workPlane;
         private Point2d _origin;
@@ -74,8 +93,13 @@ namespace ROhr2
         private Profile _profile;
         private SweepFeature _sweep;
         private Inventor.Path _path;
+        private WorkPoint _wp;
+
+
+
 
         private Status _status;
+        private Connection _con;
 
     }
 
