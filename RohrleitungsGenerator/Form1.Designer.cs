@@ -534,6 +534,7 @@
             btn_anwendung.TabIndex = 53;
             btn_anwendung.Text = "Anwendung";
             btn_anwendung.UseVisualStyleBackColor = true;
+            btn_anwendung.Click += btn_anwendung_Click;
             // 
             // btn_supports
             // 
@@ -842,8 +843,8 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "Form1";
             Text = "Form1";
-            FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            Shown += new System.EventHandler(this.Form1_Shown);
+            FormClosing += Form1_FormClosing;
+            Shown += Form1_Shown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pctb_z).EndInit();

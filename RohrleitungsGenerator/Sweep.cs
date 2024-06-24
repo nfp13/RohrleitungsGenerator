@@ -33,7 +33,7 @@ namespace ROhr2
             _workPoint[3] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 2));
             _workPoint[4] = _assemblyComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(6, 4, 2));
             
-            _sketch3D = _assemblyComponentDefinition.Sketches3D.Add;
+            //_sketch3D = _assemblyComponentDefinition.Sketches3D.Add;
 
             _3DLine = _sketch3D.SketchLines3D.AddByTwoPoints(_workPoint[0], _workPoint[1], true, 1);
 
