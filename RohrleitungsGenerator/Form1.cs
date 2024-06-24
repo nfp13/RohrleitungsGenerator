@@ -14,7 +14,7 @@ using System.Linq;
 using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Net.NetworkInformation;
-//using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel;
 using Inventor;
 using System.Numerics;
 
@@ -31,6 +31,7 @@ namespace ROhr2
         Status status;
         Speichern speichern;
         Data data;
+        GeneratePipeSystem solver;
 
         Inventor.Application inventorApp;
 
@@ -43,6 +44,8 @@ namespace ROhr2
         {
             status = new Status();
             data = new Data();
+            solver = new GeneratePipeSystem(data);
+            solver.Done += new EventHandler(PipesGenerated);
             //status.Progressed += new EventHandler(UpdateStatus);
 
             InitializeComponent();
@@ -70,7 +73,12 @@ namespace ROhr2
             data.Connections.Add(connection1);
             data.Connections.Add(connection2);
 
-            GeneratePipeSystem solver = new GeneratePipeSystem(data);
+            solver.Solve();
+        }
+
+        private void PipesGenerated(object sender, EventArgs e)     //will be triggert when the PipeSystem is generated
+        {
+            MessageBox.Show("Event Working!");
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -101,6 +109,7 @@ namespace ROhr2
                 {
                     inventorApp.Quit();
                     //normteile.CloseExcel();
+                    solver.Stop();
                     System.Windows.Forms.Application.Exit();
 
                     //löschen
