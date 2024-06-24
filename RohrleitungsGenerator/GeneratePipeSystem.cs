@@ -14,6 +14,10 @@ namespace ROhr2
         public GeneratePipeSystem(Data data)
         {
             _data = data;
+        }
+
+        public void Solve()
+        {
             var ts = new ThreadStart(_ManageThreads);
             _managementThread = new Thread(ts);
             _managementThread.Start();
@@ -58,7 +62,7 @@ namespace ROhr2
 
                 _ReGeneratePipe(con);
                 _conBuffer.Clear();
-                Done.Clear();
+                Finished.Clear();
 
                 foreach (Connection c in _data.Connections)
                 {
@@ -70,7 +74,7 @@ namespace ROhr2
                     }
                     else
                     {
-                        Done.Add(c);
+                        Finished.Add(c);
                     }
                 }
             }
@@ -79,6 +83,9 @@ namespace ROhr2
             {
                 _PathMessageBox(c.Path);
             }
+
+            EventHandler handler = Done;
+            if (handler != null) handler(this, EventArgs.Empty);
 
         }
 
@@ -254,12 +261,13 @@ namespace ROhr2
         }
 
 
+        public EventHandler Done;
 
         private Thread _managementThread;
         private List<Thread> _threads = new List<Thread>();
         private List<PipeAgent> _pipeAgents = new List<PipeAgent>();
         private PriorityQueue<Connection, int> _conBuffer = new PriorityQueue<Connection, int>();
-        public List<Connection> Done = new List<Connection>();
+        public List<Connection> Finished = new List<Connection>();
         private Data _data;
     }
 
