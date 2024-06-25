@@ -46,7 +46,7 @@ namespace ROhr2
             }
         }
 
-        public double GetNormrohreHoleDia(double holeDia)
+        public void GetNormrohreData(double holeDia)
         {
             int MaxRowN = _wsNormrohre.Rows.Count;
             int i = 2;
@@ -55,24 +55,55 @@ namespace ROhr2
             while (i < MaxRowN && readExcelDia < holeDia)
             {
                 i++;
-                double cellValue = (double)(_wsNormrohre.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Außenradius = (double)(_wsNormrohre.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Wandstärke = (double)(_wsNormrohre.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Biegeradius = (double)(_wsNormrohre.Cells[i, 3] as Microsoft.Office.Interop.Excel.Range).Value;
+                Normrohre.Add(new Normrohr(Außenradius, Wandstärke, Biegeradius));
             }
-            i--;
-            if (_wsNormrohre.Cells[i + 1, 1].Value >= holeDia)
+                      
+        }
+
+        public void GetWerkstoffData(double holeDia)
+        {
+            int MaxRowN = _wsWerkstoff.Rows.Count;
+            int i = 2;
+            double readExcelDia = 0.0;
+
+            while (i < MaxRowN && readExcelDia < holeDia)
             {
-                return (_wsNormrohre.Cells[i, 2].Value);
-            }
-            else
-            {
-                MessageBox.Show("Löcher in Platine zu groß!");
-                return 0.0;
+                i++;
+                double Emodul = (double)(_wsWerkstoff.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Wärmeausdehnung = (double)(_wsWerkstoff.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Mindestzugfestigkeit = (double)(_wsWerkstoff.Cells[i, 3] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Dichte = (double)(_wsWerkstoff.Cells[i, 4] as Microsoft.Office.Interop.Excel.Range).Value;
+                double Schubmodul = (double)(_wsWerkstoff.Cells[i, 5] as Microsoft.Office.Interop.Excel.Range).Value;
+                Werkstoff.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul));
+                //ggf. i bei 2 anfagen?
             }
 
         }
 
-        public List<Fluid> fluid = new List<Fluid>();
-        public List<Werkstoff> werkstoff = new List<Werkstoff>();
-        public List<Normrohre> normrohre = new List<Normrohre>();
+        public void GetFluidData(double holeDia)
+        {
+            int MaxRowN = _wsFluid.Rows.Count;
+            int i = 2;
+            double readExcelDia = 0.0;
+
+            while (i < MaxRowN && readExcelDia < holeDia)
+            {
+                i++;
+                double Dichte = (double)(_wsFluid.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Value;
+                Fluid.Add(new Fluid(Dichte));
+                //Name noch mit rein?
+            }
+
+        }
+
+
+
+        public List<Fluid> Fluids = new List<Fluid>();
+        public List<Werkstoff> Werkstoffe = new List<Werkstoff>();
+        public List<Normrohr> Normrohre = new List<Normrohr>();
 
         private Microsoft.Office.Interop.Excel.Application _excelApp;
         private Workbook _wb;
@@ -80,9 +111,9 @@ namespace ROhr2
 
     }
 
-    public class Normrohre
+    public class Normrohr
     {
-        public Normrohre(double außenradius, double wandstärke, double biegeradius)
+        public Normrohr(double außenradius, double wandstärke, double biegeradius)
         {
             Außenradius = außenradius;
             Wandstärke = wandstärke;
@@ -95,31 +126,31 @@ namespace ROhr2
 
     public class Werkstoff
     {
-        public Werkstoff(double emodul, double wärmeausdehnung, double mindestzugfestigkeit, double dichte, double schubmodul)
+        public Werkstoff(double emodul, double wärmeausdehnung, double mindestzugfestigkeit, double dichte, double schubmodul, string name)
         {
             Emodul = emodul;
             Wärmeausdehnung = wärmeausdehnung;
             Mindestzugfestigkeit = mindestzugfestigkeit;
             Dichte = dichte;
             Schubmodul = schubmodul;
+            Name = name;
         }
         public double Emodul;
         public double Wärmeausdehnung;
         public double Mindestzugfestigkeit;
         public double Dichte;
         public double Schubmodul;
+        public string Name;
     }
 
     public class Fluid
     {
-        public Fluid(double wasser, double öl, double gas)
+        public Fluid(string name, double dichte)
         {
-            Wasser = wasser;
-            Öl = öl;
-            Gas = gas;
+            Name = name;
+            Dichte = dichte;
         }
-        public double Wasser;
-        public double Öl;
-        public double Gas;
+        public string Name;
+        public double Dichte;
     }
 }
