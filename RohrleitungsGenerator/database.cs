@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 
@@ -77,7 +78,7 @@ namespace ROhr2
                 double Mindestzugfestigkeit = (double)(_wsWerkstoff.Cells[i, 3] as Microsoft.Office.Interop.Excel.Range).Value;
                 double Dichte = (double)(_wsWerkstoff.Cells[i, 4] as Microsoft.Office.Interop.Excel.Range).Value;
                 double Schubmodul = (double)(_wsWerkstoff.Cells[i, 5] as Microsoft.Office.Interop.Excel.Range).Value;
-                Werkstoff.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul));
+                Werkstoffe.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul));
                 //ggf. i bei 2 anfagen?
             }
 
@@ -93,7 +94,7 @@ namespace ROhr2
             {
                 i++;
                 double Dichte = (double)(_wsFluid.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Value;
-                Fluid.Add(new Fluid(Dichte));
+                Fluids.Add(new Fluid(Dichte));
                 //Name noch mit rein?
             }
 
