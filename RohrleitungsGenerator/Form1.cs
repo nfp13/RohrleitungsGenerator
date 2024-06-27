@@ -59,6 +59,10 @@ namespace ROhr2
             combb_fluid.DisplayMember = "Name";
             combb_fluid.ValueMember = "Dichte";
 
+            combb_material.DataSource = database.Werkstoffe;
+            combb_material.DisplayMember = "Name";
+            combb_material.ValueMember = "Dichte";
+
             TestPipeGen();
         }
 

@@ -83,10 +83,7 @@ namespace ROhr2
                 double Mindestzugfestigkeit = (double)(_wsWerkstoff.Cells[i, 4] as Microsoft.Office.Interop.Excel.Range).Value;
                 double Dichte = (double)(_wsWerkstoff.Cells[i, 5] as Microsoft.Office.Interop.Excel.Range).Value;
                 double Schubmodul = (double)(_wsWerkstoff.Cells[i, 6] as Microsoft.Office.Interop.Excel.Range).Value;
-                //double Biegemoment = (double)(_wsWerkstoff.Cells[i, 7] as Microsoft.Office.Interop.Excel.Range).Value;
-                //double Torosionsmoment = (double)(_wsWerkstoff.Cells[i, 8] as Microsoft.Office.Interop.Excel.Range).Value;
-                //double Querschnittsfläche = (double)(_wsWerkstoff.Cells[i, 9] as Microsoft.Office.Interop.Excel.Range).Value;
-                Werkstoffe.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul, name)); //Hier fehlen dann noch die anderne
+                Werkstoffe.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul, name)); 
                 i++;
             }
 
