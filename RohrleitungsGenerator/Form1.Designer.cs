@@ -580,6 +580,7 @@
             // combb_fluid
             // 
             combb_fluid.BackColor = SystemColors.Control;
+            combb_fluid.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_fluid.FormattingEnabled = true;
             combb_fluid.Items.AddRange(new object[] { "Gas", "Wasser", "Öl" });
             combb_fluid.Location = new Point(679, 197);
@@ -610,6 +611,7 @@
             // combb_material
             // 
             combb_material.BackColor = SystemColors.Control;
+            combb_material.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_material.FormattingEnabled = true;
             combb_material.Items.AddRange(new object[] { "Stahllegierung", "Polycarbonat" });
             combb_material.Location = new Point(679, 159);
@@ -641,6 +643,7 @@
             // combb_gefaelle
             // 
             combb_gefaelle.BackColor = SystemColors.Control;
+            combb_gefaelle.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_gefaelle.FormattingEnabled = true;
             combb_gefaelle.Items.AddRange(new object[] { "Egal", "1%", "3%", "5%" });
             combb_gefaelle.Location = new Point(679, 233);
@@ -665,6 +668,7 @@
             txtb_biegeradius.Location = new Point(419, 300);
             txtb_biegeradius.Margin = new Padding(4, 3, 4, 3);
             txtb_biegeradius.Name = "txtb_biegeradius";
+            txtb_biegeradius.ReadOnly = true;
             txtb_biegeradius.Size = new Size(116, 23);
             txtb_biegeradius.TabIndex = 39;
             // 
@@ -674,6 +678,7 @@
             txtb_wandstaerke.Location = new Point(419, 265);
             txtb_wandstaerke.Margin = new Padding(4, 3, 4, 3);
             txtb_wandstaerke.Name = "txtb_wandstaerke";
+            txtb_wandstaerke.ReadOnly = true;
             txtb_wandstaerke.Size = new Size(116, 23);
             txtb_wandstaerke.TabIndex = 38;
             // 
@@ -703,6 +708,7 @@
             txtb_rohrdurchmesser.Location = new Point(419, 235);
             txtb_rohrdurchmesser.Margin = new Padding(4, 3, 4, 3);
             txtb_rohrdurchmesser.Name = "txtb_rohrdurchmesser";
+            txtb_rohrdurchmesser.ReadOnly = true;
             txtb_rohrdurchmesser.Size = new Size(116, 23);
             txtb_rohrdurchmesser.TabIndex = 35;
             // 
@@ -719,6 +725,7 @@
             // combb_flansch2
             // 
             combb_flansch2.BackColor = SystemColors.Control;
+            combb_flansch2.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_flansch2.FormattingEnabled = true;
             combb_flansch2.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
             combb_flansch2.Location = new Point(105, 203);
@@ -730,6 +737,7 @@
             // combb_flansch1
             // 
             combb_flansch1.BackColor = SystemColors.Control;
+            combb_flansch1.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_flansch1.FormattingEnabled = true;
             combb_flansch1.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
             combb_flansch1.Location = new Point(105, 156);
@@ -741,6 +749,7 @@
             // combb_verbindung
             // 
             combb_verbindung.BackColor = SystemColors.Control;
+            combb_verbindung.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_verbindung.FormattingEnabled = true;
             combb_verbindung.Items.AddRange(new object[] { "Verbindung 1", "Verbindung 2", "Verbindung 3" });
             combb_verbindung.Location = new Point(105, 114);
@@ -752,6 +761,7 @@
             // combb_normrohr
             // 
             combb_normrohr.BackColor = SystemColors.Control;
+            combb_normrohr.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_normrohr.FormattingEnabled = true;
             combb_normrohr.Items.AddRange(new object[] { "Normrohr 1", "Normrohr 2" });
             combb_normrohr.Location = new Point(419, 197);
@@ -764,6 +774,7 @@
             // 
             combb_eigenschaften.AutoCompleteCustomSource.AddRange(new string[] { "Normbögen", "Biegeradius" });
             combb_eigenschaften.BackColor = SystemColors.Control;
+            combb_eigenschaften.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_eigenschaften.FormattingEnabled = true;
             combb_eigenschaften.Items.AddRange(new object[] { "Normbögen", "selbst definiert" });
             combb_eigenschaften.Location = new Point(419, 159);

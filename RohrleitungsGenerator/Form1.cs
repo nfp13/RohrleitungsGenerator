@@ -55,6 +55,8 @@ namespace ROhr2
 
             database = new Database();
 
+
+            //Rund um die Comboboxen
             combb_fluid.DataSource = database.Fluids;
             combb_fluid.DisplayMember = "Name";
             combb_fluid.ValueMember = "Dichte";
@@ -66,6 +68,8 @@ namespace ROhr2
             combb_normrohr.DataSource = database.Normrohre;
             combb_normrohr.DisplayMember = "Außenradius";
             combb_normrohr.ValueMember = "Außenradius";
+
+            combb_eigenschaften.SelectedIndex = 0;
 
             TestPipeGen();
         }
@@ -281,7 +285,6 @@ namespace ROhr2
 
         private void combb_eigenschaften_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             Object selectedItem1 = combb_eigenschaften.SelectedItem;
             string selected1 = selectedItem1.ToString();
             
@@ -291,7 +294,6 @@ namespace ROhr2
                 txtb_rohrdurchmesser.Enabled = false;
                 txtb_wandstaerke.Enabled = false;
                 txtb_biegeradius.Enabled = false;
-                MessageBox.Show(selected1);
             }
             else
             {
