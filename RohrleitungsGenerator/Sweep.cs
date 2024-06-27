@@ -8,11 +8,17 @@ namespace ROhr2
 {
     public class Sweep
     {
+        Speichern speichern;
+
         public Sweep(Inventor.Application inventorApp, string filePath, Status status, Connection con)
         {
             _status = status;
             _inventorApp = inventorApp;
             _con = con;
+            _filePath = filePath;
+
+
+            speichern = new Speichern(status);
 
             _status.Name = "Opening Assembly";
             _status.OnProgess();
@@ -21,17 +27,15 @@ namespace ROhr2
             _partComponentDefinition = _partDocument.ComponentDefinition ;
             _transientGeometry = inventorApp.TransientGeometry;
 
+            _assemblyDocument = _inventorApp.Documents.Open(_filePath, true) as AssemblyDocument;
+            _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
+
             _status.Name = "Done";
             _status.OnProgess();
         }
 
         public void sketch3d()
         {
-            //_workPoint[0] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(0, 0, 0));
-            //_workPoint[1] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 0, 0));
-            //_workPoint[2] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 0));
-            //_workPoint[3] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(3, 4, 2));
-            //_workPoint[4] = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(6, 4, 2));
 
             Vector3 p = _con.Path[0];
             _wp = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p.X, p.Y, p.Z));
@@ -77,8 +81,38 @@ namespace ROhr2
 
         }
 
+        public void addPart()
+        {
+            // save  part
+            speichern = new Speichern(_status);
+            _partDocument.SaveAs(speichern.getPathRohr(), true);
+
+            // add part to assembley
+            _status.Name = "Adding Parts";
+            _status.Progress = 0;
+            _status.OnProgess();
+
+            //Generating Matrix
+            Matrix positionMatrix = _inventorApp.TransientGeometry.CreateMatrix();
+
+            //Move 
+            Inventor.Vector trans = _inventorApp.TransientGeometry.CreateVector(0, 0, 0);
+            positionMatrix.SetTranslation(trans);
+
+            //Place
+            ComponentOccurrence rohr = _assemblyDocument.ComponentDefinition.Occurrences.Add(speichern.getPathRohr(), positionMatrix);
+            MessageBox.Show(speichern.getPathRohr());
+
+            _status.Progress = 100;
+            _status.Name = "Done";
+            _status.OnProgess();
+
+        }
+
         private Inventor.Application _inventorApp;
         private string _filePath;
+        private AssemblyDocument _assemblyDocument;
+        private AssemblyComponentDefinition _assemblyComponentDefinition;
         private PartDocument _partDocument;
         private PartComponentDefinition _partComponentDefinition;
         private TransientGeometry _transientGeometry;
@@ -94,10 +128,6 @@ namespace ROhr2
         private SweepFeature _sweep;
         private Inventor.Path _path;
         private WorkPoint _wp;
-
-
-
-
         private Status _status;
         private Connection _con;
 

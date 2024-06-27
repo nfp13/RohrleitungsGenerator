@@ -24,11 +24,11 @@ namespace ROhr2
         }
 
         //Gets temporary paths for the Inventor parts and the assebley
-        public string getPathOben()
+        public string getPathRohr()
         {
-            string[] paths = { _tempPath, "ObereGehäusehälfte.ipt" };
-            _pathOben = Path.Combine(paths);
-            return _pathOben;
+            string[] paths = { _tempPath, "Rohr.ipt" };
+            _pathRohr = Path.Combine(paths);
+            return _pathRohr;
         }
         public string getPathUnten()
         {
@@ -66,11 +66,11 @@ namespace ROhr2
         //Deletes created files in the temp folder
         public void deleteFiles()
         {
-            File.Delete(getPathOben());
+            File.Delete(getPathRohr());
             File.Delete(getPathUnten());
             File.Delete(getPathBaugruppe());
             _tempPath = "";
-            _pathOben = "";
+            _pathRohr = "";
             _pathUnten = "";
         }
 
@@ -126,7 +126,7 @@ namespace ROhr2
         //Initialization of the required variables
         private Status _status;
         private string _tempPath;
-        private string _pathOben;
+        private string _pathRohr;
         private string _pathUnten;
         private string _pathBaugruppen;
         private string _pathScreenX;

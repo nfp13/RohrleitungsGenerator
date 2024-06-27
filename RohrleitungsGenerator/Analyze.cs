@@ -150,6 +150,7 @@ namespace ROhr2
             {
                 if (Hindernisse.Contains(FlangeName))
                 {
+                    MessageBox.Show(FlangeName);
                     Hindernisse.Remove(occ.Name);
                     Flange.Add(occ.Name);
                 }

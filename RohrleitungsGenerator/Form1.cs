@@ -80,8 +80,8 @@ namespace ROhr2
 
         private void PipesGenerated(object sender, EventArgs e)     //will be triggert when the PipeSystem is generated
         {
-            
-            
+
+
             //MessageBox.Show("Event Working!");
 
         }
@@ -212,7 +212,7 @@ namespace ROhr2
                 pctb_z.Image = Image.FromFile(speichern.getPathScreenZ());
 
                 analyze.Hall(analyze.Parts.ElementAt(0));
-                txtb_groesse.Text = (analyze.HallW * 10).ToString() + "/" + (analyze.HallL * 10).ToString() + "/" + (analyze.HallH * 10).ToString();
+                txtb_groesse.Text = (analyze.HallW * 10).ToString("0.0") + "/" + (analyze.HallL * 10).ToString("0.0") + "/" + (analyze.HallH * 10).ToString("0.0");
             }
         }
 
@@ -233,12 +233,16 @@ namespace ROhr2
                 sweep.sketch3d();
                 sweep.sketch2d();
                 sweep.feature();
+                sweep.addPart();
             }
+        }
 
-            //Object selectedItem = combb_flansch1.SelectedItem;
-            //string selected = selectedItem.ToString();
-            //analyze.UpdateList(selected);
-            //analyze.FlangePart();
+        private void btn_exportieren_Click(object sender, EventArgs e)
+        {
+            Object selectedItem = combb_flansch1.SelectedItem;
+            string selected = selectedItem.ToString();
+            analyze.UpdateList(selected);
+            analyze.FlangePart();
         }
     }
 

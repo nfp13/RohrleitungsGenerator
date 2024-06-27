@@ -393,6 +393,7 @@
             btn_exportieren.TabIndex = 24;
             btn_exportieren.Text = "Exportieren";
             btn_exportieren.UseVisualStyleBackColor = true;
+            btn_exportieren.Click += btn_exportieren_Click;
             // 
             // btn_speicherort
             // 
