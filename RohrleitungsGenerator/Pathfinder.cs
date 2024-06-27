@@ -41,7 +41,7 @@ namespace ROhr2
                     }
 
                     //MessageBox.Show("Weg Gefunden!\n" + test);
-                    MessageBox.Show(Steps.ToString());
+                    //MessageBox.Show(Steps.ToString());
                     return result;
                 }
                 else if (Vector3.Distance(currentNode.Position, _Con.EndPoint) <= _StepSize)
@@ -57,7 +57,7 @@ namespace ROhr2
                     }
 
                     //MessageBox.Show("Weg Gefunden!\nKein direkter Treffer!\n" + test);
-                    MessageBox.Show(Steps.ToString());
+                    //MessageBox.Show(Steps.ToString());
                     return result;
                 }
                 _ClosedList.Add(currentNode);
