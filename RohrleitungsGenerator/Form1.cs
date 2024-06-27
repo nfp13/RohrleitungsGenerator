@@ -64,6 +64,7 @@ namespace ROhr2
 
         private void TestPipeGen()
         {
+            /*
             Cuboid Cube = new Cuboid(new Vector3(2, -2, -1), new Vector3(4, 2, 1));
             data.Cuboids.Add(Cube);
             data.SetMinSize();
@@ -83,13 +84,21 @@ namespace ROhr2
             //data.Connections.Add(connection2);
 
             solver.Solve();
+            */
         }
 
         private void PipesGenerated(object sender, EventArgs e)     //will be triggert when the PipeSystem is generated
         {
+            foreach (Connection con in solver.Finished)
+            {
+                sweep = new Sweep(inventorApp, FilePath, status, con);
+                sweep.sketch3d();
+                sweep.sketch2d();
+                sweep.feature();
+                sweep.addPart();
+            }
 
-
-            //MessageBox.Show("Event Working!");
+            MessageBox.Show("Event Working!");
 
         }
 
@@ -206,6 +215,7 @@ namespace ROhr2
                 analyze.List();
                 combb_flansch1.DataSource = analyze.Parts;
                 combb_flansch2.DataSource = analyze.Parts;
+                combb_flansch2.BindingContext = new BindingContext();
 
                 txtb_datei.Text = FileName;
 
@@ -234,22 +244,29 @@ namespace ROhr2
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
-            foreach (Connection con in solver.Finished)
-            {
-                sweep = new Sweep(inventorApp, FilePath, status, con);
-                sweep.sketch3d();
-                sweep.sketch2d();
-                sweep.feature();
-                sweep.addPart();
-            }
+            Pipe pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, 0.1, 0);
+
+            Object selectedItem = combb_flansch1.SelectedItem;
+            string selected = selectedItem.ToString();
+            Connection.Flange flange1 = analyze.getFlangeFromPartName(selected);
+
+            Object selectedItem1 = combb_flansch2.SelectedItem;
+            string selected1 = selectedItem1.ToString();
+            Connection.Flange flange2 = analyze.getFlangeFromPartName(selected1);
+
+            Connection connection1 = new Connection(flange1, flange2, pipe);
+            data.Connections.Add(connection1);
+
+            analyze.GenerateCuboids();
+            data.SetMinSize();
+
+            solver.Solve();
+            
         }
 
         private void btn_exportieren_Click(object sender, EventArgs e)
         {
-            Object selectedItem = combb_flansch1.SelectedItem;
-            string selected = selectedItem.ToString();
-            analyze.UpdateList(selected);
-            analyze.FlangePart();
+
         }
     }
 

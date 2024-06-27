@@ -121,17 +121,19 @@ namespace ROhr2
         //unsicher ob hier rein
        static void Rechnungen(string[] args)
         {
-            Application app = new Application();
-            app.visible = true;
+            // ---------- WAHR EIN MEHRDEUTIGER VERWEIS UND HABS AUSKOMMENTIERT ------------
 
-            _OpenRefFile();
+            //Application app = new Application();
+            //app.visible = true;
 
-            _wsWerkstoff.Range["G2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Biegemoemnt
-            _wsWerkstoff.Range["G3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
-            _wsWerkstoff.Range["H2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Torosionsmoment
-            _wsWerkstoff.Range["H3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
-            _wsWerkstoff.Range["I2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Querschnittsfläche
-            _wsWerkstoff.Range["I3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
+            //_OpenRefFile();
+
+            //_wsWerkstoff.Range["G2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Biegemoemnt
+            //_wsWerkstoff.Range["G3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
+            //_wsWerkstoff.Range["H2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Torosionsmoment
+            //_wsWerkstoff.Range["H3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
+            //_wsWerkstoff.Range["I2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Querschnittsfläche
+            //_wsWerkstoff.Range["I3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
         }
     }
 

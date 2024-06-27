@@ -37,21 +37,21 @@ namespace ROhr2
         public void sketch3d()
         {
 
-            Vector3 p = _con.Path[0];
+            Vector3 p = Vector3.Multiply(_con.Path[0], 100);
             _wp = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p.X, p.Y, p.Z));
 
-            Vector3 p1 = _con.Path[1];
+            Vector3 p1 = Vector3.Multiply(_con.Path[1], 100);
             WorkPoint wp1 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p1.X, p1.Y, p1.Z));
 
             _sketch3D = _partComponentDefinition.Sketches3D.Add();
 
-            _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_wp, wp1, true, _con.pipe.B));
+            _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_wp, wp1, true, _con.pipe.B *100));
 
             for (int i = 2; i < _con.Path.Count; i++)
             {
-                Vector3 p2 = _con.Path[i];
+                Vector3 p2 = Vector3.Multiply(_con.Path[i], 100); ;
                 WorkPoint wp2 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p2.X, p2.Y, p2.Z));
-                _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_lines[i-2].EndPoint, wp2, true, _con.pipe.B));
+                _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_lines[i-2].EndPoint, wp2, true, _con.pipe.B * 100));
             }
         }
 
@@ -61,8 +61,8 @@ namespace ROhr2
             _sketch2D = _partComponentDefinition.Sketches.Add(_workPlane);
             _origin = _sketch2D.ModelToSketchSpace(_transientGeometry.CreatePoint(0, 0, 0));
             _sketch2D.OriginPoint = _wp;
-            SketchCircle circ1 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0,0), _con.pipe.R);
-            SketchCircle circ2 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0, 0), _con.pipe.R - _con.pipe.W);
+            SketchCircle circ1 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0,0), _con.pipe.R * 100);
+            SketchCircle circ2 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0, 0), _con.pipe.R * 100 - _con.pipe.W * 100);
             _profile = _sketch2D.Profiles.AddForSolid();
             foreach (ProfilePath pp in _profile)
             {

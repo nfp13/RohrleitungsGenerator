@@ -136,41 +136,56 @@ namespace ROhr2
                 {
                     Inventor.Point minI = occ.RangeBox.MinPoint;
                     Inventor.Point maxI = occ.RangeBox.MaxPoint;
-                    Vector3 min = new Vector3((float)minI.X / 100, (float)minI.Y / 100, (float)minI.Z / 100);
-                    Vector3 max = new Vector3((float)maxI.X / 100, (float)maxI.Y / 100, (float)maxI.Z / 100);
+                    Vector3 min = new Vector3((float)minI.X / 100, (float)minI.Z / 100, (float)minI.Y / 100);
+                    Vector3 max = new Vector3((float)maxI.X / 100, (float)maxI.Z / 100, (float)maxI.Y / 100);
                     Cuboid Cube = new Cuboid(min, max);
                     _data.Cuboids.Add(Cube);
                 }
             }
         }
 
-        public void UpdateList(string FlangeName)
+        public Connection.Flange getFlangeFromPartName(string FlangeName)
         {
+
+            Hindernisse.Remove(FlangeName);
+            PartDocument part;
+            Vector3 originV3 = new Vector3(0, 0, 0);
+            Vector3 dirV3 = new Vector3(0, 0, 0);
+
             foreach (ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
             {
-                if (Hindernisse.Contains(FlangeName))
+                if (FlangeName == occ.Name)
                 {
-                    MessageBox.Show(FlangeName);
-                    Hindernisse.Remove(occ.Name);
-                    Flange.Add(occ.Name);
+                    MessageBox.Show(occ.Name);
+
+                    part = (PartDocument)occ.Definition.Document;
+                    WorkPoint wp1 = part.ComponentDefinition.WorkPoints["Arbeitspunkt1"];
+                    WorkPoint wp2 = part.ComponentDefinition.WorkPoints["Arbeitspunkt2"];
+
+                    Inventor.Matrix matrix = occ.Transformation;
+                    matrix.Invert();
+                    Inventor.Point origin = wp1.Point;
+                    origin.TransformBy(matrix);
+                    Inventor.Vector dir = wp1.Point.VectorTo(wp2.Point);
+                    dir.TransformBy(matrix);
+
+                    originV3 = Vector3.Multiply(new Vector3((float)origin.X, (float)origin.Z, (float)origin.Y), (float)0.01);
+                    dirV3 = Vector3.Multiply(new Vector3((float)dir.X, (float)dir.Z, (float)dir.Y), (float)0.01);
+
+                    //y und z vertauscht
+                    MessageBox.Show(origin.X.ToString() + "    " + origin.Z.ToString() + "    " + origin.Y.ToString() + "\n" + dir.X.ToString() + "    " + dir.Z.ToString() + "    " + dir.Y.ToString());
                 }
             }
+
+            Connection.Flange flange = new Connection.Flange(originV3, dirV3);
+
+            //MessageBox.Show(FlangeName);
+            Hindernisse.Remove(FlangeName);
+            Flange.Add(FlangeName);
+            return flange;
         }
 
 
-        public void FlangePart()
-        {
-            foreach (ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
-            {
-                if (Flange.Contains(occ.Name))
-                {
-                    foreach (WorkPoint wPoint in _assemblyComponentDefinition.WorkPoints)
-                    {
-                        MessageBox.Show(wPoint.Point.X.ToString() + wPoint.Point.Y.ToString() + wPoint.Point.Z.ToString());
-                    }
-                }
-            }
-        }
 
 
         private Inventor.Application _inventorApp;
