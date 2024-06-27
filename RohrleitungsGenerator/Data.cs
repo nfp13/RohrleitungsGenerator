@@ -259,7 +259,7 @@ namespace ROhr2
             _Flange2 = flange2;
             pipe = _pipe;
 
-            float _minDistFlange = (float)(Math.Sin(Math.PI / 4) * pipe.B);
+            float _minDistFlange = (float)(Math.Sin(Math.PI / 4) * pipe.B) * 4;
             StartPoint = Vector3.Add(_Flange1.Point, Vector3.Multiply(Vector3.Normalize(_Flange1.Direction), _minDistFlange));
             EndPoint = Vector3.Add(_Flange2.Point, Vector3.Multiply(Vector3.Normalize(_Flange2.Direction), _minDistFlange));
         }
@@ -349,7 +349,7 @@ namespace ROhr2
             }
         }
 
-        public double MinSize = 0;
+        public double MinSize = 0.5;
         public Data() { }
         public List<Cuboid> Cuboids = new List<Cuboid>();
         public List<Zylinder> Zylinders = new List<Zylinder>();

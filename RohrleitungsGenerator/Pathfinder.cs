@@ -16,16 +16,17 @@ namespace ROhr2
             _Data = data;
 
             _OpenList.Enqueue(new Node(_Con.StartPoint), 0);
-            _StepSize = (float)(_Data.MinSize * 0.5);
+            _StepSize = (float)(_Data.MinSize);
             //_Solve();
         }
 
         public List<Vector3> Solve()       //public for testing
         {
+            int Steps = 0;
             Node currentNode;
             while (_OpenList.Count > 0)
             {
-                //System.Diagnostics.Debug.WriteLine(_OpenList.Count.ToString());
+                Steps++;
                 currentNode = _OpenList.Dequeue();
 
                 if (currentNode.Position == _Con.EndPoint)
@@ -40,7 +41,7 @@ namespace ROhr2
                     }
 
                     //MessageBox.Show("Weg Gefunden!\n" + test);
-
+                    MessageBox.Show(Steps.ToString());
                     return result;
                 }
                 else if (Vector3.Distance(currentNode.Position, _Con.EndPoint) <= _StepSize)
@@ -56,7 +57,7 @@ namespace ROhr2
                     }
 
                     //MessageBox.Show("Weg Gefunden!\nKein direkter Treffer!\n" + test);
-
+                    MessageBox.Show(Steps.ToString());
                     return result;
                 }
                 _ClosedList.Add(currentNode);
@@ -148,6 +149,7 @@ namespace ROhr2
                     _OpenList.Enqueue(n, _f(n));
                 }
             }
+
         }
         private void _GenerateAdjacentNodes(Queue<Node> possibleSuccessors, Node node, float StepFactor)
         {

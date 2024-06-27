@@ -263,10 +263,11 @@ namespace ROhr2
             data.Connections.Add(connection1);
 
             analyze.GenerateCuboids();
+
             data.SetMinSize();
 
             solver.Solve();
-            
+
         }
 
         private void btn_exportieren_Click(object sender, EventArgs e)

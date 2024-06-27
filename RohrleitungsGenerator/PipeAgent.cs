@@ -47,7 +47,7 @@ namespace ROhr2
             {
                 Vector3 Dir1 = Vector3.Normalize(Vector3.Subtract(points[i], points[i - 1]));
                 Vector3 Dir2 = Vector3.Normalize(Vector3.Subtract(points[i + 1], points[i]));
-                if (Dir1 != Dir2)
+                if (Vector3.Distance(Dir1,Dir2) >= 0.01*_data.MinSize)
                 {
                     _corners.Add(points[i]);
                 }

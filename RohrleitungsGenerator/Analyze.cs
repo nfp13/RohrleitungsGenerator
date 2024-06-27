@@ -156,14 +156,14 @@ namespace ROhr2
             {
                 if (FlangeName == occ.Name)
                 {
-                    MessageBox.Show(occ.Name);
+                    //MessageBox.Show(occ.Name);
 
                     part = (PartDocument)occ.Definition.Document;
                     WorkPoint wp1 = part.ComponentDefinition.WorkPoints["Arbeitspunkt1"];
                     WorkPoint wp2 = part.ComponentDefinition.WorkPoints["Arbeitspunkt2"];
 
                     Inventor.Matrix matrix = occ.Transformation;
-                    matrix.Invert();
+                    //matrix.Invert();
                     Inventor.Point origin = wp1.Point;
                     origin.TransformBy(matrix);
                     Inventor.Vector dir = wp1.Point.VectorTo(wp2.Point);
@@ -173,7 +173,7 @@ namespace ROhr2
                     dirV3 = Vector3.Multiply(new Vector3((float)dir.X, (float)dir.Z, (float)dir.Y), (float)0.01);
 
                     //y und z vertauscht
-                    MessageBox.Show(origin.X.ToString() + "    " + origin.Z.ToString() + "    " + origin.Y.ToString() + "\n" + dir.X.ToString() + "    " + dir.Z.ToString() + "    " + dir.Y.ToString());
+                    //MessageBox.Show(origin.X.ToString() + "    " + origin.Z.ToString() + "    " + origin.Y.ToString() + "\n" + dir.X.ToString() + "    " + dir.Z.ToString() + "    " + dir.Y.ToString());
                 }
             }
 
