@@ -83,8 +83,10 @@ namespace ROhr2
                 double Mindestzugfestigkeit = (double)(_wsWerkstoff.Cells[i, 4] as Microsoft.Office.Interop.Excel.Range).Value;
                 double Dichte = (double)(_wsWerkstoff.Cells[i, 5] as Microsoft.Office.Interop.Excel.Range).Value;
                 double Schubmodul = (double)(_wsWerkstoff.Cells[i, 6] as Microsoft.Office.Interop.Excel.Range).Value;
-                Werkstoffe.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul, name));
-                //ggf. i bei 2 anfagen?
+                //double Biegemoment = (double)(_wsWerkstoff.Cells[i, 7] as Microsoft.Office.Interop.Excel.Range).Value;
+                //double Torosionsmoment = (double)(_wsWerkstoff.Cells[i, 8] as Microsoft.Office.Interop.Excel.Range).Value;
+                //double Querschnittsfläche = (double)(_wsWerkstoff.Cells[i, 9] as Microsoft.Office.Interop.Excel.Range).Value;
+                Werkstoffe.Add(new Werkstoff(Emodul, Wärmeausdehnung, Mindestzugfestigkeit,Dichte,Schubmodul, name)); //Hier fehlen dann noch die anderne
                 i++;
             }
 
@@ -101,7 +103,6 @@ namespace ROhr2
                 double Dichte = (double)(_wsFluid.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Value;
                 Fluids.Add(new Fluid(name, Dichte)) ;
                 i++;
-                //Name noch mit rein?
             }
 
         }
@@ -116,6 +117,22 @@ namespace ROhr2
         private Workbook _wb;
         private Worksheet _wsNormrohre, _wsWerkstoff, _wsFluid;
 
+
+        //unsicher ob hier rein
+       static void Rechnungen(string[] args)
+        {
+            Application app = new Application();
+            app.visible = true;
+
+            _OpenRefFile();
+
+            _wsWerkstoff.Range["G2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Biegemoemnt
+            _wsWerkstoff.Range["G3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
+            _wsWerkstoff.Range["H2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Torosionsmoment
+            _wsWerkstoff.Range["H3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
+            _wsWerkstoff.Range["I2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Querschnittsfläche
+            _wsWerkstoff.Range["I3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
+        }
     }
 
     public class Normrohr
@@ -133,7 +150,7 @@ namespace ROhr2
 
     public class Werkstoff
     {
-        public Werkstoff(double emodul, double wärmeausdehnung, double mindestzugfestigkeit, double dichte, double schubmodul, string name)
+        public Werkstoff(double emodul, double wärmeausdehnung, double mindestzugfestigkeit, double dichte, double schubmodul, string name) //die anderen mit rein
         {
             Emodul = emodul;
             Wärmeausdehnung = wärmeausdehnung;
@@ -141,12 +158,18 @@ namespace ROhr2
             Dichte = dichte;
             Schubmodul = schubmodul;
             Name = name;
+            //Biegemoment = biegemoment;
+            //Torosionsmoment = torosionsmoment:
+            //Querschnittsfläche = Querschnittsfläche;
         }
         public double Emodul { get; set; }
         public double Wärmeausdehnung { get; set; }
         public double Mindestzugfestigkeit { get; set; }
         public double Dichte { get; set; }
         public double Schubmodul { get; set; }
+        //public double Biegemoment { get; set; };
+        //public double Torosionsmoment { get; set; };
+        //public double Querschnittsfläche { get; set; };
         public string Name { get; set; }
     }
 
