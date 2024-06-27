@@ -266,12 +266,31 @@ namespace ROhr2
             data.SetMinSize();
 
             solver.Solve();
-            
+
         }
 
         private void btn_exportieren_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void combb_eigenschaften_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (combb_eigenschaften.SelectedIndex == "Normrohr")
+            {
+                combb_normrohr.Visible = true;
+                txtb_rohrdurchmesser.Visible = false;
+                txtb_wandstaerke.Visible = false;
+                txtb_biegeradius.Visible = false;
+            }
+            else
+            {
+                combb_normrohr.Visible = false;
+                txtb_rohrdurchmesser.Visible = true;
+                txtb_wandstaerke.Visible = true;
+                txtb_biegeradius.Visible = true;
+            }
+            
         }
     }
 

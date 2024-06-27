@@ -762,6 +762,7 @@
             // 
             // combb_eigenschaften
             // 
+            combb_eigenschaften.AutoCompleteCustomSource.AddRange(new string[] { "Normbögen", "Biegeradius" });
             combb_eigenschaften.BackColor = SystemColors.Control;
             combb_eigenschaften.FormattingEnabled = true;
             combb_eigenschaften.Items.AddRange(new object[] { "Normbögen", "Biegeradius" });
@@ -770,6 +771,7 @@
             combb_eigenschaften.Name = "combb_eigenschaften";
             combb_eigenschaften.Size = new Size(116, 23);
             combb_eigenschaften.TabIndex = 29;
+            combb_eigenschaften.SelectedIndexChanged += combb_eigenschaften_SelectedIndexChanged;
             // 
             // label2
             // 
