@@ -240,7 +240,7 @@ namespace ROhr2
                 sweep.sketch3d();
                 sweep.sketch2d();
                 sweep.feature();
-                sweep.addPart();
+                //sweep.addPart();
             }
         }
 

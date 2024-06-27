@@ -16,8 +16,8 @@ namespace ROhr2
             _OpenRefFile();
 
             _GetFluidData();
-            //_GetNormrohreData();
-            //_GetWerkstoffData();
+            _GetNormrohreData();
+            _GetWerkstoffData();
 
             _CloseExcel();
         }
@@ -41,7 +41,7 @@ namespace ROhr2
         {
             //Creating Template from Resources and saving it to the temp folder 
 
-            byte[] templateFile = RohrleitungsGenerator.Properties.Resources.database;
+            byte[] templateFile = RohrleitungsGenerator.Properties.Resources.database2;
             string tempPath = $"{System.IO.Path.GetTempPath()}database.xlsx";
             using (MemoryStream ms = new MemoryStream(templateFile))
             {
@@ -73,7 +73,7 @@ namespace ROhr2
         private void _GetWerkstoffData()
         {
             int RowCount = _wsWerkstoff.UsedRange.Rows.Count;
-            int i = 3;
+            int i = 2;
 
             while (i < RowCount + 1)
             {
@@ -95,7 +95,7 @@ namespace ROhr2
         private void _GetFluidData()
         {
             int RowCount = _wsFluid.UsedRange.Rows.Count;
-            int i = 3;
+            int i = 2;
 
             while (i < RowCount + 1)
             {
@@ -118,21 +118,12 @@ namespace ROhr2
         private Worksheet _wsNormrohre, _wsWerkstoff, _wsFluid;
 
 
-        //unsicher ob hier rein
-       static void Rechnungen(string[] args)
+        
+       /* public double GetBwm(double Außenradius, double Wandstärke)//Tabellenbuch I Rundrohr
         {
-            Application app = new Application();
-            app.visible = true;
+            return FORMEL;
 
-            _OpenRefFile();
-
-            _wsWerkstoff.Range["G2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Biegemoemnt
-            _wsWerkstoff.Range["G3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
-            _wsWerkstoff.Range["H2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Torosionsmoment
-            _wsWerkstoff.Range["H3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
-            _wsWerkstoff.Range["I2"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";//Querschnittsfläche
-            _wsWerkstoff.Range["I3"].Formula = "=64*pi*(((außenradius)*2)^4-((innenradius)*2)^4)";
-        }
+        }*/
     }
 
     public class Normrohr
