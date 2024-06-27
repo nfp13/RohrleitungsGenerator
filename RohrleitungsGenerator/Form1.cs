@@ -33,7 +33,7 @@ namespace ROhr2
         Data data;
         GeneratePipeSystem solver;
         Sweep sweep;
-
+        Database database;
 
         Inventor.Application inventorApp;
 
@@ -52,6 +52,13 @@ namespace ROhr2
 
             InitializeComponent();
             InitializeUI("UIMode");
+
+            database = new Database();
+
+            combb_fluid.DataSource = database.Fluids;
+            combb_fluid.DisplayMember = "Name";
+            combb_fluid.ValueMember = "Dichte";
+
             TestPipeGen();
         }
 
