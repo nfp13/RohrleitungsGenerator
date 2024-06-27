@@ -287,23 +287,24 @@ namespace ROhr2
         {
             Object selectedItem1 = combb_eigenschaften.SelectedItem;
             string selected1 = selectedItem1.ToString();
-            
-            if ( selected1 == "Normbögen")
+
+            if (selected1 == "Normbögen")
             {
                 combb_normrohr.Enabled = true;
-                txtb_rohrdurchmesser.Enabled = false;
-                txtb_wandstaerke.Enabled = false;
-                txtb_biegeradius.Enabled = false;
+                txtb_rohrdurchmesser.ReadOnly = true;
+                txtb_wandstaerke.ReadOnly = true;
+                txtb_biegeradius.ReadOnly = true;
             }
             else
             {
                 combb_normrohr.Enabled = false;
-                txtb_rohrdurchmesser.Enabled = true;
-                txtb_wandstaerke.Enabled = true;
-                txtb_biegeradius.Enabled = true;
+                txtb_rohrdurchmesser.ReadOnly = false;
+                txtb_wandstaerke.ReadOnly = false;
+                txtb_biegeradius.ReadOnly = false;
             }
-            
+
         }
+
     }
 
 }

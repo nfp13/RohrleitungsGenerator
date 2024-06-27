@@ -668,7 +668,6 @@
             txtb_biegeradius.Location = new Point(419, 300);
             txtb_biegeradius.Margin = new Padding(4, 3, 4, 3);
             txtb_biegeradius.Name = "txtb_biegeradius";
-            txtb_biegeradius.ReadOnly = true;
             txtb_biegeradius.Size = new Size(116, 23);
             txtb_biegeradius.TabIndex = 39;
             // 
@@ -678,7 +677,6 @@
             txtb_wandstaerke.Location = new Point(419, 265);
             txtb_wandstaerke.Margin = new Padding(4, 3, 4, 3);
             txtb_wandstaerke.Name = "txtb_wandstaerke";
-            txtb_wandstaerke.ReadOnly = true;
             txtb_wandstaerke.Size = new Size(116, 23);
             txtb_wandstaerke.TabIndex = 38;
             // 
@@ -708,7 +706,6 @@
             txtb_rohrdurchmesser.Location = new Point(419, 235);
             txtb_rohrdurchmesser.Margin = new Padding(4, 3, 4, 3);
             txtb_rohrdurchmesser.Name = "txtb_rohrdurchmesser";
-            txtb_rohrdurchmesser.ReadOnly = true;
             txtb_rohrdurchmesser.Size = new Size(116, 23);
             txtb_rohrdurchmesser.TabIndex = 35;
             // 
