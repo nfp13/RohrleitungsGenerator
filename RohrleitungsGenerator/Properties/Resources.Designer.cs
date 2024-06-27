@@ -63,9 +63,9 @@ namespace RohrleitungsGenerator.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
         /// </summary>
-        internal static byte[] database {
+        internal static byte[] database2 {
             get {
-                object obj = ResourceManager.GetObject("database", resourceCulture);
+                object obj = ResourceManager.GetObject("database2", resourceCulture);
                 return ((byte[])(obj));
             }
         }
