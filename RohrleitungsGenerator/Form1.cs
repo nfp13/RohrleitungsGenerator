@@ -63,6 +63,10 @@ namespace ROhr2
             combb_material.DisplayMember = "Name";
             combb_material.ValueMember = "Dichte";
 
+            combb_normrohr.DataSource = database.Normrohre;
+            combb_normrohr.DisplayMember = "Außenradius";
+            combb_normrohr.ValueMember = "Außenradius";
+
             TestPipeGen();
         }
 
@@ -277,19 +281,24 @@ namespace ROhr2
 
         private void combb_eigenschaften_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (combb_eigenschaften.SelectedIndex == "Normrohr")
+            
+            Object selectedItem1 = combb_eigenschaften.SelectedItem;
+            string selected1 = selectedItem1.ToString();
+            
+            if ( selected1 == "Normbögen")
             {
-                combb_normrohr.Visible = true;
-                txtb_rohrdurchmesser.Visible = false;
-                txtb_wandstaerke.Visible = false;
-                txtb_biegeradius.Visible = false;
+                combb_normrohr.Enabled = true;
+                txtb_rohrdurchmesser.Enabled = false;
+                txtb_wandstaerke.Enabled = false;
+                txtb_biegeradius.Enabled = false;
+                MessageBox.Show(selected1);
             }
             else
             {
-                combb_normrohr.Visible = false;
-                txtb_rohrdurchmesser.Visible = true;
-                txtb_wandstaerke.Visible = true;
-                txtb_biegeradius.Visible = true;
+                combb_normrohr.Enabled = false;
+                txtb_rohrdurchmesser.Enabled = true;
+                txtb_wandstaerke.Enabled = true;
+                txtb_biegeradius.Enabled = true;
             }
             
         }

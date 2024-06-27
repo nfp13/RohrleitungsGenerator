@@ -765,7 +765,7 @@
             combb_eigenschaften.AutoCompleteCustomSource.AddRange(new string[] { "Normbögen", "Biegeradius" });
             combb_eigenschaften.BackColor = SystemColors.Control;
             combb_eigenschaften.FormattingEnabled = true;
-            combb_eigenschaften.Items.AddRange(new object[] { "Normbögen", "Biegeradius" });
+            combb_eigenschaften.Items.AddRange(new object[] { "Normbögen", "selbst definiert" });
             combb_eigenschaften.Location = new Point(419, 159);
             combb_eigenschaften.Margin = new Padding(4, 3, 4, 3);
             combb_eigenschaften.Name = "combb_eigenschaften";
