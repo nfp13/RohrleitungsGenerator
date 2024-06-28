@@ -766,6 +766,7 @@
             combb_normrohr.Name = "combb_normrohr";
             combb_normrohr.Size = new Size(116, 23);
             combb_normrohr.TabIndex = 30;
+            combb_normrohr.SelectedIndexChanged += combb_normrohr_SelectedIndexChanged;
             // 
             // combb_eigenschaften
             // 

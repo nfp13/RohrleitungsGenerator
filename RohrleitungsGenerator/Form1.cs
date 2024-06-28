@@ -257,7 +257,23 @@ namespace ROhr2
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
-            Pipe pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, 0.1, 0);
+                                //selfmade hier alle So nur Normbögen aus textbox
+                                double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
+                                double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
+            //mit Nikolas       //Selfmade
+            double Q = database.Querschnittsfläche(R, W);
+                                double Bwm = database.GetBwm(R, W);                         //kein plan was das bei Pipe pipe ist
+                                double Twm = database.GetTwm(R, W);                         //kein plan was das bei Pipe pipe ist
+            double B = Convert.ToDouble(txtb_biegeradius.Text);
+            double E = database.Werkstoffe[combb_material.SelectedIndex].Emodul;
+                                //Selfmade
+                                double KP1 = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
+                                double KP2 = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
+                                double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
+                                double KP4 = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
+                                double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;    
+
+            Pipe pipe = new Pipe(E, KP1, KP2, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, B, 0);
 
             Object selectedItem = combb_flansch1.SelectedItem;
             string selected = selectedItem.ToString();
@@ -304,6 +320,14 @@ namespace ROhr2
             }
 
         }
+
+        private void combb_normrohr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtb_biegeradius.Text = database.Normrohre[combb_normrohr.SelectedIndex].Biegeradius.ToString();
+            txtb_wandstaerke.Text = database.Normrohre[combb_normrohr.SelectedIndex].Wandstärke.ToString();
+            txtb_rohrdurchmesser.Text = database.Normrohre[combb_normrohr.SelectedIndex].Außenradius.ToString();
+        }
+
 
     }
 
