@@ -708,6 +708,7 @@
             txtb_rohrdurchmesser.Name = "txtb_rohrdurchmesser";
             txtb_rohrdurchmesser.Size = new Size(116, 23);
             txtb_rohrdurchmesser.TabIndex = 35;
+            txtb_rohrdurchmesser.KeyPress += txtb_rohrdurchmesser_KeyPress;
             // 
             // label6
             // 

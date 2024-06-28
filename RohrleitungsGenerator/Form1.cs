@@ -257,21 +257,21 @@ namespace ROhr2
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
-                                //selfmade hier alle So nur Normbögen aus textbox
-                                double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
-                                double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
+            //selfmade hier alle So nur Normbögen aus textbox
+            double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
+            double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
             //mit Nikolas       //Selfmade
             double Q = database.Querschnittsfläche(R, W);
-                                double Bwm = database.GetBwm(R, W);                         //kein plan was das bei Pipe pipe ist
-                                double Twm = database.GetTwm(R, W);                         //kein plan was das bei Pipe pipe ist
+            double Bwm = database.GetBwm(R, W);                         //kein plan was das bei Pipe pipe ist
+            double Twm = database.GetTwm(R, W);                         //kein plan was das bei Pipe pipe ist
             double B = Convert.ToDouble(txtb_biegeradius.Text);
             double E = database.Werkstoffe[combb_material.SelectedIndex].Emodul;
-                                //Selfmade
-                                double KP1 = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
-                                double KP2 = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
-                                double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
-                                double KP4 = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
-                                double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;    
+            //Selfmade
+            double KP1 = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
+            double KP2 = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
+            double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
+            double KP4 = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
+            double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;
 
             Pipe pipe = new Pipe(E, KP1, KP2, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, B, 0);
 
@@ -328,7 +328,20 @@ namespace ROhr2
             txtb_rohrdurchmesser.Text = database.Normrohre[combb_normrohr.SelectedIndex].Außenradius.ToString();
         }
 
+        private void txtb_rohrdurchmesser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (ch == 46 && txtb_rohrdurchmesser.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
 
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
     }
 
 }
