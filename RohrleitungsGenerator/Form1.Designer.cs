@@ -566,6 +566,7 @@
             txtb_druck.Name = "txtb_druck";
             txtb_druck.Size = new Size(116, 23);
             txtb_druck.TabIndex = 50;
+            txtb_druck.KeyPress += txtb_druck_KeyPress;
             // 
             // label14
             // 
@@ -607,6 +608,7 @@
             txtb_temperatur.Name = "txtb_temperatur";
             txtb_temperatur.Size = new Size(116, 23);
             txtb_temperatur.TabIndex = 46;
+            txtb_temperatur.KeyPress += txtb_temperatur_KeyPress;
             // 
             // combb_material
             // 
@@ -670,6 +672,7 @@
             txtb_biegeradius.Name = "txtb_biegeradius";
             txtb_biegeradius.Size = new Size(116, 23);
             txtb_biegeradius.TabIndex = 39;
+            txtb_biegeradius.KeyPress += txtb_biegeradius_KeyPress;
             // 
             // txtb_wandstaerke
             // 
@@ -679,6 +682,7 @@
             txtb_wandstaerke.Name = "txtb_wandstaerke";
             txtb_wandstaerke.Size = new Size(116, 23);
             txtb_wandstaerke.TabIndex = 38;
+            txtb_wandstaerke.KeyPress += txtb_wandstaerke_KeyPress;
             // 
             // label28
             // 
