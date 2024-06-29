@@ -18,17 +18,15 @@ namespace ROhr2
             _status = status;
             _filePath = filePath;
             _inventorApp = inventorApp;
+            _data = data;
 
             _status.Name = "Opening Assembly";
             _status.OnProgess();
 
-            //Opening the PCB assembly Document
+            //Opening the assembly Document
 
             _assemblyDocument = _inventorApp.Documents.Open(_filePath, true) as AssemblyDocument;
             _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
-
-            _data = data;
-
 
             _status.Name = "Done";
             _status.OnProgess();
@@ -56,6 +54,7 @@ namespace ROhr2
             _status.Name = "Done";
             _status.OnProgess();
 
+            //Adding all occurences to a seccond list
             Hindernisse.AddRange(Parts);
 
         }
@@ -66,6 +65,8 @@ namespace ROhr2
         {
             _status.Name = "Analyzing";
             _status.OnProgess();
+
+            //Getting hight, lenght and width of the imported Hall
 
             Box box = _assemblyComponentDefinition.RangeBox;
 
@@ -130,6 +131,8 @@ namespace ROhr2
 
         public void GenerateCuboids()
         {
+            //Genereting Cuboids for each occurence in the Hindernisse List
+
             foreach (ComponentOccurrence occ in _assemblyComponentDefinition.Occurrences)
             {
                 if (Hindernisse.Contains(occ.Name))
@@ -146,6 +149,7 @@ namespace ROhr2
 
         public Connection.Flange getFlangeFromPartName(string FlangeName)
         {
+            //Analyzing all Flanges to get a startpoint and a direction vector
 
             Hindernisse.Remove(FlangeName);
             PartDocument part;
@@ -156,14 +160,13 @@ namespace ROhr2
             {
                 if (FlangeName == occ.Name)
                 {
-                    //MessageBox.Show(occ.Name);
-
                     part = (PartDocument)occ.Definition.Document;
                     WorkPoint wp1 = part.ComponentDefinition.WorkPoints["Arbeitspunkt1"];
                     WorkPoint wp2 = part.ComponentDefinition.WorkPoints["Arbeitspunkt2"];
 
+                    //Inverting Matrix for the Global Coordinate system
+
                     Inventor.Matrix matrix = occ.Transformation;
-                    //matrix.Invert();
                     Inventor.Point origin = wp1.Point;
                     origin.TransformBy(matrix);
                     Inventor.Vector dir = wp1.Point.VectorTo(wp2.Point);
@@ -171,22 +174,15 @@ namespace ROhr2
 
                     originV3 = Vector3.Multiply(new Vector3((float)origin.X, (float)origin.Z, (float)origin.Y), (float)0.01);
                     dirV3 = Vector3.Multiply(new Vector3((float)dir.X, (float)dir.Z, (float)dir.Y), (float)0.01);
-
-                    //y und z vertauscht
-                    //MessageBox.Show(origin.X.ToString() + "    " + origin.Z.ToString() + "    " + origin.Y.ToString() + "\n" + dir.X.ToString() + "    " + dir.Z.ToString() + "    " + dir.Y.ToString());
                 }
             }
 
             Connection.Flange flange = new Connection.Flange(originV3, dirV3);
 
-            //MessageBox.Show(FlangeName);
             Hindernisse.Remove(FlangeName);
             Flange.Add(FlangeName);
             return flange;
         }
-
-
-
 
         private Inventor.Application _inventorApp;
         private string _filePath;
@@ -199,18 +195,7 @@ namespace ROhr2
         public List<string> Hindernisse = new List<string>();
         public List<string> Flange = new List<string>();
 
-        public double HallW, HallL, HallH;                       //Grundmaße der Platine
-        public double CompHeightTop, CompHeightBottom;              //Höhe der Komponenten auf der Platine
-        public double HoleDia, CornerRadius = 0;                    //Durchmesser der Bohrungslöcher und Rundungsradius der Platine
-        private double _XOM, _YOM, _ZOM;                            //Coordinates of centerpoint of Board
-
-        private Inventor.Point _MinPointHall;
-        private Inventor.Point _MaxPointHall;
-        private Inventor.Point _MinPointGes;
-        private Inventor.Point _MaxPointGes;
-
-        //public List<CutOut> CutOuts = new List<CutOut>();
-
+        public double HallW, HallL, HallH;
         private Status _status;
         private Data _data;
     }
