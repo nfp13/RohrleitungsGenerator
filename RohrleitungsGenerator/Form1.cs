@@ -330,14 +330,13 @@ namespace ROhr2
 
         private void txtb_rohrdurchmesser_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (ch == 46 && txtb_rohrdurchmesser.Text.IndexOf('.') != -1)
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
-                return;
             }
 
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
@@ -346,14 +345,12 @@ namespace ROhr2
 
         private void txtb_wandstaerke_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (ch == 46 && txtb_wandstaerke.Text.IndexOf('.') != -1)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
-                return;
             }
 
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
@@ -361,14 +358,12 @@ namespace ROhr2
 
         private void txtb_biegeradius_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (ch == 46 && txtb_biegeradius.Text.IndexOf('.') != -1)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
-                return;
             }
 
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
@@ -376,14 +371,12 @@ namespace ROhr2
 
         private void txtb_druck_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (ch == 46 && txtb_druck.Text.IndexOf('.') != -1)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
-                return;
             }
 
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
@@ -391,14 +384,12 @@ namespace ROhr2
 
         private void txtb_temperatur_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char ch = e.KeyChar;
-            if (ch == 46 && txtb_temperatur.Text.IndexOf('.') != -1)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
-                return;
             }
 
-            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
