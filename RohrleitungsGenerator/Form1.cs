@@ -250,11 +250,6 @@ namespace ROhr2
 
         private void btn_weiter_Click(object sender, EventArgs e)
         {
-            analyze.GenerateCuboids();
-            foreach (Cuboid cube in data.Cuboids)
-            {
-                MessageBox.Show(cube.ToString());
-            }
 
             if (index < listPanel.Count - 1)
                 listPanel[++index].BringToFront();
