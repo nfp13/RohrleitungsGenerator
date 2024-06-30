@@ -12,6 +12,7 @@ using Microsoft.SqlServer.Server;
 using System.Xml;
 using System.Linq;
 using System.IO;
+using System.Text.RegularExpressions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Net.NetworkInformation;
 using Microsoft.Office.Interop.Excel;
@@ -70,6 +71,8 @@ namespace ROhr2
             combb_normrohr.ValueMember = "Außenradius";
 
             combb_eigenschaften.SelectedIndex = 0;
+
+            btn_zurueck.Enabled = false;
 
             TestPipeGen();
         }
@@ -252,26 +255,29 @@ namespace ROhr2
             {
                 MessageBox.Show(cube.ToString());
             }
+
+            if (index < listPanel.Count - 1)
+                listPanel[++index].BringToFront();
         }
 
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
-            
+
             double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
             double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
             double B = Convert.ToDouble(txtb_biegeradius.Text);         //Biegeradius
             double dT = Convert.ToDouble(txtb_temperatur.Text);
-            
+
             double Q = database.Querschnittsfläche(R, W);               //Querschnittsfläche
             double Bwm = database.GetBwm(R, W);                         //Biegewiderstandsmoment
             double Twm = database.GetTwm(R, W);                         //Torsionswiderstand moment 
-            
+
             double E = database.Werkstoffe[combb_material.SelectedIndex].Emodul;
             double at = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
             double Rm = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
             double G = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
-            
+
             //Die Werden glaube nicht benötigt, ABER GEFÄLLE und FLÄCHENLAST fehlen
             //double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;
             //double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
@@ -396,6 +402,20 @@ namespace ROhr2
             {
                 e.Handled = true;
             }
+        }
+
+        private void btn_zurueck_Click(object sender, EventArgs e)
+        {
+            if (index > 0)
+                listPanel[--index].BringToFront();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            listPanel.Add(panel1);
+            listPanel.Add(panel2);
+            listPanel.Add(panel3);
+            listPanel[index].BringToFront();
         }
     }
 
