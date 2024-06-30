@@ -38,10 +38,10 @@ namespace ROhr2
         {
 
             Vector3 p = Vector3.Multiply(_con.Path[0], 100);
-            _wp = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p.X, p.Y, p.Z));
+            _wp = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p.X, p.Z, p.Y));
 
             Vector3 p1 = Vector3.Multiply(_con.Path[1], 100);
-            WorkPoint wp1 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p1.X, p1.Y, p1.Z));
+            WorkPoint wp1 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p1.X, p1.Z, p1.Y));
 
             _sketch3D = _partComponentDefinition.Sketches3D.Add();
 
@@ -50,7 +50,7 @@ namespace ROhr2
             for (int i = 2; i < _con.Path.Count; i++)
             {
                 Vector3 p2 = Vector3.Multiply(_con.Path[i], 100); ;
-                WorkPoint wp2 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p2.X, p2.Y, p2.Z));
+                WorkPoint wp2 = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p2.X, p2.Z, p2.Y));
                 _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_lines[i-2].EndPoint, wp2, true, _con.pipe.B * 100));
             }
         }
@@ -98,6 +98,12 @@ namespace ROhr2
             //Move 
             Inventor.Vector trans = _inventorApp.TransientGeometry.CreateVector(0, 0, 0);
             positionMatrix.SetTranslation(trans);
+
+            /*Inventor.Vector rot1 = _inventorApp.TransientGeometry.CreateVector(1, 1, 1);
+            Inventor.Vector rot2 = _inventorApp.TransientGeometry.CreateVector(-1, -1, -1);
+            positionMatrix.SetToRotateTo(rot1, rot2);*/
+
+
 
             //Place
             ComponentOccurrence rohr = _assemblyDocument.ComponentDefinition.Occurrences.Add(speichern.getPathRohr(), positionMatrix);
