@@ -72,6 +72,8 @@ namespace ROhr2
 
             combb_eigenschaften.SelectedIndex = 0;
 
+            combb_verbindung.DataSource = data.Connections;
+
             btn_zurueck.Enabled = false;
 
             TestPipeGen();
@@ -104,7 +106,7 @@ namespace ROhr2
 
         private void PipesGenerated(object sender, EventArgs e)     //will be triggert when the PipeSystem is generated
         {
-            foreach (Connection con in solver.Finished)
+            foreach (Connection con in data.Connections)
             {
                 sweep = new Sweep(inventorApp, FilePath, status, con);
                 sweep.sketch3d();
@@ -253,6 +255,18 @@ namespace ROhr2
 
             if (index < listPanel.Count - 1)
                 listPanel[++index].BringToFront();
+
+            MessageBox.Show(index.ToString());
+
+            if (index == 2)
+            {
+                analyze.GenerateCuboids();
+
+                data.SetMinSize();
+
+                solver.Solve();
+            }
+
         }
 
 
@@ -262,7 +276,7 @@ namespace ROhr2
             double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
             double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
             double B = Convert.ToDouble(txtb_biegeradius.Text);         //Biegeradius
-            double dT = Convert.ToDouble(txtb_temperatur.Text);
+            //double dT = Convert.ToDouble(txtb_temperatur.Text);
 
             double Q = database.Querschnittsfläche(R, W);               //Querschnittsfläche
             double Bwm = database.GetBwm(R, W);                         //Biegewiderstandsmoment
@@ -277,7 +291,7 @@ namespace ROhr2
             //double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;
             //double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
 
-            Pipe pipe = new Pipe(E, at, Bwm, Twm, Q, dT, G, 0.5, Rm, R, W, B, 0);
+            Pipe pipe = new Pipe(E, at, Bwm, Twm, Q, 0, G, 0.5, Rm, R, W, B, 0);
 
             Object selectedItem = combb_flansch1.SelectedItem;
             string selected = selectedItem.ToString();
@@ -289,13 +303,6 @@ namespace ROhr2
 
             Connection connection1 = new Connection(flange1, flange2, pipe);
             data.Connections.Add(connection1);
-
-            analyze.GenerateCuboids();
-
-            data.SetMinSize();
-
-            solver.Solve();
-
         }
 
         private void btn_exportieren_Click(object sender, EventArgs e)
