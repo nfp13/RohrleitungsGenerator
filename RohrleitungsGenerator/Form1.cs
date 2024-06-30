@@ -257,23 +257,26 @@ namespace ROhr2
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
-            //selfmade hier alle So nur Normbögen aus textbox
+            
             double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
             double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
-            //mit Nikolas       //Selfmade
-            double Q = database.Querschnittsfläche(R, W);
-            double Bwm = database.GetBwm(R, W);                         //kein plan was das bei Pipe pipe ist
-            double Twm = database.GetTwm(R, W);                         //kein plan was das bei Pipe pipe ist
-            double B = Convert.ToDouble(txtb_biegeradius.Text);
+            double B = Convert.ToDouble(txtb_biegeradius.Text);         //Biegeradius
+            double dT = Convert.ToDouble(txtb_temperatur.Text);
+            
+            double Q = database.Querschnittsfläche(R, W);               //Querschnittsfläche
+            double Bwm = database.GetBwm(R, W);                         //Biegewiderstandsmoment
+            double Twm = database.GetTwm(R, W);                         //Torsionswiderstand moment 
+            
             double E = database.Werkstoffe[combb_material.SelectedIndex].Emodul;
-            //Selfmade
-            double KP1 = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
-            double KP2 = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
-            double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
-            double KP4 = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
-            double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;
+            double at = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
+            double Rm = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
+            double G = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
+            
+            //Die Werden glaube nicht benötigt, ABER GEFÄLLE und FLÄCHENLAST fehlen
+            //double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;
+            //double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
 
-            Pipe pipe = new Pipe(E, KP1, KP2, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, B, 0);
+            Pipe pipe = new Pipe(E, at, Bwm, Twm, Q, dT, G, 0.5, Rm, R, W, B, 0);
 
             Object selectedItem = combb_flansch1.SelectedItem;
             string selected = selectedItem.ToString();
