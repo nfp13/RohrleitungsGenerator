@@ -12,21 +12,19 @@ namespace ROhr2
 
         public Sweep(Inventor.Application inventorApp, string filePath, Status status, Connection con)
         {
+            //Setting private variables
             _status = status;
             _inventorApp = inventorApp;
             _con = con;
             _filePath = filePath;
-
-
             speichern = new Speichern(status);
-
             _status.Name = "Opening Assembly";
             _status.OnProgess();
 
+            //Opening the assembly and part Document
             _partDocument = _inventorApp.Documents.Add(DocumentTypeEnum.kPartDocumentObject, _inventorApp.GetTemplateFile(DocumentTypeEnum.kPartDocumentObject)) as PartDocument;
             _partComponentDefinition = _partDocument.ComponentDefinition ;
             _transientGeometry = inventorApp.TransientGeometry;
-
             _assemblyDocument = _inventorApp.Documents.Open(_filePath, true) as AssemblyDocument;
             _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
 
@@ -36,7 +34,7 @@ namespace ROhr2
 
         public void sketch3d()
         {
-
+            //Draw 3D sketch by creating points
             Vector3 p = Vector3.Multiply(_con.Path[0], 100);
             _wp = _partComponentDefinition.WorkPoints.AddFixed(_transientGeometry.CreatePoint(p.X, p.Z, p.Y));
 
@@ -45,8 +43,8 @@ namespace ROhr2
 
             _sketch3D = _partComponentDefinition.Sketches3D.Add();
 
+            //connect points to 3D line
             _lines.Add(_sketch3D.SketchLines3D.AddByTwoPoints(_wp, wp1, true, _con.pipe.B *100));
-
             for (int i = 2; i < _con.Path.Count; i++)
             {
                 Vector3 p2 = Vector3.Multiply(_con.Path[i], 100); ;
@@ -57,10 +55,13 @@ namespace ROhr2
 
         public void sketch2d()
         {
+            //drawing 2D sketch of the pipe cross-section
             _workPlane = _partComponentDefinition.WorkPlanes.AddByNormalToCurve(_lines[0], _wp);
             _sketch2D = _partComponentDefinition.Sketches.Add(_workPlane);
             _origin = _sketch2D.ModelToSketchSpace(_transientGeometry.CreatePoint(0, 0, 0));
             _sketch2D.OriginPoint = _wp;
+
+            //drawing two circles to get a donat
             SketchCircle circ1 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0,0), _con.pipe.R * 100);
             SketchCircle circ2 = _sketch2D.SketchCircles.AddByCenterRadius(_transientGeometry.CreatePoint2d(0, 0), _con.pipe.R * 100 - _con.pipe.W * 100);
             _profile = _sketch2D.Profiles.AddForSolid();
@@ -76,6 +77,7 @@ namespace ROhr2
 
         public void feature()
         {
+            //using the 3D and 2D sketch to sweep
             _path = _partComponentDefinition.Features.CreatePath(_lines[0]);
             _sweep = _partComponentDefinition.Features.SweepFeatures.AddUsingPath(_profile, _path, Inventor.PartFeatureOperationEnum.kJoinOperation);
 
@@ -98,12 +100,6 @@ namespace ROhr2
             //Move 
             Inventor.Vector trans = _inventorApp.TransientGeometry.CreateVector(0, 0, 0);
             positionMatrix.SetTranslation(trans);
-
-            /*Inventor.Vector rot1 = _inventorApp.TransientGeometry.CreateVector(1, 1, 1);
-            Inventor.Vector rot2 = _inventorApp.TransientGeometry.CreateVector(-1, -1, -1);
-            positionMatrix.SetToRotateTo(rot1, rot2);*/
-
-
 
             //Place
             ComponentOccurrence rohr = _assemblyDocument.ComponentDefinition.Occurrences.Add(speichern.getPathRohr(), positionMatrix);

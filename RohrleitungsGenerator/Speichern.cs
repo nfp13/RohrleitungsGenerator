@@ -30,12 +30,6 @@ namespace ROhr2
             _pathRohr = Path.Combine(paths);
             return _pathRohr;
         }
-        public string getPathUnten()
-        {
-            string[] paths = { _tempPath, "UntereGehäusehälfte.ipt" };
-            _pathUnten = Path.Combine(paths);
-            return _pathUnten;
-        }
         public string getPathBaugruppe()
         {
             string[] paths = { _tempPath, "Gesamt.iam" };
@@ -67,7 +61,6 @@ namespace ROhr2
         public void deleteFiles()
         {
             File.Delete(getPathRohr());
-            File.Delete(getPathUnten());
             File.Delete(getPathBaugruppe());
             _tempPath = "";
             _pathRohr = "";

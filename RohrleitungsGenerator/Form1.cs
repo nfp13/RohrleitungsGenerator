@@ -55,6 +55,8 @@ namespace ROhr2
 
             database = new Database();
 
+
+            //Rund um die Comboboxen
             combb_fluid.DataSource = database.Fluids;
             combb_fluid.DisplayMember = "Name";
             combb_fluid.ValueMember = "Dichte";
@@ -62,6 +64,12 @@ namespace ROhr2
             combb_material.DataSource = database.Werkstoffe;
             combb_material.DisplayMember = "Name";
             combb_material.ValueMember = "Dichte";
+
+            combb_normrohr.DataSource = database.Normrohre;
+            combb_normrohr.DisplayMember = "Außenradius";
+            combb_normrohr.ValueMember = "Außenradius";
+
+            combb_eigenschaften.SelectedIndex = 0;
 
             TestPipeGen();
         }
@@ -249,7 +257,23 @@ namespace ROhr2
 
         private void btn_anwendung_Click(object sender, EventArgs e)
         {
-            Pipe pipe = new Pipe(200000000000, 0.000012, 0.00001943, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, 0.1, 0);
+            //selfmade hier alle So nur Normbögen aus textbox
+            double R = Convert.ToDouble(txtb_rohrdurchmesser.Text);     //Außenradius
+            double W = Convert.ToDouble(txtb_wandstaerke.Text);         //Wandstärke
+            //mit Nikolas       //Selfmade
+            double Q = database.Querschnittsfläche(R, W);
+            double Bwm = database.GetBwm(R, W);                         //kein plan was das bei Pipe pipe ist
+            double Twm = database.GetTwm(R, W);                         //kein plan was das bei Pipe pipe ist
+            double B = Convert.ToDouble(txtb_biegeradius.Text);
+            double E = database.Werkstoffe[combb_material.SelectedIndex].Emodul;
+            //Selfmade
+            double KP1 = database.Werkstoffe[combb_material.SelectedIndex].Wärmeausdehnung;
+            double KP2 = database.Werkstoffe[combb_material.SelectedIndex].Mindestzugfestigkeit;
+            double KP3 = database.Werkstoffe[combb_material.SelectedIndex].Dichte;
+            double KP4 = database.Werkstoffe[combb_material.SelectedIndex].Schubmodul;
+            double KP5 = database.Fluids[combb_fluid.SelectedIndex].Dichte;
+
+            Pipe pipe = new Pipe(E, KP1, KP2, 0.00001943, 0.0001, 10, 200000000000, 0.5, 235000000, 0.1, 0.05, B, 0);
 
             Object selectedItem = combb_flansch1.SelectedItem;
             string selected = selectedItem.ToString();
@@ -277,21 +301,98 @@ namespace ROhr2
 
         private void combb_eigenschaften_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (combb_eigenschaften.SelectedIndex == "Normrohr")
+            Object selectedItem1 = combb_eigenschaften.SelectedItem;
+            string selected1 = selectedItem1.ToString();
+
+            if (selected1 == "Normbögen")
             {
-                combb_normrohr.Visible = true;
-                txtb_rohrdurchmesser.Visible = false;
-                txtb_wandstaerke.Visible = false;
-                txtb_biegeradius.Visible = false;
+                combb_normrohr.Enabled = true;
+                txtb_rohrdurchmesser.ReadOnly = true;
+                txtb_wandstaerke.ReadOnly = true;
+                txtb_biegeradius.ReadOnly = true;
             }
             else
             {
-                combb_normrohr.Visible = false;
-                txtb_rohrdurchmesser.Visible = true;
-                txtb_wandstaerke.Visible = true;
-                txtb_biegeradius.Visible = true;
+                combb_normrohr.Enabled = false;
+                txtb_rohrdurchmesser.ReadOnly = false;
+                txtb_wandstaerke.ReadOnly = false;
+                txtb_biegeradius.ReadOnly = false;
             }
-            
+
+        }
+
+        private void combb_normrohr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtb_biegeradius.Text = database.Normrohre[combb_normrohr.SelectedIndex].Biegeradius.ToString();
+            txtb_wandstaerke.Text = database.Normrohre[combb_normrohr.SelectedIndex].Wandstärke.ToString();
+            txtb_rohrdurchmesser.Text = database.Normrohre[combb_normrohr.SelectedIndex].Außenradius.ToString();
+        }
+
+        private void txtb_rohrdurchmesser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtb_wandstaerke_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtb_biegeradius_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtb_druck_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtb_temperatur_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 

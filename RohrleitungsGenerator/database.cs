@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
+using static System.Windows.Forms.DataFormats;
 
 
 namespace ROhr2
@@ -115,12 +116,24 @@ namespace ROhr2
         private Worksheet _wsNormrohre, _wsWerkstoff, _wsFluid;
 
 
-        
-       /* public double GetBwm(double Außenradius, double Wandstärke)//Tabellenbuch I Rundrohr
-        {
-            return FORMEL;
 
-        }*/
+        public double GetBwm(double Außenradius, double Wandstärke)//Tabellenbuch Rundrohr
+        {
+            double Außendurchmesser = 2*Außenradius;
+            double Innendurchmesser = Außendurchmesser - 2*Wandstärke;
+            return (((Math.Pow(Außendurchmesser,4)-Math.Pow(Innendurchmesser,4))*Math.PI))/64;
+        }
+        public double GetTwm(double Außenradius, double Wandstärke)//Tabellenbuch Rundrohr
+        {
+            double Außendurchmesser = 2 * Außenradius;
+            double Innendurchmesser = Außendurchmesser - 2 * Wandstärke;
+            return (((Math.Pow(Außendurchmesser, 4) - Math.Pow(Innendurchmesser, 4)) * Math.PI)) / (16*Außendurchmesser);
+        }
+        public double Querschnittsfläche(double Außenradius, double Wandstärke)//Tabellenbuch Rundrohr
+        {
+            double Innenradius = Außenradius -  Wandstärke;
+            return (Math.PI * (Math.Pow(Außenradius, 2) - Math.Pow(Innenradius, 2)));
+        }
     }
 
     public class Normrohr
@@ -146,18 +159,13 @@ namespace ROhr2
             Dichte = dichte;
             Schubmodul = schubmodul;
             Name = name;
-            //Biegemoment = biegemoment;
-            //Torosionsmoment = torosionsmoment:
-            //Querschnittsfläche = Querschnittsfläche;
         }
+
         public double Emodul { get; set; }
         public double Wärmeausdehnung { get; set; }
         public double Mindestzugfestigkeit { get; set; }
         public double Dichte { get; set; }
         public double Schubmodul { get; set; }
-        //public double Biegemoment { get; set; };
-        //public double Torosionsmoment { get; set; };
-        //public double Querschnittsfläche { get; set; };
         public string Name { get; set; }
     }
 
