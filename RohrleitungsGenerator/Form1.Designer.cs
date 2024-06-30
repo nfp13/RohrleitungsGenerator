@@ -119,7 +119,7 @@
             panel1.Controls.Add(label15);
             panel1.Controls.Add(lblueberschrift1);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(14, 2);
+            panel1.Location = new Point(10, 10);
             panel1.Margin = new Padding(4, 3, 4, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(817, 415);
@@ -270,7 +270,7 @@
             pnlleiste.Controls.Add(btn_changemode);
             pnlleiste.Controls.Add(btn_weiter);
             pnlleiste.Controls.Add(btn_zurueck);
-            pnlleiste.Location = new Point(14, 418);
+            pnlleiste.Location = new Point(10, 420);
             pnlleiste.Margin = new Padding(4, 3, 4, 3);
             pnlleiste.Name = "pnlleiste";
             pnlleiste.Size = new Size(817, 46);
@@ -331,6 +331,7 @@
             btn_zurueck.TabIndex = 15;
             btn_zurueck.Text = "zurück";
             btn_zurueck.UseVisualStyleBackColor = true;
+            btn_zurueck.Click += btn_zurueck_Click;
             // 
             // panel3
             // 
@@ -344,7 +345,7 @@
             panel3.Controls.Add(label22);
             panel3.Controls.Add(label23);
             panel3.Controls.Add(label33);
-            panel3.Location = new Point(838, 425);
+            panel3.Location = new Point(835, 436);
             panel3.Margin = new Padding(4, 3, 4, 3);
             panel3.Name = "panel3";
             panel3.Size = new Size(817, 415);
@@ -494,7 +495,7 @@
             panel2.Controls.Add(label31);
             panel2.Controls.Add(label32);
             panel2.Controls.Add(label11);
-            panel2.Location = new Point(838, 2);
+            panel2.Location = new Point(835, 12);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(817, 415);
@@ -864,6 +865,7 @@
             Name = "Form1";
             Text = "Form1";
             FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
             Shown += Form1_Shown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
