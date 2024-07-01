@@ -61,11 +61,7 @@
             label23 = new Label();
             label33 = new Label();
             panel2 = new Panel();
-            btn_verbindungentf = new Button();
-            btn_verbindunghinzu = new Button();
             btn_anwendung = new Button();
-            btn_supports = new Button();
-            label24 = new Label();
             txtb_druck = new TextBox();
             label14 = new Label();
             combb_fluid = new ComboBox();
@@ -463,11 +459,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(btn_verbindungentf);
-            panel2.Controls.Add(btn_verbindunghinzu);
             panel2.Controls.Add(btn_anwendung);
-            panel2.Controls.Add(btn_supports);
-            panel2.Controls.Add(label24);
             panel2.Controls.Add(txtb_druck);
             panel2.Controls.Add(label14);
             panel2.Controls.Add(combb_fluid);
@@ -501,68 +493,23 @@
             panel2.Size = new Size(817, 415);
             panel2.TabIndex = 27;
             // 
-            // btn_verbindungentf
-            // 
-            btn_verbindungentf.AutoSize = true;
-            btn_verbindungentf.FlatStyle = FlatStyle.Flat;
-            btn_verbindungentf.Location = new Point(217, 71);
-            btn_verbindungentf.Margin = new Padding(4, 3, 4, 3);
-            btn_verbindungentf.Name = "btn_verbindungentf";
-            btn_verbindungentf.Size = new Size(156, 31);
-            btn_verbindungentf.TabIndex = 55;
-            btn_verbindungentf.Text = "Verbindung entfernen";
-            btn_verbindungentf.UseVisualStyleBackColor = true;
-            // 
-            // btn_verbindunghinzu
-            // 
-            btn_verbindunghinzu.AutoSize = true;
-            btn_verbindunghinzu.FlatStyle = FlatStyle.Flat;
-            btn_verbindunghinzu.Location = new Point(38, 73);
-            btn_verbindunghinzu.Margin = new Padding(4, 3, 4, 3);
-            btn_verbindunghinzu.Name = "btn_verbindunghinzu";
-            btn_verbindunghinzu.Size = new Size(167, 31);
-            btn_verbindunghinzu.TabIndex = 54;
-            btn_verbindunghinzu.Text = "Verbindung hinzufügen";
-            btn_verbindunghinzu.UseVisualStyleBackColor = true;
-            // 
             // btn_anwendung
             // 
             btn_anwendung.AutoSize = true;
             btn_anwendung.FlatStyle = FlatStyle.Flat;
-            btn_anwendung.Location = new Point(76, 293);
+            btn_anwendung.Location = new Point(35, 310);
             btn_anwendung.Margin = new Padding(4, 3, 4, 3);
             btn_anwendung.Name = "btn_anwendung";
             btn_anwendung.Size = new Size(146, 31);
             btn_anwendung.TabIndex = 53;
-            btn_anwendung.Text = "Anwendung";
+            btn_anwendung.Text = "Verbindung erstellen";
             btn_anwendung.UseVisualStyleBackColor = true;
             btn_anwendung.Click += btn_anwendung_Click;
-            // 
-            // btn_supports
-            // 
-            btn_supports.AutoSize = true;
-            btn_supports.FlatStyle = FlatStyle.Flat;
-            btn_supports.Location = new Point(192, 257);
-            btn_supports.Margin = new Padding(4, 3, 4, 3);
-            btn_supports.Name = "btn_supports";
-            btn_supports.Size = new Size(29, 29);
-            btn_supports.TabIndex = 52;
-            btn_supports.UseVisualStyleBackColor = true;
-            // 
-            // label24
-            // 
-            label24.AutoSize = true;
-            label24.Location = new Point(41, 263);
-            label24.Margin = new Padding(4, 0, 4, 0);
-            label24.Name = "label24";
-            label24.Size = new Size(107, 15);
-            label24.TabIndex = 51;
-            label24.Text = "Supports einfügen:";
             // 
             // txtb_druck
             // 
             txtb_druck.BackColor = SystemColors.Control;
-            txtb_druck.Location = new Point(679, 269);
+            txtb_druck.Location = new Point(665, 260);
             txtb_druck.Margin = new Padding(4, 3, 4, 3);
             txtb_druck.Name = "txtb_druck";
             txtb_druck.Size = new Size(116, 23);
@@ -572,7 +519,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(582, 272);
+            label14.Location = new Point(570, 265);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
             label14.Size = new Size(41, 15);
@@ -585,7 +532,7 @@
             combb_fluid.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_fluid.FormattingEnabled = true;
             combb_fluid.Items.AddRange(new object[] { "Gas", "Wasser", "Öl" });
-            combb_fluid.Location = new Point(679, 197);
+            combb_fluid.Location = new Point(665, 140);
             combb_fluid.Margin = new Padding(4, 3, 4, 3);
             combb_fluid.Name = "combb_fluid";
             combb_fluid.Size = new Size(116, 23);
@@ -594,7 +541,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(590, 203);
+            label13.Location = new Point(570, 145);
             label13.Margin = new Padding(4, 0, 4, 0);
             label13.Name = "label13";
             label13.Size = new Size(36, 15);
@@ -604,7 +551,7 @@
             // txtb_temperatur
             // 
             txtb_temperatur.BackColor = SystemColors.Control;
-            txtb_temperatur.Location = new Point(679, 299);
+            txtb_temperatur.Location = new Point(665, 310);
             txtb_temperatur.Margin = new Padding(4, 3, 4, 3);
             txtb_temperatur.Name = "txtb_temperatur";
             txtb_temperatur.Size = new Size(116, 23);
@@ -617,7 +564,7 @@
             combb_material.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_material.FormattingEnabled = true;
             combb_material.Items.AddRange(new object[] { "Stahllegierung", "Polycarbonat" });
-            combb_material.Location = new Point(679, 159);
+            combb_material.Location = new Point(665, 80);
             combb_material.Margin = new Padding(4, 3, 4, 3);
             combb_material.Name = "combb_material";
             combb_material.Size = new Size(116, 23);
@@ -626,7 +573,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(590, 171);
+            label12.Location = new Point(570, 85);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
             label12.Size = new Size(53, 15);
@@ -636,12 +583,12 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(554, 302);
+            label8.Location = new Point(570, 315);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(119, 15);
+            label8.Size = new Size(90, 15);
             label8.TabIndex = 42;
-            label8.Text = "Temperatur differenz:";
+            label8.Text = "Temperatur dif.:";
             // 
             // combb_gefaelle
             // 
@@ -649,7 +596,7 @@
             combb_gefaelle.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_gefaelle.FormattingEnabled = true;
             combb_gefaelle.Items.AddRange(new object[] { "Egal", "1%", "3%", "5%" });
-            combb_gefaelle.Location = new Point(679, 233);
+            combb_gefaelle.Location = new Point(665, 200);
             combb_gefaelle.Margin = new Padding(4, 3, 4, 3);
             combb_gefaelle.Name = "combb_gefaelle";
             combb_gefaelle.Size = new Size(116, 23);
@@ -658,7 +605,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(586, 242);
+            label7.Location = new Point(570, 205);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(46, 15);
@@ -668,7 +615,7 @@
             // txtb_biegeradius
             // 
             txtb_biegeradius.BackColor = SystemColors.Control;
-            txtb_biegeradius.Location = new Point(419, 300);
+            txtb_biegeradius.Location = new Point(405, 310);
             txtb_biegeradius.Margin = new Padding(4, 3, 4, 3);
             txtb_biegeradius.MaxLength = 7;
             txtb_biegeradius.Name = "txtb_biegeradius";
@@ -679,7 +626,7 @@
             // txtb_wandstaerke
             // 
             txtb_wandstaerke.BackColor = SystemColors.Control;
-            txtb_wandstaerke.Location = new Point(419, 265);
+            txtb_wandstaerke.Location = new Point(405, 260);
             txtb_wandstaerke.Margin = new Padding(4, 3, 4, 3);
             txtb_wandstaerke.MaxLength = 7;
             txtb_wandstaerke.Name = "txtb_wandstaerke";
@@ -690,7 +637,7 @@
             // label28
             // 
             label28.AutoSize = true;
-            label28.Location = new Point(289, 303);
+            label28.Location = new Point(280, 315);
             label28.Margin = new Padding(4, 0, 4, 0);
             label28.Name = "label28";
             label28.Size = new Size(71, 15);
@@ -700,7 +647,7 @@
             // label27
             // 
             label27.AutoSize = true;
-            label27.Location = new Point(289, 269);
+            label27.Location = new Point(280, 265);
             label27.Margin = new Padding(4, 0, 4, 0);
             label27.Name = "label27";
             label27.Size = new Size(72, 15);
@@ -710,7 +657,7 @@
             // txtb_rohrdurchmesser
             // 
             txtb_rohrdurchmesser.BackColor = SystemColors.Control;
-            txtb_rohrdurchmesser.Location = new Point(419, 235);
+            txtb_rohrdurchmesser.Location = new Point(405, 200);
             txtb_rohrdurchmesser.Margin = new Padding(4, 3, 4, 3);
             txtb_rohrdurchmesser.MaxLength = 7;
             txtb_rohrdurchmesser.Name = "txtb_rohrdurchmesser";
@@ -721,7 +668,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(289, 235);
+            label6.Location = new Point(280, 205);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(103, 15);
@@ -734,7 +681,7 @@
             combb_flansch2.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_flansch2.FormattingEnabled = true;
             combb_flansch2.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
-            combb_flansch2.Location = new Point(105, 203);
+            combb_flansch2.Location = new Point(115, 200);
             combb_flansch2.Margin = new Padding(4, 3, 4, 3);
             combb_flansch2.Name = "combb_flansch2";
             combb_flansch2.Size = new Size(116, 23);
@@ -746,7 +693,7 @@
             combb_flansch1.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_flansch1.FormattingEnabled = true;
             combb_flansch1.Items.AddRange(new object[] { "Bauteil 1", "Bauteil 2", "Bauteil 3" });
-            combb_flansch1.Location = new Point(105, 156);
+            combb_flansch1.Location = new Point(115, 140);
             combb_flansch1.Margin = new Padding(4, 3, 4, 3);
             combb_flansch1.Name = "combb_flansch1";
             combb_flansch1.Size = new Size(116, 23);
@@ -758,7 +705,7 @@
             combb_verbindung.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_verbindung.FormattingEnabled = true;
             combb_verbindung.Items.AddRange(new object[] { "Verbindung 1", "Verbindung 2", "Verbindung 3" });
-            combb_verbindung.Location = new Point(105, 114);
+            combb_verbindung.Location = new Point(115, 80);
             combb_verbindung.Margin = new Padding(4, 3, 4, 3);
             combb_verbindung.Name = "combb_verbindung";
             combb_verbindung.Size = new Size(116, 23);
@@ -770,7 +717,7 @@
             combb_normrohr.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_normrohr.FormattingEnabled = true;
             combb_normrohr.Items.AddRange(new object[] { "Normrohr 1", "Normrohr 2" });
-            combb_normrohr.Location = new Point(419, 197);
+            combb_normrohr.Location = new Point(405, 140);
             combb_normrohr.Margin = new Padding(4, 3, 4, 3);
             combb_normrohr.Name = "combb_normrohr";
             combb_normrohr.Size = new Size(116, 23);
@@ -784,7 +731,7 @@
             combb_eigenschaften.DropDownStyle = ComboBoxStyle.DropDownList;
             combb_eigenschaften.FormattingEnabled = true;
             combb_eigenschaften.Items.AddRange(new object[] { "Normbögen", "selbst definiert" });
-            combb_eigenschaften.Location = new Point(419, 159);
+            combb_eigenschaften.Location = new Point(405, 80);
             combb_eigenschaften.Margin = new Padding(4, 3, 4, 3);
             combb_eigenschaften.Name = "combb_eigenschaften";
             combb_eigenschaften.Size = new Size(116, 23);
@@ -794,7 +741,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(35, 209);
+            label2.Location = new Point(35, 205);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(59, 15);
@@ -804,7 +751,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(35, 162);
+            label9.Location = new Point(35, 145);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(59, 15);
@@ -814,7 +761,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(35, 120);
+            label10.Location = new Point(35, 85);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(71, 15);
@@ -824,7 +771,7 @@
             // label31
             // 
             label31.AutoSize = true;
-            label31.Location = new Point(289, 201);
+            label31.Location = new Point(280, 145);
             label31.Margin = new Padding(4, 0, 4, 0);
             label31.Name = "label31";
             label31.Size = new Size(122, 15);
@@ -834,7 +781,7 @@
             // label32
             // 
             label32.AutoSize = true;
-            label32.Location = new Point(289, 163);
+            label32.Location = new Point(280, 85);
             label32.Margin = new Padding(4, 0, 4, 0);
             label32.Name = "label32";
             label32.Size = new Size(84, 15);
@@ -944,10 +891,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn_anwendung;
-        private System.Windows.Forms.Button btn_supports;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Button btn_verbindunghinzu;
-        private System.Windows.Forms.Button btn_verbindungentf;
         private TextBox txtb_groesse;
     }
 }
