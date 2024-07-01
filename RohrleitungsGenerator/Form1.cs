@@ -74,7 +74,7 @@ namespace ROhr2
 
             combb_verbindung.DataSource = data.Connections;
 
-            btn_zurueck.Enabled = false;
+           
 
             TestPipeGen();
         }
@@ -256,7 +256,7 @@ namespace ROhr2
             if (index < listPanel.Count - 1)
                 listPanel[++index].BringToFront();
 
-            MessageBox.Show(index.ToString());
+            
 
             if (index == 2)
             {
@@ -265,8 +265,24 @@ namespace ROhr2
                 data.SetMinSize();
 
                 solver.Solve();
+                btn_zurueck.Enabled = true;
+            }
+            else if(index == 3)
+            {
+                btn_weiter.Enabled = false;
             }
 
+        }
+        private void btn_zurueck_Click(object sender, EventArgs e)
+        {
+            if (index > 0)
+                listPanel[--index].BringToFront();
+
+            if (index == 2)
+            {
+                btn_zurueck.Enabled = true;
+                btn_weiter.Enabled = true;
+            }
         }
 
 
@@ -406,11 +422,7 @@ namespace ROhr2
             }
         }
 
-        private void btn_zurueck_Click(object sender, EventArgs e)
-        {
-            if (index > 0)
-                listPanel[--index].BringToFront();
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {

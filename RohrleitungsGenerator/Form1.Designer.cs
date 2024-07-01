@@ -341,7 +341,7 @@
             panel3.Controls.Add(label22);
             panel3.Controls.Add(label23);
             panel3.Controls.Add(label33);
-            panel3.Location = new Point(835, 436);
+            panel3.Location = new Point(10, 10);
             panel3.Margin = new Padding(4, 3, 4, 3);
             panel3.Name = "panel3";
             panel3.Size = new Size(817, 415);
@@ -487,7 +487,7 @@
             panel2.Controls.Add(label31);
             panel2.Controls.Add(label32);
             panel2.Controls.Add(label11);
-            panel2.Location = new Point(835, 12);
+            panel2.Location = new Point(10, 10);
             panel2.Margin = new Padding(4, 3, 4, 3);
             panel2.Name = "panel2";
             panel2.Size = new Size(817, 415);
