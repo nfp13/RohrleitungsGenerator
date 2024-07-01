@@ -16,7 +16,7 @@ namespace ROhr2
             _Data = data;
 
             _OpenList.Enqueue(new Node(_Con.StartPoint), 0);
-            _StepSize = (float)(_Data.MinSize*0.5);
+            _StepSize = (float)(_Data.MinSize);
             //_Solve();
         }
 
