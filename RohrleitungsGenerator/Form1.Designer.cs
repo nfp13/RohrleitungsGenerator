@@ -350,7 +350,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(397, 277);
+            label19.Location = new Point(395, 275);
             label19.Margin = new Padding(4, 0, 4, 0);
             label19.Name = "label19";
             label19.Size = new Size(79, 15);
@@ -359,7 +359,7 @@
             // 
             // pctb_rohrleitungx
             // 
-            pctb_rohrleitungx.Location = new Point(397, 87);
+            pctb_rohrleitungx.Location = new Point(395, 85);
             pctb_rohrleitungx.Margin = new Padding(4, 3, 4, 3);
             pctb_rohrleitungx.Name = "pctb_rohrleitungx";
             pctb_rohrleitungx.Size = new Size(187, 185);
@@ -371,10 +371,10 @@
             // 
             btn_zip.AutoSize = true;
             btn_zip.FlatStyle = FlatStyle.Flat;
-            btn_zip.Location = new Point(187, 138);
+            btn_zip.Location = new Point(185, 140);
             btn_zip.Margin = new Padding(4, 3, 4, 3);
             btn_zip.Name = "btn_zip";
-            btn_zip.Size = new Size(29, 29);
+            btn_zip.Size = new Size(31, 31);
             btn_zip.TabIndex = 27;
             btn_zip.UseVisualStyleBackColor = true;
             btn_zip.Click += btn_zip_Click;
@@ -383,7 +383,7 @@
             // 
             btn_exportieren.AutoSize = true;
             btn_exportieren.FlatStyle = FlatStyle.Flat;
-            btn_exportieren.Location = new Point(70, 242);
+            btn_exportieren.Location = new Point(70, 240);
             btn_exportieren.Margin = new Padding(4, 3, 4, 3);
             btn_exportieren.Name = "btn_exportieren";
             btn_exportieren.Size = new Size(146, 31);
@@ -398,7 +398,7 @@
             btn_speicherort.FlatStyle = FlatStyle.Flat;
             btn_speicherort.Image = (Image)resources.GetObject("btn_speicherort.Image");
             btn_speicherort.ImageAlign = ContentAlignment.TopLeft;
-            btn_speicherort.Location = new Point(187, 81);
+            btn_speicherort.Location = new Point(185, 80);
             btn_speicherort.Margin = new Padding(4, 3, 4, 3);
             btn_speicherort.Name = "btn_speicherort";
             btn_speicherort.Size = new Size(31, 31);
@@ -408,7 +408,7 @@
             // 
             // pctb_rohrleitungy
             // 
-            pctb_rohrleitungy.Location = new Point(595, 87);
+            pctb_rohrleitungy.Location = new Point(595, 85);
             pctb_rohrleitungy.Margin = new Padding(4, 3, 4, 3);
             pctb_rohrleitungy.Name = "pctb_rohrleitungy";
             pctb_rohrleitungy.Size = new Size(187, 185);
@@ -419,7 +419,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(595, 277);
+            label17.Location = new Point(595, 275);
             label17.Margin = new Padding(4, 0, 4, 0);
             label17.Name = "label17";
             label17.Size = new Size(79, 15);
@@ -430,7 +430,7 @@
             // 
             label22.AutoSize = true;
             label22.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label22.Location = new Point(286, 23);
+            label22.Location = new Point(285, 25);
             label22.Margin = new Padding(4, 0, 4, 0);
             label22.Name = "label22";
             label22.Size = new Size(119, 24);
@@ -440,7 +440,7 @@
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(35, 144);
+            label23.Location = new Point(35, 145);
             label23.Margin = new Padding(4, 0, 4, 0);
             label23.Name = "label23";
             label23.Size = new Size(109, 15);
@@ -450,7 +450,7 @@
             // label33
             // 
             label33.AutoSize = true;
-            label33.Location = new Point(35, 87);
+            label33.Location = new Point(35, 85);
             label33.Margin = new Padding(4, 0, 4, 0);
             label33.Name = "label33";
             label33.Size = new Size(111, 15);
@@ -497,7 +497,7 @@
             // 
             btn_anwendung.AutoSize = true;
             btn_anwendung.FlatStyle = FlatStyle.Flat;
-            btn_anwendung.Location = new Point(35, 310);
+            btn_anwendung.Location = new Point(85, 310);
             btn_anwendung.Margin = new Padding(4, 3, 4, 3);
             btn_anwendung.Name = "btn_anwendung";
             btn_anwendung.Size = new Size(146, 31);
@@ -792,7 +792,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(286, 23);
+            label11.Location = new Point(285, 25);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(138, 24);
