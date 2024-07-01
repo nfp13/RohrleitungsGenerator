@@ -128,7 +128,7 @@
             // txtb_groesse
             // 
             txtb_groesse.BackColor = SystemColors.Control;
-            txtb_groesse.Location = new Point(689, 81);
+            txtb_groesse.Location = new Point(690, 80);
             txtb_groesse.Margin = new Padding(4, 3, 4, 3);
             txtb_groesse.Name = "txtb_groesse";
             txtb_groesse.ReadOnly = true;
@@ -138,7 +138,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(595, 329);
+            label5.Location = new Point(595, 330);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(87, 15);
@@ -148,7 +148,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(321, 329);
+            label4.Location = new Point(320, 330);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(87, 15);
@@ -158,7 +158,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(35, 329);
+            label3.Location = new Point(35, 330);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(87, 15);
@@ -168,7 +168,7 @@
             // pctb_z
             // 
             pctb_z.ImageLocation = "";
-            pctb_z.Location = new Point(595, 138);
+            pctb_z.Location = new Point(595, 140);
             pctb_z.Margin = new Padding(4, 3, 4, 3);
             pctb_z.Name = "pctb_z";
             pctb_z.Size = new Size(187, 185);
@@ -179,7 +179,7 @@
             // pctb_y
             // 
             pctb_y.ImageLocation = "";
-            pctb_y.Location = new Point(321, 138);
+            pctb_y.Location = new Point(320, 140);
             pctb_y.Margin = new Padding(4, 3, 4, 3);
             pctb_y.Name = "pctb_y";
             pctb_y.Size = new Size(187, 185);
@@ -190,7 +190,7 @@
             // txtb_datei
             // 
             txtb_datei.BackColor = SystemColors.Control;
-            txtb_datei.Location = new Point(391, 81);
+            txtb_datei.Location = new Point(415, 80);
             txtb_datei.Margin = new Padding(4, 3, 4, 3);
             txtb_datei.Name = "txtb_datei";
             txtb_datei.ReadOnly = true;
@@ -200,7 +200,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(321, 87);
+            label18.Location = new Point(320, 85);
             label18.Margin = new Padding(4, 0, 4, 0);
             label18.Name = "label18";
             label18.Size = new Size(37, 15);
@@ -211,7 +211,7 @@
             // 
             btn_datei.AutoSize = true;
             btn_datei.FlatStyle = FlatStyle.Flat;
-            btn_datei.Location = new Point(187, 81);
+            btn_datei.Location = new Point(185, 80);
             btn_datei.Margin = new Padding(4, 3, 4, 3);
             btn_datei.Name = "btn_datei";
             btn_datei.Size = new Size(31, 31);
@@ -223,7 +223,7 @@
             // pctb_x
             // 
             pctb_x.ImageLocation = "";
-            pctb_x.Location = new Point(35, 138);
+            pctb_x.Location = new Point(35, 140);
             pctb_x.Margin = new Padding(4, 3, 4, 3);
             pctb_x.Name = "pctb_x";
             pctb_x.Size = new Size(187, 185);
@@ -234,7 +234,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(595, 87);
+            label15.Location = new Point(595, 85);
             label15.Margin = new Padding(4, 0, 4, 0);
             label15.Name = "label15";
             label15.Size = new Size(72, 15);
@@ -245,7 +245,7 @@
             // 
             lblueberschrift1.AutoSize = true;
             lblueberschrift1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblueberschrift1.Location = new Point(286, 23);
+            lblueberschrift1.Location = new Point(285, 25);
             lblueberschrift1.Margin = new Padding(4, 0, 4, 0);
             lblueberschrift1.Name = "lblueberschrift1";
             lblueberschrift1.Size = new Size(227, 24);
@@ -255,7 +255,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(35, 87);
+            label1.Location = new Point(35, 85);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(96, 15);
@@ -279,7 +279,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(158, 16);
+            label16.Location = new Point(160, 15);
             label16.Margin = new Padding(4, 0, 4, 0);
             label16.Name = "label16";
             label16.Size = new Size(51, 15);
@@ -288,7 +288,7 @@
             // 
             // progb_inventor
             // 
-            progb_inventor.Location = new Point(35, 12);
+            progb_inventor.Location = new Point(35, 15);
             progb_inventor.Margin = new Padding(4, 3, 4, 3);
             progb_inventor.Name = "progb_inventor";
             progb_inventor.Size = new Size(117, 23);
@@ -298,7 +298,7 @@
             // 
             btn_changemode.AutoSize = true;
             btn_changemode.FlatStyle = FlatStyle.Flat;
-            btn_changemode.Location = new Point(365, 9);
+            btn_changemode.Location = new Point(365, 10);
             btn_changemode.Margin = new Padding(4, 3, 4, 3);
             btn_changemode.Name = "btn_changemode";
             btn_changemode.Size = new Size(88, 31);
@@ -311,7 +311,7 @@
             // 
             btn_weiter.AutoSize = true;
             btn_weiter.FlatStyle = FlatStyle.Flat;
-            btn_weiter.Location = new Point(694, 9);
+            btn_weiter.Location = new Point(695, 10);
             btn_weiter.Margin = new Padding(4, 3, 4, 3);
             btn_weiter.Name = "btn_weiter";
             btn_weiter.Size = new Size(88, 31);
@@ -324,7 +324,7 @@
             // 
             btn_zurueck.AutoSize = true;
             btn_zurueck.FlatStyle = FlatStyle.Flat;
-            btn_zurueck.Location = new Point(595, 9);
+            btn_zurueck.Location = new Point(595, 10);
             btn_zurueck.Margin = new Padding(4, 3, 4, 3);
             btn_zurueck.Name = "btn_zurueck";
             btn_zurueck.Size = new Size(88, 31);
