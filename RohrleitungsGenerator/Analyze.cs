@@ -88,7 +88,7 @@ namespace ROhr2
 
             _status.Name = "Taking Screenshot";
             _status.Progress = 0;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Creating the camera
 
@@ -97,7 +97,7 @@ namespace ROhr2
             camera.Perspective = false;
 
             _status.Progress = 75;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Setting camera perspective, fiting the camera to the PCB and exporting picture
 
@@ -127,7 +127,7 @@ namespace ROhr2
 
             _status.Progress = 100;
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
         }
 
         public void GenerateCuboids()
@@ -190,25 +190,25 @@ namespace ROhr2
         {
             _status.Name = "Pack and Go";
             _status.Progress = 0;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Saving the Assembly to temporary path
             _assemblyDocument.Update();
             _status.Progress = 50;
-            _status.OnProgess();
+            //_status.OnProgess();
             _assemblyDocument.SaveAs(BaugruppePath, true);
             _assemblyDocument.Close(true);
 
             _status.Progress = 100;
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
         }
 
         public void packAndGo(string pathBaugruppe, string pathToSave)
         {
             _status.Name = "Pack and Go";
             _status.Progress = 0;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Set the design project
             string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
@@ -220,7 +220,7 @@ namespace ROhr2
             object refMissFiles = new object();
 
             _status.Progress = 50;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Set the options
             packAndGo.SkipLibraries = false;
@@ -241,7 +241,7 @@ namespace ROhr2
 
             _status.Progress = 100;
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
         }
 
 
