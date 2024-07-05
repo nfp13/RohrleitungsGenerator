@@ -101,13 +101,13 @@ namespace ROhr2
             //_status.OnProgess();
 
             //CAD folder
-            //string[] pathsCAD = { folderPath, "CAD" };
-            //folderPathCAD = System.IO.Path.Combine(pathsCAD);
-            //var dir3 = folderPathCAD;
-            //if (!Directory.Exists(dir3))
-            //{
-            //    Directory.CreateDirectory(dir3);
-            //}
+            string[] pathsCAD = { folderPath, "CAD" };
+            folderPathCAD = System.IO.Path.Combine(pathsCAD);
+            var dir3 = folderPathCAD;
+            if (!Directory.Exists(dir3))
+            {
+                Directory.CreateDirectory(dir3);
+            }
 
             _status.Progress = 100;
             _status.Name = "Done";
