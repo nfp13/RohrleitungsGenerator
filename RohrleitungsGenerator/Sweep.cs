@@ -19,7 +19,7 @@ namespace ROhr2
             _filePath = filePath;
             speichern = new Speichern(status);
             _status.Name = "Opening Assembly";
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Opening the assembly and part Document
             _partDocument = _inventorApp.Documents.Add(DocumentTypeEnum.kPartDocumentObject, _inventorApp.GetTemplateFile(DocumentTypeEnum.kPartDocumentObject)) as PartDocument;
@@ -29,7 +29,7 @@ namespace ROhr2
             _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
 
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
         }
 
         public void sketch3d()
@@ -92,7 +92,7 @@ namespace ROhr2
             // add part to assembley
             _status.Name = "Adding Parts";
             _status.Progress = 0;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Generating Matrix
             Matrix positionMatrix = _inventorApp.TransientGeometry.CreateMatrix();
@@ -107,7 +107,7 @@ namespace ROhr2
 
             _status.Progress = 100;
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
 
         }
 
