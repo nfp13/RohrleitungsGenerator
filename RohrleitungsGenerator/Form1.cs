@@ -50,7 +50,7 @@ namespace ROhr2
             data = new Data();
             solver = new GeneratePipeSystem(data);
             solver.Done += new EventHandler(PipesGenerated);
-            //status.Progressed += new EventHandler(UpdateStatus);
+            status.Progressed += new EventHandler(UpdateStatus);
 
             InitializeComponent();
             InitializeUI("UIMode");
@@ -78,6 +78,15 @@ namespace ROhr2
 
 
             TestPipeGen();
+        }
+
+        private void UpdateStatus(object sender, EventArgs e)
+        {
+            label16.Text = status.Name;
+            progb_inventor.Value = status.Progress;
+            if (status.Progress > 0) { progb_inventor.Value = status.Progress - 1; }
+            else { progb_inventor.Value = 0; }
+            progb_inventor.Value = status.Progress;
         }
 
         private void TestPipeGen()
