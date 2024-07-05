@@ -2,6 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using System.IO.Compression;
+using PackAndGoLib;
+using Inventor;
 
 
 namespace ROhr2
@@ -16,7 +18,7 @@ namespace ROhr2
             _status.OnProgess();
 
             //Gets temporary folder of the user 
-            string result = Path.GetTempPath();
+            string result = System.IO.Path.GetTempPath();
             _tempPath = result;
 
             _status.Name = "Done";
@@ -27,13 +29,13 @@ namespace ROhr2
         public string getPathRohr()
         {
             string[] paths = { _tempPath, "Rohr.ipt" };
-            _pathRohr = Path.Combine(paths);
+            _pathRohr = System.IO.Path.Combine(paths);
             return _pathRohr;
         }
         public string getPathBaugruppe()
         {
             string[] paths = { _tempPath, "Gesamt.iam" };
-            _pathBaugruppen = Path.Combine(paths);
+            _pathBaugruppen = System.IO.Path.Combine(paths);
             return _pathBaugruppen;
         }
 
@@ -41,27 +43,27 @@ namespace ROhr2
         public string getPathScreenX()
         {
             string[] paths = { _tempPath, "ScreenX.jpg" };
-            _pathScreenX = Path.Combine(paths);
+            _pathScreenX = System.IO.Path.Combine(paths);
             return _pathScreenX;
         }
         public string getPathScreenY()
         {
             string[] paths = { _tempPath, "ScreenY.jpg" };
-            _pathScreenY = Path.Combine(paths);
+            _pathScreenY = System.IO.Path.Combine(paths);
             return _pathScreenY;
         }
         public string getPathScreenZ()
         {
             string[] paths = { _tempPath, "ScreenZ.jpg" };
-            _pathScreenZ = Path.Combine(paths);
+            _pathScreenZ = System.IO.Path.Combine(paths);
             return _pathScreenZ;
         }
 
         //Deletes created files in the temp folder
         public void deleteFiles()
         {
-            File.Delete(getPathRohr());
-            File.Delete(getPathBaugruppe());
+            System.IO.File.Delete(getPathRohr());
+            System.IO.File.Delete(getPathBaugruppe());
             _tempPath = "";
             _pathRohr = "";
             _pathUnten = "";
@@ -76,7 +78,7 @@ namespace ROhr2
 
             //Main folder
             string[] paths = { selectedPath, "Rohrleitung" };
-            folderPath = Path.Combine(paths);
+            folderPath = System.IO.Path.Combine(paths);
             var dir1 = folderPath;
             if (!Directory.Exists(dir1))
             {
@@ -88,7 +90,7 @@ namespace ROhr2
 
             //CAD folder
             string[] pathsCAD = { folderPath, "CAD" };
-            folderPathCAD = Path.Combine(pathsCAD);
+            folderPathCAD = System.IO.Path.Combine(pathsCAD);
             var dir3 = folderPathCAD;
             if (!Directory.Exists(dir3))
             {
@@ -108,13 +110,16 @@ namespace ROhr2
             _status.OnProgess();
 
             string[] paths = { selectedPath, "Rohrleitung.zip" };
-            string zipPath = Path.Combine(paths);
+            string zipPath = System.IO.Path.Combine(paths);
             System.IO.Compression.ZipFile.CreateFromDirectory(folderPath, zipPath);
 
             _status.Progress = 100;
             _status.Name = "Done";
             _status.OnProgess();
         }
+
+ 
+
 
         //Initialization of the required variables
         private Status _status;

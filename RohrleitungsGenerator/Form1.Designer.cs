@@ -405,6 +405,7 @@
             btn_speicherort.TabIndex = 16;
             btn_speicherort.Text = "+";
             btn_speicherort.UseVisualStyleBackColor = true;
+            btn_speicherort.Click += btn_speicherort_Click;
             // 
             // pctb_rohrleitungy
             // 

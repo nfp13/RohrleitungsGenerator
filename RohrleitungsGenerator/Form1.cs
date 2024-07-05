@@ -42,6 +42,7 @@ namespace ROhr2
         //Für Seiten wechseln
         List<Panel> listPanel = new List<Panel>();
         int index;
+        bool zip = false;
 
         public Form1()
         {
@@ -74,7 +75,7 @@ namespace ROhr2
 
             combb_verbindung.DataSource = data.Connections;
 
-           
+
 
             TestPipeGen();
         }
@@ -199,10 +200,12 @@ namespace ROhr2
             if (btn_zip.Text == "")
             {
                 btn_zip.Text = "X";
+                zip = true;
             }
             else
             {
                 btn_zip.Text = "";
+                zip = false;
             }
         }
 
@@ -256,7 +259,7 @@ namespace ROhr2
             if (index < listPanel.Count - 1)
                 listPanel[++index].BringToFront();
 
-            
+
 
             if (index == 2)
             {
@@ -267,7 +270,7 @@ namespace ROhr2
                 solver.Solve();
                 btn_zurueck.Enabled = true;
             }
-            else if(index == 3)
+            else if (index == 3)
             {
                 btn_weiter.Enabled = false;
             }
@@ -323,7 +326,13 @@ namespace ROhr2
 
         private void btn_exportieren_Click(object sender, EventArgs e)
         {
+            speichern.exportFiles();
+            analyze.packAndGo(speichern.getPathBaugruppe(), speichern.folderPathCAD);
 
+            if (zip)
+            {
+                speichern.makeZip();
+            }
         }
 
         private void combb_eigenschaften_SelectedIndexChanged(object sender, EventArgs e)
@@ -422,7 +431,7 @@ namespace ROhr2
             }
         }
 
-        
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -430,6 +439,17 @@ namespace ROhr2
             listPanel.Add(panel2);
             listPanel.Add(panel3);
             listPanel[index].BringToFront();
+        }
+
+        private void btn_speicherort_Click(object sender, EventArgs e)
+        {
+
+            speichern = new Speichern(status);
+            FolderBrowserDialog diag = new FolderBrowserDialog();
+            if (diag.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                speichern.selectedPath = diag.SelectedPath;
+            }
         }
     }
 

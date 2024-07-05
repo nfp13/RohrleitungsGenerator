@@ -5,6 +5,7 @@ using Inventor;
 using System;
 using System.Numerics;
 using System.Security.Policy;
+using PackAndGoLib;
 
 namespace ROhr2
 {
@@ -183,6 +184,66 @@ namespace ROhr2
             Flange.Add(FlangeName);
             return flange;
         }
+
+
+        public void Save(string BaugruppePath)
+        {
+            _status.Name = "Pack and Go";
+            _status.Progress = 0;
+            _status.OnProgess();
+
+            //Saving the Assembly to temporary path
+            _assemblyDocument.Update();
+            _status.Progress = 50;
+            _status.OnProgess();
+            _assemblyDocument.SaveAs(BaugruppePath, true);
+            _assemblyDocument.Close(true);
+
+            _status.Progress = 100;
+            _status.Name = "Done";
+            _status.OnProgess();
+        }
+
+        public void packAndGo(string pathBaugruppe, string pathToSave)
+        {
+            _status.Name = "Pack and Go";
+            _status.Progress = 0;
+            _status.OnProgess();
+
+            //Set the design project
+            string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+            PackAndGoComponent packAndGoComp = new PackAndGoComponent();
+            Save(pathBaugruppe);
+            PackAndGo packAndGo = packAndGoComp.CreatePackAndGo(pathBaugruppe, pathToSave);
+
+            string[] refFiles = new string[] { };
+            object refMissFiles = new object();
+
+            _status.Progress = 50;
+            _status.OnProgess();
+
+            //Set the options
+            packAndGo.SkipLibraries = false;
+            packAndGo.SkipStyles = true;
+            packAndGo.SkipTemplates = true;
+            packAndGo.CollectWorkgroups = false;
+            packAndGo.KeepFolderHierarchy = true;
+            packAndGo.IncludeLinkedFiles = true;
+
+            //Get the referenced files
+            packAndGo.SearchForReferencedFiles(out refFiles, out refMissFiles);
+
+            //Add the referenced files for package
+            packAndGo.AddFilesToPackage(refFiles);
+
+            //Start the pack and go to create the package
+            packAndGo.CreatePackage();
+
+            _status.Progress = 100;
+            _status.Name = "Done";
+            _status.OnProgess();
+        }
+
 
         private Inventor.Application _inventorApp;
         private string _filePath;
