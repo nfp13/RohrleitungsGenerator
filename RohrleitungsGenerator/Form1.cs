@@ -116,6 +116,12 @@ namespace ROhr2
                 sweep.addPart();
             }
 
+            analyze.SavePictureAs(speichern.getPathScreenA(), "X");
+            pctb_rohrleitungx.Image = Image.FromFile(speichern.getPathScreenA());
+
+            analyze.SavePictureAs(speichern.getPathScreenB(), "Z");
+            pctb_rohrleitungy.Image = Image.FromFile(speichern.getPathScreenB());
+
         }
 
         private void Form1_Shown(object sender, EventArgs e)

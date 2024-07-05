@@ -58,6 +58,18 @@ namespace ROhr2
             _pathScreenZ = System.IO.Path.Combine(paths);
             return _pathScreenZ;
         }
+        public string getPathScreenA()
+        {
+            string[] paths = { _tempPath, "ScreenA.jpg" };
+            _pathScreenZ = System.IO.Path.Combine(paths);
+            return _pathScreenZ;
+        }
+        public string getPathScreenB()
+        {
+            string[] paths = { _tempPath, "ScreenB.jpg" };
+            _pathScreenZ = System.IO.Path.Combine(paths);
+            return _pathScreenZ;
+        }
 
         //Deletes created files in the temp folder
         public void deleteFiles()
@@ -89,13 +101,14 @@ namespace ROhr2
             _status.OnProgess();
 
             //CAD folder
-            string[] pathsCAD = { folderPath, "CAD" };
-            folderPathCAD = System.IO.Path.Combine(pathsCAD);
-            var dir3 = folderPathCAD;
-            if (!Directory.Exists(dir3))
-            {
-                Directory.CreateDirectory(dir3);
-            }
+            //string[] pathsCAD = { folderPath, "CAD" };
+            //folderPathCAD = System.IO.Path.Combine(pathsCAD);
+            //var dir3 = folderPathCAD;
+            //if (!Directory.Exists(dir3))
+            //{
+            //    Directory.CreateDirectory(dir3);
+            //}
+
             _status.Progress = 100;
             _status.Name = "Done";
             _status.OnProgess();
