@@ -116,8 +116,6 @@ namespace ROhr2
                 sweep.addPart();
             }
 
-            MessageBox.Show("Event Working!");
-
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -129,7 +127,6 @@ namespace ROhr2
 
             Type inventorAppType = System.Type.GetTypeFromProgID("Inventor.Application");
             inventorApp = System.Activator.CreateInstance(inventorAppType) as Inventor.Application;
-            inventorApp.Visible = true;
 
             status.Name = "Done";
             status.OnProgess();

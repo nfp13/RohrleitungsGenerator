@@ -23,9 +23,9 @@ namespace ROhr2
 
             //Opening the assembly and part Document
             _partDocument = _inventorApp.Documents.Add(DocumentTypeEnum.kPartDocumentObject, _inventorApp.GetTemplateFile(DocumentTypeEnum.kPartDocumentObject)) as PartDocument;
-            _partComponentDefinition = _partDocument.ComponentDefinition ;
-            _transientGeometry = inventorApp.TransientGeometry;
-            _assemblyDocument = _inventorApp.Documents.Open(_filePath, true) as AssemblyDocument;
+            _partComponentDefinition = _partDocument.ComponentDefinition;
+            _transientGeometry = _inventorApp.TransientGeometry;
+            _assemblyDocument = _inventorApp.Documents.Open(_filePath, false) as AssemblyDocument;
             _assemblyComponentDefinition = _assemblyDocument.ComponentDefinition;
 
             _status.Name = "Done";
@@ -103,7 +103,7 @@ namespace ROhr2
 
             //Place
             ComponentOccurrence rohr = _assemblyDocument.ComponentDefinition.Occurrences.Add(speichern.getPathRohr(), positionMatrix);
-            MessageBox.Show(speichern.getPathRohr());
+            //MessageBox.Show(speichern.getPathRohr());
 
             _status.Progress = 100;
             _status.Name = "Done";
