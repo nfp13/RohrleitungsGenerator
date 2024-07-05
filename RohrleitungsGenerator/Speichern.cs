@@ -15,14 +15,14 @@ namespace ROhr2
         {
             _status = status;
             _status.Name = "Getting Temp Path";
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Gets temporary folder of the user 
             string result = System.IO.Path.GetTempPath();
             _tempPath = result;
 
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
         }
 
         //Gets temporary paths for the Inventor parts and the assebley
@@ -86,7 +86,7 @@ namespace ROhr2
         {
             _status.Name = "Exporting Files";
             _status.Progress = 0;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //Main folder
             string[] paths = { selectedPath, "Rohrleitung" };
@@ -98,7 +98,7 @@ namespace ROhr2
             }
 
             _status.Progress = 30;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             //CAD folder
             //string[] pathsCAD = { folderPath, "CAD" };
@@ -111,7 +111,7 @@ namespace ROhr2
 
             _status.Progress = 100;
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
 
         }
 
@@ -120,7 +120,7 @@ namespace ROhr2
         {
             _status.Name = "Creating Zip";
             _status.Progress = 25;
-            _status.OnProgess();
+            //_status.OnProgess();
 
             string[] paths = { selectedPath, "Rohrleitung.zip" };
             string zipPath = System.IO.Path.Combine(paths);
@@ -128,7 +128,7 @@ namespace ROhr2
 
             _status.Progress = 100;
             _status.Name = "Done";
-            _status.OnProgess();
+            //_status.OnProgess();
         }
 
  
